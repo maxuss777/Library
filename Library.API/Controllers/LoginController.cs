@@ -26,7 +26,7 @@ namespace Library.API.Controllers
                 {
                     return Request.CreateErrorResponse(HttpStatusCode.NotFound, "User doesn't exist");
                 }
-                FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
+                FormsAuthentication.SetAuthCookie(model.Email, model.RememberMe);
                 return Request.CreateResponse(HttpStatusCode.OK);
             }
             catch (Exception exc)

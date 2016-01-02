@@ -16,7 +16,7 @@ namespace Library.API.DAL
             {
                 conn.Open();
 
-                using (SqlCommand cmd = new SqlCommand("dbo.GetUserByEmail", conn))
+                using (SqlCommand cmd = new SqlCommand("GetUserByEmail", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
@@ -36,6 +36,7 @@ namespace Library.API.DAL
                     {
                         while (reader.Read())
                         {
+
                             user.Id = (int) reader["Id"];
                             user.Email = (string) reader["Email"];
                             user.Password = (string) reader["Password"];
@@ -47,7 +48,7 @@ namespace Library.API.DAL
                     }
                 }
             }
-            return user;
+            return user.Id == 0 ? null : user;
         }
         public User Create(User user)
         {
@@ -55,7 +56,7 @@ namespace Library.API.DAL
             {
                 conn.Open();
 
-                using (SqlCommand cmd = new SqlCommand("dbo.CreateUser", conn))
+                using (SqlCommand cmd = new SqlCommand("CreateUser", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
@@ -105,7 +106,7 @@ namespace Library.API.DAL
                     }
                 }
             }
-            return user;
+            return user.Id == 0 ? null : user;
         }
     }
 }

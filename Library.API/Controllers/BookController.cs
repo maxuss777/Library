@@ -7,6 +7,7 @@ using Library.API.Common.Book;
 
 namespace Library.API.Controllers
 {
+    [Authorize]
     public class BookController : ApiController
     {
         private readonly IBookServices _bookServices;
@@ -15,7 +16,6 @@ namespace Library.API.Controllers
         {
             _bookServices = bookServ;
         }
-
         public HttpResponseMessage GETBooks()
         {
             try

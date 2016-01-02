@@ -12,7 +12,7 @@ namespace Library.API.Providers
         {
             try
             {
-                return Membership.ValidateUser(model.UserName, model.Password);
+                return Membership.ValidateUser(model.Email, model.Password);
             }
             catch (Exception exc)
             {
