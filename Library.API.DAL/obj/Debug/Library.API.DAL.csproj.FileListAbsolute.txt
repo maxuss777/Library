@@ -1,0 +1,7 @@
+C:\Users\MaximAndEugenia\Documents\Visual Studio 2013\Projects\LibraryAPI\Library.API.DAL\bin\Debug\Library.API.DAL.dll
+C:\Users\MaximAndEugenia\Documents\Visual Studio 2013\Projects\LibraryAPI\Library.API.DAL\bin\Debug\Library.API.DAL.pdb
+C:\Users\MaximAndEugenia\Documents\Visual Studio 2013\Projects\LibraryAPI\Library.API.DAL\bin\Debug\Library.API.Common.dll
+C:\Users\MaximAndEugenia\Documents\Visual Studio 2013\Projects\LibraryAPI\Library.API.DAL\bin\Debug\Library.API.Common.pdb
+C:\Users\MaximAndEugenia\Documents\Visual Studio 2013\Projects\LibraryAPI\Library.API.DAL\obj\Debug\Library.API.DAL.csprojResolveAssemblyReference.cache
+C:\Users\MaximAndEugenia\Documents\Visual Studio 2013\Projects\LibraryAPI\Library.API.DAL\obj\Debug\Library.API.DAL.dll
+C:\Users\MaximAndEugenia\Documents\Visual Studio 2013\Projects\LibraryAPI\Library.API.DAL\obj\Debug\Library.API.DAL.pdb
