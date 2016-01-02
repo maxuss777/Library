@@ -16,7 +16,7 @@ namespace Library.API.DAL
             {
                 conn.Open();
 
-                using (SqlCommand cmd = new SqlCommand("GetUserById", conn))
+                using (SqlCommand cmd = new SqlCommand("dbo.GetUserByEmail", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
@@ -55,21 +55,12 @@ namespace Library.API.DAL
             {
                 conn.Open();
 
-                using (SqlCommand cmd = new SqlCommand("CreateUser", conn))
+                using (SqlCommand cmd = new SqlCommand("dbo.CreateUser", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
 #region parameters
-
-                    SqlParameter Id = new SqlParameter
-                    {
-                        ParameterName = "@Id",
-                        DbType = DbType.Int32,
-                        Direction = ParameterDirection.Input,
-                        Value = user.Id
-                    };
-                    cmd.Parameters.Add(Id);
-
+                    
                     SqlParameter Email = new SqlParameter
                     {
                         ParameterName = "@Email",
@@ -77,16 +68,16 @@ namespace Library.API.DAL
                         Direction = ParameterDirection.Input,
                         Value = user.Email
                     };
-                    cmd.Parameters.Add(Id);
+                    cmd.Parameters.Add(Email);
 
                     SqlParameter Password = new SqlParameter
                     {
                         ParameterName = "@Password",
-                        DbType = DbType.Int32,
+                        DbType = DbType.String,
                         Direction = ParameterDirection.Input,
                         Value = user.Password
                     };
-                    cmd.Parameters.Add(Id);
+                    cmd.Parameters.Add(Password);
 
                     SqlParameter RoleId = new SqlParameter
                     {
@@ -96,7 +87,7 @@ namespace Library.API.DAL
                         Value = user.RoleId
                     };
 
-                    cmd.Parameters.Add(Id);
+                    cmd.Parameters.Add(RoleId);
 
 #endregion
 

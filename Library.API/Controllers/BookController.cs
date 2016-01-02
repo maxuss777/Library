@@ -7,16 +7,15 @@ using Library.API.Common.Book;
 
 namespace Library.API.Controllers
 {
-    [Authorize]
     public class BookController : ApiController
     {
-       private readonly IBookServices _bookServices;
-       public BookController(IBookServices bookServ)
-       {
-           _bookServices = bookServ;
-       }
+        private readonly IBookServices _bookServices;
 
-        // GET api/book
+        public BookController(IBookServices bookServ)
+        {
+            _bookServices = bookServ;
+        }
+
         public HttpResponseMessage GETBooks()
         {
             try
@@ -25,14 +24,14 @@ namespace Library.API.Controllers
                 return booksList != null
                     ? Request.CreateResponse(HttpStatusCode.OK, booksList)
                     : Request.CreateErrorResponse(HttpStatusCode.NotFound,
-                    "Sorry, there is no any book yet");
+                        "Sorry, there is no any book yet");
             }
             catch (Exception exc)
             {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, exc.Message);
             }
         }
-        // GET api/book/5
+
         public HttpResponseMessage GETBook(int id)
         {
             try
@@ -46,10 +45,10 @@ namespace Library.API.Controllers
             catch (Exception exc)
             {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, exc.Message);
-              
+
             }
         }
-        // POST api/book
+
         public HttpResponseMessage POSTBook(BookObject bookToBeCreated)
         {
             try
@@ -58,14 +57,14 @@ namespace Library.API.Controllers
                 return createdBook != null
                     ? Request.CreateResponse(HttpStatusCode.OK, createdBook)
                     : Request.CreateErrorResponse(HttpStatusCode.BadRequest,
-                    "Sorry, some troubles with the book creation");
+                        "Sorry, some troubles with the book creation");
             }
             catch (Exception exc)
             {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, exc.Message);
             }
         }
-        // PUT api/book/5
+
         public HttpResponseMessage PUTBook(int id, BookObject bookToBeUptated)
         {
             try
@@ -75,14 +74,14 @@ namespace Library.API.Controllers
                 return updatedBook != null
                     ? Request.CreateResponse(HttpStatusCode.OK, updatedBook)
                     : Request.CreateErrorResponse(HttpStatusCode.BadRequest,
-                    "Sorry, the book doesn't exist");
+                        "Sorry, the book doesn't exist");
             }
             catch (Exception exc)
             {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, exc.Message);
             }
         }
-        // DELETE api/book/5
+
         public HttpResponseMessage DELETEBook(int id)
         {
             try
@@ -92,7 +91,7 @@ namespace Library.API.Controllers
                 return result
                     ? Request.CreateResponse(HttpStatusCode.OK)
                     : Request.CreateErrorResponse(HttpStatusCode.BadRequest,
-                    "Sorry, the book doesn't exist");
+                        "Sorry, the book doesn't exist");
             }
             catch (Exception exc)
             {

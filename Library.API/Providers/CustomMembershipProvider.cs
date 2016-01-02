@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Web.Helpers;
 using System.Web.Security;
+using Library.API.Business;
 using Library.API.Business.Abstract;
 using Library.API.Common.User;
 
 namespace Library.API.Providers
 {
-    public class CustomMembershipProvider : MembershipProvider
+    class CustomMembershipPovider : MembershipProvider
     {
         private readonly IUserServices _userServices;
-        public CustomMembershipProvider(IUserServices userServ)
+        public CustomMembershipPovider()
         {
-            _userServices = userServ;
+            _userServices = new UserServices();
         }
         public override bool ValidateUser(string username, string password)
         {
@@ -26,9 +27,9 @@ namespace Library.API.Providers
                     isValid = true;
                 }
             }
-            catch
+            catch(Exception exc)
             {
-                isValid = false;
+                throw new Exception(exc.Message);
             }
 
             return isValid;
@@ -61,9 +62,9 @@ namespace Library.API.Providers
                         
                     return membershipUser;
                 }
-                catch
+                catch(Exception exc)
                 {
-                    return null;
+                    throw new Exception(exc.Message);
                 }
             }
             return null;
@@ -86,9 +87,9 @@ namespace Library.API.Providers
 
                 return memberUser;
             }
-            catch
+            catch(Exception exc)
             {
-                return null;
+                throw new Exception(exc.Message);
             }
         }
         public override MembershipUser CreateUser(string username, string password, string email, string passwordQuestion, string passwordAnswer,

@@ -50,3 +50,5 @@ C:\GitProj\Library\Library.API.Tests\bin\Debug\Library.API.pdb
 C:\GitProj\Library\Library.API.Tests\bin\Debug\Ninject.xml
 C:\GitProj\Library\Library.API.Tests\bin\Debug\System.Net.Http.Formatting.xml
 C:\GitProj\Library\Library.API.Tests\bin\Debug\Newtonsoft.Json.xml
+C:\GitProj\Library\Library.API.Tests\bin\Debug\System.Web.Http.xml
+C:\GitProj\Library\Library.API.Tests\bin\Debug\System.Web.Http.WebHost.xml

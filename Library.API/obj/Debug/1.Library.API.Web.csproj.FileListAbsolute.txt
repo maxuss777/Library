@@ -34,3 +34,7 @@ C:\GitProj\Library\Library.API\bin\Library.API.DAL.pdb
 C:\GitProj\Library\Library.API\obj\Debug\1.Library.API.Web.csprojResolveAssemblyReference.cache
 C:\GitProj\Library\Library.API\obj\Debug\Library.API.dll
 C:\GitProj\Library\Library.API\obj\Debug\Library.API.pdb
+C:\GitProj\Library\Library.API\bin\System.Web.Http.dll
+C:\GitProj\Library\Library.API\bin\System.Web.Http.WebHost.dll
+C:\GitProj\Library\Library.API\bin\System.Web.Http.xml
+C:\GitProj\Library\Library.API\bin\System.Web.Http.WebHost.xml

@@ -1,5 +1,4 @@
-﻿using System;
-using Library.API.Common.User;
+﻿using Library.API.Common.User;
 
 namespace Library.API.DAL.Abstract
 {

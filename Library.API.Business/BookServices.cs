@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
-using Library.API.Business.Abstract;
 using Library.API.Common.Book;
 using Library.API.Common.Category;
+using Library.API.DAL;
 using Library.API.DAL.Abstract;
+using Library.API.Business.Abstract;
 
 namespace Library.API.Business
 {
@@ -10,9 +11,9 @@ namespace Library.API.Business
     {
         private readonly IBookRepository _bookRepository;
 
-        public BookServices(IBookRepository bookRepo)
+        public BookServices()
         {
-            _bookRepository = bookRepo;
+            _bookRepository = new BookRepository();
         }
         public BookObject CreateBook(BookObject book)
         {

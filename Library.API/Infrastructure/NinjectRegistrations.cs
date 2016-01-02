@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Web.Http.Dependencies;
+using Library.API.Abstract;
 using Library.API.Business;
 using Library.API.Business.Abstract;
+using Library.API.Providers;
 using Ninject;
 using Ninject.Modules;
 using Ninject.Syntax;
@@ -14,8 +16,9 @@ namespace Library.API.Infrastructure
     {
         public override void Load()
         {
+            Bind<ILoginProvider>().To<AuthonticateProvider>();
+            Bind<IRegistrationProvider>().To<AuthonticateProvider>();
             Bind<IBookServices>().To<BookServices>();
-
         }
     }
     public class NinjectDependencyResolver : NinjectDependencyScope, IDependencyResolver
@@ -62,7 +65,7 @@ namespace Library.API.Infrastructure
 
         public IEnumerable<object> GetServices(Type serviceType)
         {
-            if (this.resolver == null)
+            if (resolver == null)
             {
                 throw new ObjectDisposedException("this", "This scope has already been disposed");
             }
