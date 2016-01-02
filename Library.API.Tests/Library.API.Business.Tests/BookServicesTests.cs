@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Library.API.Business;
 using Library.API.Common.Book;
+using Library.API.DAL;
 using NUnit.Framework;
 using ServiceStack;
 
@@ -9,7 +10,7 @@ namespace Library.API.Tests.Library.API.Business.Tests
     [TestFixture]
     public class BookServicesTests
     {
-        private readonly BookServices _bookServices = new BookServices();
+        private readonly BookServices _bookServices = new BookServices(new BookRepository());
         private BookObject actualBook = new BookObject();
         private BookObject expectedBook = new BookObject();
 

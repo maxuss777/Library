@@ -19,3 +19,34 @@ C:\Users\MaximAndEugenia\Documents\Visual Studio 2013\Projects\LibraryAPI\Librar
 C:\Users\MaximAndEugenia\Documents\Visual Studio 2013\Projects\LibraryAPI\Library.API.Tests\obj\Debug\Library.API.Tests.dll
 C:\Users\MaximAndEugenia\Documents\Visual Studio 2013\Projects\LibraryAPI\Library.API.Tests\obj\Debug\Library.API.Tests.pdb
 C:\Users\MaximAndEugenia\Documents\Visual Studio 2013\Projects\LibraryAPI\Library.API.Tests\bin\Debug\Library.API.Tests.dll.config
+C:\GitProj\Library\Library.API.Tests\bin\Debug\Library.API.Tests.dll.config
+C:\GitProj\Library\Library.API.Tests\bin\Debug\Library.API.Tests.dll
+C:\GitProj\Library\Library.API.Tests\bin\Debug\Library.API.Tests.pdb
+C:\GitProj\Library\Library.API.Tests\bin\Debug\Library.API.Business.dll
+C:\GitProj\Library\Library.API.Tests\bin\Debug\Library.API.Common.dll
+C:\GitProj\Library\Library.API.Tests\bin\Debug\nunit.framework.dll
+C:\GitProj\Library\Library.API.Tests\bin\Debug\ServiceStack.Client.dll
+C:\GitProj\Library\Library.API.Tests\bin\Debug\ServiceStack.dll
+C:\GitProj\Library\Library.API.Tests\bin\Debug\ServiceStack.Interfaces.dll
+C:\GitProj\Library\Library.API.Tests\bin\Debug\ServiceStack.Text.dll
+C:\GitProj\Library\Library.API.Tests\bin\Debug\Library.API.DAL.dll
+C:\GitProj\Library\Library.API.Tests\bin\Debug\Library.API.Business.pdb
+C:\GitProj\Library\Library.API.Tests\bin\Debug\Library.API.Common.pdb
+C:\GitProj\Library\Library.API.Tests\bin\Debug\nunit.framework.xml
+C:\GitProj\Library\Library.API.Tests\bin\Debug\ServiceStack.xml
+C:\GitProj\Library\Library.API.Tests\bin\Debug\ServiceStack.Client.xml
+C:\GitProj\Library\Library.API.Tests\bin\Debug\ServiceStack.Text.xml
+C:\GitProj\Library\Library.API.Tests\bin\Debug\Library.API.DAL.pdb
+C:\GitProj\Library\Library.API.Tests\obj\Debug\6.Library.API.Tests.csprojResolveAssemblyReference.cache
+C:\GitProj\Library\Library.API.Tests\obj\Debug\Library.API.Tests.dll
+C:\GitProj\Library\Library.API.Tests\obj\Debug\Library.API.Tests.pdb
+C:\GitProj\Library\Library.API.Tests\bin\Debug\Library.API.dll
+C:\GitProj\Library\Library.API.Tests\bin\Debug\System.Web.Http.dll
+C:\GitProj\Library\Library.API.Tests\bin\Debug\Ninject.dll
+C:\GitProj\Library\Library.API.Tests\bin\Debug\System.Net.Http.Formatting.dll
+C:\GitProj\Library\Library.API.Tests\bin\Debug\System.Web.Http.WebHost.dll
+C:\GitProj\Library\Library.API.Tests\bin\Debug\Newtonsoft.Json.dll
+C:\GitProj\Library\Library.API.Tests\bin\Debug\Library.API.pdb
+C:\GitProj\Library\Library.API.Tests\bin\Debug\Ninject.xml
+C:\GitProj\Library\Library.API.Tests\bin\Debug\System.Net.Http.Formatting.xml
+C:\GitProj\Library\Library.API.Tests\bin\Debug\Newtonsoft.Json.xml

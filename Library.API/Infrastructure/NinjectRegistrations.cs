@@ -15,6 +15,7 @@ namespace Library.API.Infrastructure
         public override void Load()
         {
             Bind<IBookServices>().To<BookServices>();
+
         }
     }
     public class NinjectDependencyResolver : NinjectDependencyScope, IDependencyResolver

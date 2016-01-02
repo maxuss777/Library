@@ -77,6 +77,14 @@
       <Project>{8b0d5ea0-140f-4c71-acad-67f603c3a466}</Project>
       <Name>4.Library.API.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Library.API.DAL\5.Library.API.DAL.csproj">
+      <Project>{33436068-f514-4dd6-8c26-ae6d1fb665bf}</Project>
+      <Name>5.Library.API.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Library.API\1.Library.API.Web.csproj">
+      <Project>{959b9a1d-68ae-4a77-af40-0e0b14fa1c24}</Project>
+      <Name>1.Library.API.Web</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

@@ -4,10 +4,11 @@ using System.Data;
 using System.Data.SqlClient;
 using Library.API.Common.Book;
 using Library.API.Common.Category;
+using Library.API.DAL.Abstract;
 
 namespace Library.API.DAL
 {
-    public class BookRepository : Repository
+    public class BookRepository : Repository, IBookRepository
     {
         public BookObject Create(BookObject book)
         {

@@ -2,3 +2,7 @@ C:\Users\MaximAndEugenia\Documents\Visual Studio 2013\Projects\LibraryAPI\Librar
 C:\Users\MaximAndEugenia\Documents\Visual Studio 2013\Projects\LibraryAPI\Library.API.Common\bin\Debug\Library.API.Common.pdb
 C:\Users\MaximAndEugenia\Documents\Visual Studio 2013\Projects\LibraryAPI\Library.API.Common\obj\Debug\Library.API.Common.dll
 C:\Users\MaximAndEugenia\Documents\Visual Studio 2013\Projects\LibraryAPI\Library.API.Common\obj\Debug\Library.API.Common.pdb
+C:\GitProj\Library\Library.API.Common\bin\Debug\Library.API.Common.dll
+C:\GitProj\Library\Library.API.Common\bin\Debug\Library.API.Common.pdb
+C:\GitProj\Library\Library.API.Common\obj\Debug\Library.API.Common.dll
+C:\GitProj\Library\Library.API.Common\obj\Debug\Library.API.Common.pdb

@@ -2,14 +2,18 @@
 using Library.API.Business.Abstract;
 using Library.API.Common.Book;
 using Library.API.Common.Category;
-using Library.API.DAL;
+using Library.API.DAL.Abstract;
 
 namespace Library.API.Business
 {
     public class BookServices : IBookServices
     {
-        private readonly BookRepository _bookRepository = new BookRepository();
+        private readonly IBookRepository _bookRepository;
 
+        public BookServices(IBookRepository bookRepo)
+        {
+            _bookRepository = bookRepo;
+        }
         public BookObject CreateBook(BookObject book)
         {
             if (book == null)

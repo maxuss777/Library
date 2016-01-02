@@ -5,3 +5,10 @@ C:\Users\MaximAndEugenia\Documents\Visual Studio 2013\Projects\LibraryAPI\Librar
 C:\Users\MaximAndEugenia\Documents\Visual Studio 2013\Projects\LibraryAPI\Library.API.DAL\obj\Debug\5.Library.API.DAL.csprojResolveAssemblyReference.cache
 C:\Users\MaximAndEugenia\Documents\Visual Studio 2013\Projects\LibraryAPI\Library.API.DAL\obj\Debug\Library.API.DAL.dll
 C:\Users\MaximAndEugenia\Documents\Visual Studio 2013\Projects\LibraryAPI\Library.API.DAL\obj\Debug\Library.API.DAL.pdb
+C:\GitProj\Library\Library.API.DAL\bin\Debug\Library.API.DAL.dll
+C:\GitProj\Library\Library.API.DAL\bin\Debug\Library.API.DAL.pdb
+C:\GitProj\Library\Library.API.DAL\bin\Debug\Library.API.Common.dll
+C:\GitProj\Library\Library.API.DAL\bin\Debug\Library.API.Common.pdb
+C:\GitProj\Library\Library.API.DAL\obj\Debug\5.Library.API.DAL.csprojResolveAssemblyReference.cache
+C:\GitProj\Library\Library.API.DAL\obj\Debug\Library.API.DAL.dll
+C:\GitProj\Library\Library.API.DAL\obj\Debug\Library.API.DAL.pdb

@@ -7,6 +7,7 @@ using Library.API.Common.Book;
 
 namespace Library.API.Controllers
 {
+    [Authorize]
     public class BookController : ApiController
     {
        private readonly IBookServices _bookServices;
@@ -31,7 +32,6 @@ namespace Library.API.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, exc.Message);
             }
         }
-
         // GET api/book/5
         public HttpResponseMessage GETBook(int id)
         {
@@ -49,7 +49,6 @@ namespace Library.API.Controllers
               
             }
         }
-
         // POST api/book
         public HttpResponseMessage POSTBook(BookObject bookToBeCreated)
         {
@@ -66,7 +65,6 @@ namespace Library.API.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, exc.Message);
             }
         }
-
         // PUT api/book/5
         public HttpResponseMessage PUTBook(int id, BookObject bookToBeUptated)
         {
@@ -84,7 +82,6 @@ namespace Library.API.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, exc.Message);
             }
         }
-
         // DELETE api/book/5
         public HttpResponseMessage DELETEBook(int id)
         {
