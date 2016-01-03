@@ -19,10 +19,12 @@ namespace Library.API.Infrastructure
         public override void Load()
         {
             Bind<IBookServices>().To<BookServices>();
+            Bind<ICategoryServices>().To<CategoryServices>();
             Bind<IUserServices>().To<UserServices>();
             Bind<ILoginProvider>().To<AuthonticateProvider>();
             Bind<IRegistrationProvider>().To<AuthonticateProvider>();
             Bind<IBookRepository>().To<BookRepository>();
+            Bind<ICategoryRepository>().To<CategoryRepository>();
             Bind<IUserRepository>().To<UserRepository>();
         }
     }

@@ -157,7 +157,7 @@ namespace Library.API.DAL
 #region parameters
                     SqlParameter Id = new SqlParameter
                     {
-                        ParameterName = "@Id",
+                        ParameterName = "@BookId",
                         DbType = DbType.Int32,
                         Direction = ParameterDirection.Input,
                         Value = bookId
@@ -170,7 +170,7 @@ namespace Library.API.DAL
                         {
                             categoies.Add(new CategoryObject
                             {
-                                Id = (int) reader["CategoryId"],
+                                Id = (int) reader["Category_Id"],
                                 Name = (string) reader["Name"],
                                 CreationDate = (DateTime) reader["CreationDate"]
                             });

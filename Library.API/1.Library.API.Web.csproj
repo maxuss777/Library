@@ -49,6 +49,7 @@
     <Compile Include="Abstract\ILoginProvider.cs" />
     <Compile Include="Abstract\IRegistrationProvider.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />

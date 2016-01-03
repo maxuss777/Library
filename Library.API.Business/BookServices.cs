@@ -30,23 +30,29 @@ namespace Library.API.Business
                 return null;
             }
             var book = _bookRepository.Get(bookId);
-            return book.Id == 0 ? null : book;
+            if (book.Id <= 0)
+            {
+                return null;
+            }
+            book.Categories = _bookRepository.GetBooksCategories(bookId);
+            return book;
         }
         public IEnumerable<BookObject> GetAllBooks()
         {
             var books = _bookRepository.GetAll();
-            return books.Equals(default(List<BookObject>)) 
-                ? null 
-                : books;
-        }
-        public BookObject UpdateBook(BookObject book)
-        {
-            if (book == null)
+            if (books.Equals(default(List<BookObject>)))
             {
                 return null;
             }
-            var updatedBook = _bookRepository.Update(book);
-            return updatedBook;
+            foreach (BookObject b in books)
+            {
+                b.Categories = _bookRepository.GetBooksCategories(b.Id);
+            }
+            return books;
+        }
+        public BookObject UpdateBook(BookObject book)
+        {
+            return book == null ? null : _bookRepository.Update(book);
         }
         public IEnumerable<CategoryObject> GetBooksCategories(int bookId)
         {

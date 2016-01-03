@@ -30,7 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CategoryServices.cs" />
     <Compile Include="Abstract\IBookServices.cs" />
+    <Compile Include="Abstract\ICategoryServices.cs" />
     <Compile Include="Abstract\IUserServices.cs" />
     <Compile Include="BookServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
