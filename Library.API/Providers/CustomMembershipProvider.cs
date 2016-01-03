@@ -4,16 +4,14 @@ using System.Web.Security;
 using Library.API.Business;
 using Library.API.Business.Abstract;
 using Library.API.Common.User;
+using Library.API.DAL;
 
 namespace Library.API.Providers
 {
-    class CustomMembershipPovider : MembershipProvider
+    public class CustomMembershipPovider : MembershipProvider
     {
-        private readonly IUserServices _userServices;
-        public CustomMembershipPovider()
-        {
-            _userServices = new UserServices();
-        }
+        private IUserServices _userServices = new UserServices(new UserRepository());
+
         public override bool ValidateUser(string username, string password)
         {
             bool isValid = false;
@@ -22,7 +20,7 @@ namespace Library.API.Providers
             {
                 var user = _userServices.Get(username);
 
-                if (user != null && Crypto.VerifyHashedPassword(user.Password, password))
+                if (user != null && (Crypto.VerifyHashedPassword(user.Password, password)))
                 {
                     isValid = true;
                 }
@@ -80,7 +78,7 @@ namespace Library.API.Providers
                     return null;
                 }
 
-                MembershipUser memberUser = new MembershipUser("MyMembershipProvider", user.Email, null, null, null,
+                MembershipUser memberUser = new MembershipUser("CustomMembershipPovider", user.Email, null, null, null,
                     null,
                     false, false, user.CreationDate, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue,
                     DateTime.MinValue);

@@ -7,7 +7,6 @@ namespace Library.API.Providers
 {
     public class AuthonticateProvider : ILoginProvider, IRegistrationProvider
     {
-
         public bool Login(LogOnModel model)
         {
             try

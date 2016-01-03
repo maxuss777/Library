@@ -1,6 +1,5 @@
 ﻿using Library.API.Business.Abstract;
 using Library.API.Common.User;
-using Library.API.DAL;
 using Library.API.DAL.Abstract;
 
 namespace Library.API.Business
@@ -9,9 +8,9 @@ namespace Library.API.Business
     {
         private readonly IUserRepository _userRepository;
 
-        public UserServices()
+        public UserServices(IUserRepository userRepo)
         {
-            _userRepository = new UserRepository();
+            _userRepository = userRepo;
         }
         public User Get(string email)
         {

@@ -52,6 +52,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
+    <Compile Include="Filters\BasicAuthenticationMessageHandler.cs" />
     <Compile Include="Filters\ValidateModelAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -78,6 +79,10 @@
     <ProjectReference Include="..\Library.API.Common\4.Library.API.Common.csproj">
       <Project>{8b0d5ea0-140f-4c71-acad-67f603c3a466}</Project>
       <Name>4.Library.API.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Library.API.DAL\5.Library.API.DAL.csproj">
+      <Project>{33436068-f514-4dd6-8c26-ae6d1fb665bf}</Project>
+      <Name>5.Library.API.DAL</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

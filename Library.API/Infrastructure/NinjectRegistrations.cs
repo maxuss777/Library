@@ -5,6 +5,8 @@ using System.Web.Http.Dependencies;
 using Library.API.Abstract;
 using Library.API.Business;
 using Library.API.Business.Abstract;
+using Library.API.DAL;
+using Library.API.DAL.Abstract;
 using Library.API.Providers;
 using Ninject;
 using Ninject.Modules;
@@ -16,33 +18,41 @@ namespace Library.API.Infrastructure
     {
         public override void Load()
         {
+            Bind<IBookServices>().To<BookServices>();
+            Bind<IUserServices>().To<UserServices>();
             Bind<ILoginProvider>().To<AuthonticateProvider>();
             Bind<IRegistrationProvider>().To<AuthonticateProvider>();
-            Bind<IBookServices>().To<BookServices>();
+            Bind<IBookRepository>().To<BookRepository>();
+            Bind<IUserRepository>().To<UserRepository>();
         }
     }
+
     public class NinjectDependencyResolver : NinjectDependencyScope, IDependencyResolver
     {
         private readonly IKernel kernel;
-        public NinjectDependencyResolver(IKernel kernel)
-            : base(kernel)
+
+        public NinjectDependencyResolver(IKernel kernel) : base(kernel)
         {
             this.kernel = kernel;
         }
+
         public IDependencyScope BeginScope()
         {
             return new NinjectDependencyScope(kernel.BeginBlock());
         }
     }
+
     public class NinjectDependencyScope : IDependencyScope
     {
         private IResolutionRoot resolver;
+
         internal NinjectDependencyScope(IResolutionRoot resolver)
         {
             Contract.Assert(resolver != null);
 
             this.resolver = resolver;
         }
+
         public void Dispose()
         {
             var disposable = resolver as IDisposable;
@@ -53,6 +63,7 @@ namespace Library.API.Infrastructure
 
             resolver = null;
         }
+
         public object GetService(Type serviceType)
         {
             if (resolver == null)
@@ -72,5 +83,5 @@ namespace Library.API.Infrastructure
 
             return resolver.GetAll(serviceType);
         }
-     }
+    }
 }
