@@ -33,10 +33,8 @@
     <Compile Include="CategoryServices.cs" />
     <Compile Include="Abstract\IBookServices.cs" />
     <Compile Include="Abstract\ICategoryServices.cs" />
-    <Compile Include="Abstract\IUserServices.cs" />
     <Compile Include="BookServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserServices.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Library.API.Common\4.Library.API.Common.csproj">

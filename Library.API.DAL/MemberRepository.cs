@@ -1,22 +1,22 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using Library.API.Common.User;
+using Library.API.Common.Member;
 using Library.API.DAL.Abstract;
 
 namespace Library.API.DAL
 {
-    public class UserRepository : Repository, IUserRepository
+    public class MemberRepository : Repository, IMemberRepository
     {
-        public User Get(string email)
+        public MemberObject Get(string email)
         {
-            User user = new User();
+            MemberObject member = new MemberObject();
 
             using (SqlConnection conn = new SqlConnection(ConnectionString))
             {
                 conn.Open();
 
-                using (SqlCommand cmd = new SqlCommand("GetUserByEmail", conn))
+                using (SqlCommand cmd = new SqlCommand("GetMemberByEmail", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
@@ -37,76 +37,70 @@ namespace Library.API.DAL
                         while (reader.Read())
                         {
 
-                            user.Id = (int) reader["Id"];
-                            user.Email = (string) reader["Email"];
-                            user.Password = (string) reader["Password"];
-                            user.CreationDate = (DateTime) reader["CreationDate"];
-                            user.RoleId = reader["RoleId"] == DBNull.Value
-                                ? 0
-                                : (int) reader["RoleId"];
+                            member.Id = (int) reader["Id"];
+                            member.Email = (string) reader["Email"];
+                            member.MemberName = (string)reader["MemberName"];
+                            member.Password = (string) reader["Password"];
+                            member.CreationDate = (DateTime) reader["CreationDate"];
+
                         }
                     }
                 }
             }
-            return user.Id == 0 ? null : user;
+            return member.Id == 0 ? null : member;
         }
-        public User Create(User user)
+        public MemberObject Create(MemberObject member)
         {
             using (SqlConnection conn = new SqlConnection(ConnectionString))
             {
                 conn.Open();
 
-                using (SqlCommand cmd = new SqlCommand("CreateUser", conn))
+                using (SqlCommand cmd = new SqlCommand("CreateMember", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
 #region parameters
-                    
                     SqlParameter Email = new SqlParameter
                     {
                         ParameterName = "@Email",
                         DbType = DbType.String,
                         Direction = ParameterDirection.Input,
-                        Value = user.Email
+                        Value = member.Email
                     };
                     cmd.Parameters.Add(Email);
+
+                    SqlParameter MemberName = new SqlParameter
+                    {
+                        ParameterName = "@MemberName",
+                        DbType = DbType.String,
+                        Direction = ParameterDirection.Input,
+                        Value = member.MemberName
+                    };
+                    cmd.Parameters.Add(MemberName);
 
                     SqlParameter Password = new SqlParameter
                     {
                         ParameterName = "@Password",
                         DbType = DbType.String,
                         Direction = ParameterDirection.Input,
-                        Value = user.Password
+                        Value = member.Password
                     };
                     cmd.Parameters.Add(Password);
-
-                    SqlParameter RoleId = new SqlParameter
-                    {
-                        ParameterName = "@RoleId",
-                        DbType = DbType.Int32,
-                        Direction = ParameterDirection.Input,
-                        Value = user.RoleId
-                    };
-
-                    cmd.Parameters.Add(RoleId);
-
 #endregion
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            user.Id = (int)reader["Id"];
-                            user.Email = (string)reader["Email"];
-                            user.CreationDate = (DateTime)reader["CreationDate"];
-                            user.RoleId = reader["RoleId"] == DBNull.Value
-                                ? 0
-                                : (int)reader["RoleId"];
+                            member.Id = (int)reader["Id"];
+                            member.Email = (string)reader["Email"];
+                            member.MemberName = (string)reader["MemberName"];
+                            member.CreationDate = (DateTime)reader["CreationDate"];
                         }
                     }
                 }
             }
-            return user.Id == 0 ? null : user;
+            return member.Id == 0 ? null : member;
         }
     }
 }

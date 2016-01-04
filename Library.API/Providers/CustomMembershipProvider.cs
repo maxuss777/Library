@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Web.Helpers;
 using System.Web.Security;
-using Library.API.Business;
-using Library.API.Business.Abstract;
-using Library.API.Common.User;
+using Library.API.Common.Member;
 using Library.API.DAL;
+using Library.API.DAL.Abstract;
 
 namespace Library.API.Providers
 {
     public class CustomMembershipPovider : MembershipProvider
     {
-        private IUserServices _userServices = new UserServices(new UserRepository());
+        private readonly IMemberRepository _memberRepository = new MemberRepository();
 
         public override bool ValidateUser(string username, string password)
         {
@@ -18,7 +17,7 @@ namespace Library.API.Providers
 
             try
             {
-                var user = _userServices.Get(username);
+                var user = _memberRepository.Get(username);
 
                 if (user != null && (Crypto.VerifyHashedPassword(user.Password, password)))
                 {
@@ -32,46 +31,11 @@ namespace Library.API.Providers
 
             return isValid;
         }
-        public MembershipUser CreateUser(string email, string password)
-        {
-            MembershipUser membershipUser = GetUser(email, false);
-
-            if (membershipUser == null)
-            {
-                try
-                {
-                    User user = new User
-                    {
-                        Email = email, 
-                        Password = Crypto.HashPassword(password)
-                    };
-
-                    user = _userServices.Create(user);
-
-                    if (user == null)
-                    {
-                        return null;
-                    }
-                    membershipUser = GetUser(email, false);
-                    if (membershipUser == null)
-                    {
-                        return null;
-                    }
-                        
-                    return membershipUser;
-                }
-                catch(Exception exc)
-                {
-                    throw new Exception(exc.Message);
-                }
-            }
-            return null;
-        }
         public override MembershipUser GetUser(string email, bool userIsOnline)
         {
             try
             {
-                var user = _userServices.Get(email);
+                var user = _memberRepository.Get(email);
 
                 if (user == null)
                 {
@@ -93,7 +57,43 @@ namespace Library.API.Providers
         public override MembershipUser CreateUser(string username, string password, string email, string passwordQuestion, string passwordAnswer,
             bool isApproved, object providerUserKey, out MembershipCreateStatus status)
         {
-            throw new System.NotImplementedException();
+            MembershipUser membershipUser = GetUser(email, false);
+
+            if (membershipUser == null)
+            {
+                try
+                {
+                    MemberObject member = new MemberObject
+                    {
+                        MemberName = username,
+                        Email = email,
+                        Password = Crypto.HashPassword(password)
+                    };
+
+                    member = _memberRepository.Create(member);
+
+                    if (member == null)
+                    {
+                        status = MembershipCreateStatus.UserRejected;
+                        return null;
+                    }
+                    membershipUser = GetUser(email, false);
+                    if (membershipUser == null)
+                    {
+                        status = MembershipCreateStatus.UserRejected;
+                        return null;
+                    }
+
+                    status = MembershipCreateStatus.Success;
+                    return membershipUser;
+                }
+                catch (Exception exc)
+                {
+                    throw new Exception(exc.Message);
+                }
+            }
+            status = MembershipCreateStatus.UserRejected;
+            return null;
         }
         public override bool ChangePasswordQuestionAndAnswer(string username, string password, string newPasswordQuestion,
             string newPasswordAnswer)

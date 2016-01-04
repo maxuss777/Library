@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Library.API.Common.User
+namespace Library.API.Common.Member
 {
     public class LogOnModel
     {
@@ -9,7 +9,5 @@ namespace Library.API.Common.User
 
         [Required]
         public string Password { get; set; }
-
-        public bool RememberMe { get; set; }
     }
 }

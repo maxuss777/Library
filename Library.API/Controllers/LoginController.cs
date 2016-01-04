@@ -4,28 +4,21 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Web.Http;
-using Library.API.Abstract;
-using Library.API.Common.User;
+using System.Web.Security;
+using Library.API.Common.Member;
 
 namespace Library.API.Controllers
 {
     [AllowAnonymous]
     public class LoginController : ApiController
     {
-        private readonly ILoginProvider _authonticationProvider;
-
-        public LoginController(ILoginProvider authProvider)
-        {
-            _authonticationProvider = authProvider;
-        }
-
         public HttpResponseMessage Post(LogOnModel model)
         {
             try
             {
-                if (_authonticationProvider.Login(model) == false)
+                if (Membership.ValidateUser(model.Email,model.Password) == false)
                 {
-                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, "User doesn't exist");
+                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Member doesn't exist");
                 }
                 var buffer = Encoding.ASCII.GetBytes(string.Format("{0}:{1}", model.Email, model.Password));
                 var authHeader = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(buffer));

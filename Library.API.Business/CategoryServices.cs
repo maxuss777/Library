@@ -8,7 +8,7 @@ namespace Library.API.Business
 {
     public class CategoryServices : ICategoryServices
     {
-        private ICategoryRepository _categoryRepository;
+        private readonly ICategoryRepository _categoryRepository;
 
         public CategoryServices(ICategoryRepository categoryRepo)
         {

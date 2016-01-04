@@ -7,9 +7,10 @@ using Library.API.Common.Category;
 
 namespace Library.API.Controllers
 {
+    [Authorize]
     public class CategoryController : ApiController
     {
-        private ICategoryServices _categoryServices;
+        private readonly ICategoryServices _categoryServices;
 
         public CategoryController(ICategoryServices categoryServ)
         {

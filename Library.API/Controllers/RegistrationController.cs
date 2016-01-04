@@ -4,28 +4,21 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Web.Http;
-using Library.API.Abstract;
-using Library.API.Common.User;
+using System.Web.Security;
+using Library.API.Common.Member;
 
 namespace Library.API.Controllers
 {
     [AllowAnonymous]
     public class RegistrationController : ApiController
     {
-        private readonly IRegistrationProvider _redistrationProvider;
-
-        public RegistrationController(IRegistrationProvider regProvider)
-        {
-            _redistrationProvider = regProvider;
-        }
-
         public HttpResponseMessage Post(RegisterModel model)
         {
             try
             {
-                if (_redistrationProvider.Register(model) == false)
+                if (Membership.CreateUser(model.MemberName, model.Password, model.Email).Equals(default(MembershipUser)))
                 {
-                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "User hasn't been registered");
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Member hasn't been registered");
                 }
                 var buffer = Encoding.ASCII.GetBytes(string.Format("{0}:{1}", model.Email, model.Password));
                 var authHeader = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(buffer));
