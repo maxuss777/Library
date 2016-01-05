@@ -15,7 +15,7 @@ namespace Library.API.Business
             _categoryRepository = categoryRepo;
         }
 
-        public CategoryObject CreateCategory(CategoryObject category)
+        public CategoryInfo CreateCategory(CategoryInfo category)
         {
             if (category == null)
             {
@@ -69,14 +69,14 @@ namespace Library.API.Business
             return category;
         }
 
-        public IEnumerable<BookObject> GetCategoriesBooks(int categoryId)
+        public IEnumerable<BookInfo> GetCategoriesBooks(int categoryId)
         {
             if (categoryId <= 0)
             {
                 return null;
             }
             var categpriesBooks = _categoryRepository.GetCategoriesBooks(categoryId);
-            return categpriesBooks.Equals(default(List<BookObject>))
+            return categpriesBooks.Equals(default(List<BookInfo>))
                 ? null
                 : categpriesBooks;
         }
@@ -84,6 +84,11 @@ namespace Library.API.Business
         public bool DeleteCategory(int categoryId)
         {
             return categoryId > 0 && _categoryRepository.Delete(categoryId);
+        }
+
+        public bool PutBookToCategory(int categoryId,int bookId)
+        {
+            return bookId > 0 && _categoryRepository.PutBookToCategory(categoryId, bookId);
         }
     }
 }

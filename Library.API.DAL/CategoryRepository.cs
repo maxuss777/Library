@@ -10,9 +10,9 @@ namespace Library.API.DAL
 {
     public class CategoryRepository : Repository, ICategoryRepository
     {
-        public CategoryObject Create(CategoryObject category)
+        public CategoryInfo Create(CategoryInfo category)
         {
-            CategoryObject createdCategory = new CategoryObject();
+            CategoryInfo createdCategory = new CategoryInfo();
 
             using (SqlConnection conn = new SqlConnection(ConnectionString))
             {
@@ -119,9 +119,9 @@ namespace Library.API.DAL
             return categories;
         }
 
-        public IEnumerable<BookObject> GetCategoriesBooks(int categoryId)
+        public IEnumerable<BookInfo> GetCategoriesBooks(int categoryId)
         {
-            List<BookObject> books = new List<BookObject>();
+            List<BookInfo> books = new List<BookInfo>();
 
             using (SqlConnection conn = new SqlConnection(ConnectionString))
             {
@@ -144,7 +144,7 @@ namespace Library.API.DAL
                     {
                         while (reader.Read())
                         {
-                            books.Add(new BookObject
+                            books.Add(new BookInfo
                             {
                                 Id = (int)reader["Book_Id"],
                                 Name = (string)reader["Name"],
@@ -194,15 +194,6 @@ namespace Library.API.DAL
                     };
                     cmd.Parameters.Add(Name);
 
-                    SqlParameter CreationDate = new SqlParameter
-                    {
-                        ParameterName = "@CreationDate",
-                        DbType = DbType.DateTime,
-                        Direction = ParameterDirection.Output,
-                        Value = 0
-                    };
-                    cmd.Parameters.Add(CreationDate);
-
                     SqlParameter Result = new SqlParameter
                     {
                         ParameterName = "@Result",
@@ -248,6 +239,53 @@ namespace Library.API.DAL
                         Value = categoryId
                     };
                     cmd.Parameters.Add(Id);
+
+                    SqlParameter Result = new SqlParameter
+                    {
+                        ParameterName = "@Result",
+                        DbType = DbType.Int32,
+                        Direction = ParameterDirection.Output
+                    };
+                    cmd.Parameters.Add(Result);
+
+#endregion
+
+                    cmd.ExecuteNonQuery();
+
+                    return Result.Value != null && (int)Result.Value != 2 && (int)Result.Value != 0;
+                }
+            }
+        }
+
+        public bool PutBookToCategory(int categoryId, int bookId)
+        {
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand("PutBookToCategory", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+#region parameters
+
+                    SqlParameter CategoryId = new SqlParameter
+                    {
+                        ParameterName = "@CategoryId",
+                        DbType = DbType.Int32,
+                        Direction = ParameterDirection.Input,
+                        Value = categoryId
+                    };
+                    cmd.Parameters.Add(CategoryId);
+
+                    SqlParameter BookId = new SqlParameter
+                    {
+                        ParameterName = "@BookId",
+                        DbType = DbType.Int32,
+                        Direction = ParameterDirection.Input,
+                        Value = bookId
+                    };
+                    cmd.Parameters.Add(BookId);
 
                     SqlParameter Result = new SqlParameter
                     {

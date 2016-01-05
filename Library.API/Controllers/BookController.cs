@@ -50,7 +50,7 @@ namespace Library.API.Controllers
             }
         }
 
-        public HttpResponseMessage POSTBook(BookObject bookToBeCreated)
+        public HttpResponseMessage POSTBook(BookInfo bookToBeCreated)
         {
             try
             {

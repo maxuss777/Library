@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Library.API.Business.Abstract;
+using Library.API.Common.Book;
 using Library.API.Common.Category;
 
 namespace Library.API.Controllers
@@ -17,7 +18,9 @@ namespace Library.API.Controllers
             _categoryServices = categoryServ;
         }
         
-        public HttpResponseMessage GETCategories()
+        [HttpGet]
+        [Route("api/category/all")]
+        public HttpResponseMessage All()
         {
             try
             {
@@ -33,7 +36,9 @@ namespace Library.API.Controllers
             }
         }
 
-        public HttpResponseMessage GETCategory(int id)
+        [HttpGet]
+        [Route("api/category/{id:int}")]
+        public HttpResponseMessage Get(int id)
         {
             try
             {
@@ -50,7 +55,9 @@ namespace Library.API.Controllers
             }
         }
 
-        public HttpResponseMessage POSTCategory(CategoryObject categoryToBeCreated)
+        [HttpPost]
+        [Route("api/category/add")]
+        public HttpResponseMessage Add(CategoryInfo categoryToBeCreated)
         {
             try
             {
@@ -66,7 +73,9 @@ namespace Library.API.Controllers
             }
         }
 
-        public HttpResponseMessage PUTCategory(int id, CategoryObject categoryToBeUptated)
+        [HttpPut]
+        [Route("api/category/update/{id:int}")]
+        public HttpResponseMessage Update(int id, CategoryObject categoryToBeUptated)
         {
             try
             {
@@ -83,7 +92,9 @@ namespace Library.API.Controllers
             }
         }
 
-        public HttpResponseMessage DELETECategory(int id)
+        [HttpDelete]
+        [Route("api/category/delete/{id:int}")]
+        public HttpResponseMessage Delete(int id)
         {
             try
             {
@@ -93,6 +104,23 @@ namespace Library.API.Controllers
                     ? Request.CreateResponse(HttpStatusCode.OK)
                     : Request.CreateErrorResponse(HttpStatusCode.BadRequest,
                         "Sorry, the category doesn't exist");
+            }
+            catch (Exception exc)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, exc.Message);
+            }
+        }
+
+        [HttpPost]
+        [Route("api/category/{categoryId:int}/books/{bookId:int}")]
+        public HttpResponseMessage AddBook(int categoryId, int bookId)
+        {
+            try
+            {
+                var book = _categoryServices.PutBookToCategory(categoryId, bookId);
+                return book == false
+                    ? Request.CreateErrorResponse(HttpStatusCode.BadRequest, "The book hasn't been put to the category")
+                    : Request.CreateResponse(HttpStatusCode.OK);
             }
             catch (Exception exc)
             {
