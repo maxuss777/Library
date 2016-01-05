@@ -1,0 +1,18 @@
+C:\Users\MaximAndEugenia\Documents\Visual Studio 2013\Projects\LibraryAPI\Library.API.Common\bin\Debug\Library.API.Common.dll
+C:\Users\MaximAndEugenia\Documents\Visual Studio 2013\Projects\LibraryAPI\Library.API.Common\bin\Debug\Library.API.Common.pdb
+C:\Users\MaximAndEugenia\Documents\Visual Studio 2013\Projects\LibraryAPI\Library.API.Common\obj\Debug\Library.API.Common.dll
+C:\Users\MaximAndEugenia\Documents\Visual Studio 2013\Projects\LibraryAPI\Library.API.Common\obj\Debug\Library.API.Common.pdb
+C:\GitProj\Library\Library.API.Common\bin\Debug\Library.API.Common.dll
+C:\GitProj\Library\Library.API.Common\bin\Debug\Library.API.Common.pdb
+C:\GitProj\Library\Library.API.Common\obj\Debug\Library.API.Common.dll
+C:\GitProj\Library\Library.API.Common\obj\Debug\Library.API.Common.pdb
+D:\GitHub\Library\Library.API.Common\bin\Debug\Library.API.Common.dll
+D:\GitHub\Library\Library.API.Common\bin\Debug\Library.API.Common.pdb
+D:\GitHub\Library\Library.API.Common\obj\Debug\Library.API.Common.dll
+D:\GitHub\Library\Library.API.Common\obj\Debug\Library.API.Common.pdb
+C:\GitProj\Library\Library.API.Common\obj\Debug\4.Library.API.Common.csprojResolveAssemblyReference.cache
+C:\GitProj\Library\API\Library.API.Common\bin\Debug\Library.API.Common.dll
+C:\GitProj\Library\API\Library.API.Common\bin\Debug\Library.API.Common.pdb
+C:\GitProj\Library\API\Library.API.Common\obj\Debug\4.Library.API.Common.csprojResolveAssemblyReference.cache
+C:\GitProj\Library\API\Library.API.Common\obj\Debug\Library.API.Common.dll
+C:\GitProj\Library\API\Library.API.Common\obj\Debug\Library.API.Common.pdb
