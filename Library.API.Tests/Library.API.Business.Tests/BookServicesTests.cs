@@ -14,6 +14,11 @@ namespace Library.API.Tests.Library.API.Business.Tests
         private BookObject actualBook = new BookObject();
         private BookObject expectedBook = new BookObject();
 
+        [SetUp]
+        public void warmUp()
+        {
+        }
+
         [Test]
         public void Test_01_Positive_Create_Book_Valid_Data()
         {

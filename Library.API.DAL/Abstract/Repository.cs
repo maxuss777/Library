@@ -5,6 +5,6 @@ namespace Library.API.DAL
 {
     public class Repository
     {
-        protected readonly String ConnectionString = ConfigurationManager.ConnectionStrings["conn"].ConnectionString;
+        protected readonly String ConnectionString = ConfigurationManager.ConnectionStrings["connectionStr"].ConnectionString;
     }
 }
