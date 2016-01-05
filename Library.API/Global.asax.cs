@@ -15,6 +15,7 @@ namespace Library.API
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
             GlobalConfiguration.Configuration.MessageHandlers.Add(new BasicAuthenticationMessageHandler());
+
             AppDomain.CurrentDomain.SetData("DataDirectory", System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App_Data"));
 
             NinjectModule registrations = new NinjectRegistrations();

@@ -10,9 +10,9 @@ namespace Library.API.DAL
 {
     public class BookRepository : Repository, IBookRepository
     {
-        public BookObject Create(BookObject book)
+        public BookInfo Create(BookInfo book)
         {
-            BookObject createdBook = new BookObject();
+            BookInfo createdBook = new BookInfo();
 
             using (SqlConnection conn = new SqlConnection(ConnectionString))
             {
@@ -143,9 +143,9 @@ namespace Library.API.DAL
             }
             return books;
         }
-        public IEnumerable<CategoryObject> GetBooksCategories(int bookId)
+        public IEnumerable<CategoryInfo> GetBooksCategories(int bookId)
         {
-            List<CategoryObject> categoies = new List<CategoryObject>();
+            List<CategoryInfo> categoies = new List<CategoryInfo>();
 
             using (SqlConnection conn = new SqlConnection(ConnectionString))
             {
@@ -168,7 +168,7 @@ namespace Library.API.DAL
                     {
                         while (reader.Read())
                         {
-                            categoies.Add(new CategoryObject
+                            categoies.Add(new CategoryInfo
                             {
                                 Id = (int) reader["Category_Id"],
                                 Name = (string) reader["Name"],
@@ -293,43 +293,6 @@ namespace Library.API.DAL
                     cmd.ExecuteNonQuery();
 
                     return Result.Value != null && (int) Result.Value != 2 && (int) Result.Value != 0;
-                }
-            }
-        }
-        public bool PutBookToCategory(int bookId)
-        {
-            using (SqlConnection conn = new SqlConnection(ConnectionString))
-            {
-                conn.Open();
-
-                using (SqlCommand cmd = new SqlCommand("PutBookToCategory", conn))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-#region parameters
-
-                    SqlParameter Id = new SqlParameter
-                    {
-                        ParameterName = "@Id",
-                        DbType = DbType.Int32,
-                        Direction = ParameterDirection.Input,
-                        Value = bookId
-                    };
-                    cmd.Parameters.Add(Id);
-
-                    SqlParameter Result = new SqlParameter
-                    {
-                        ParameterName = "@Result",
-                        DbType = DbType.Int32,
-                        Direction = ParameterDirection.Output
-                    };
-                    cmd.Parameters.Add(Result);
-
-#endregion
-
-                    cmd.ExecuteNonQuery();
-
-                    return Result.Value != null && (int)Result.Value != 2 && (int)Result.Value != 0;
                 }
             }
         }

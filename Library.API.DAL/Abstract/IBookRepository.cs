@@ -6,12 +6,12 @@ namespace Library.API.DAL.Abstract
 {
     public interface IBookRepository
     {
-        BookObject Create(BookObject book);
+        BookInfo Create(BookInfo book);
         BookObject Get(int bookId);
         IEnumerable<BookObject> GetAll();
-        IEnumerable<CategoryObject> GetBooksCategories(int bookId);
+        IEnumerable<CategoryInfo> GetBooksCategories(int bookId);
         BookObject Update(BookObject book);
         bool Delete(int bookId);
-        bool PutBookToCategory(int bookId);
+        
     }
 }

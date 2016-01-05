@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Library.API.Common.Book;
 
 namespace Library.API.Common.Category
 {
-    public class CategoryObject
+    public class CategoryInfo
     {
         public Int32 Id { get; set; }
 
@@ -14,7 +12,5 @@ namespace Library.API.Common.Category
         public String Name { get; set; }
 
         public DateTime CreationDate { get; set; }
-
-        public IEnumerable<BookInfo> Books { get; set; }
     }
 }
