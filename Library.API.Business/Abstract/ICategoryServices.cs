@@ -14,5 +14,6 @@ namespace Library.API.Business.Abstract
         IEnumerable<BookInfo> GetCategoriesBooks(int categoryId);
         Boolean DeleteCategory(int categoryId);
         Boolean PutBookToCategory(int categoryId, int bookId);
+        Boolean RemoveBookFromCategory(int categoryId, int bookId);
     }
 }

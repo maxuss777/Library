@@ -303,5 +303,52 @@ namespace Library.API.DAL
                 }
             }
         }
+
+        public bool RemoveBookFromCategory(int categoryId, int bookId)
+        {
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand("RemoveBookToCategory", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    #region parameters
+
+                    SqlParameter CategoryId = new SqlParameter
+                    {
+                        ParameterName = "@CategoryId",
+                        DbType = DbType.Int32,
+                        Direction = ParameterDirection.Input,
+                        Value = categoryId
+                    };
+                    cmd.Parameters.Add(CategoryId);
+
+                    SqlParameter BookId = new SqlParameter
+                    {
+                        ParameterName = "@BookId",
+                        DbType = DbType.Int32,
+                        Direction = ParameterDirection.Input,
+                        Value = bookId
+                    };
+                    cmd.Parameters.Add(BookId);
+
+                    SqlParameter Result = new SqlParameter
+                    {
+                        ParameterName = "@Result",
+                        DbType = DbType.Int32,
+                        Direction = ParameterDirection.Output
+                    };
+                    cmd.Parameters.Add(Result);
+
+                    #endregion
+
+                    cmd.ExecuteNonQuery();
+
+                    return Result.Value != null && (int)Result.Value != 2 && (int)Result.Value != 0;
+                }
+            }
+        }
     }
 }

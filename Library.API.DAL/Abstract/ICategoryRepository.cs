@@ -13,5 +13,6 @@ namespace Library.API.DAL.Abstract
         CategoryObject Update(CategoryObject category);
         bool Delete(int categoryId);
         bool PutBookToCategory(int categoryId, int bookId);
+        bool RemoveBookFromCategory(int categoryId, int bookId);
     }
 }

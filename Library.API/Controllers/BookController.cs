@@ -16,8 +16,10 @@ namespace Library.API.Controllers
         {
             _bookServices = bookServ;
         }
-        
-        public HttpResponseMessage GETBooks()
+
+        [HttpGet]
+        [Route("api/books")]
+        public HttpResponseMessage GetAll()
         {
             try
             {
@@ -33,7 +35,9 @@ namespace Library.API.Controllers
             }
         }
 
-        public HttpResponseMessage GETBook(int id)
+        [HttpGet]
+        [Route("api/books/{id:int}")]
+        public HttpResponseMessage Get(int id)
         {
             try
             {
@@ -50,7 +54,9 @@ namespace Library.API.Controllers
             }
         }
 
-        public HttpResponseMessage POSTBook(BookInfo bookToBeCreated)
+        [HttpPost]
+        [Route("api/books")]
+        public HttpResponseMessage Create(BookInfo bookToBeCreated)
         {
             try
             {
@@ -66,7 +72,9 @@ namespace Library.API.Controllers
             }
         }
 
-        public HttpResponseMessage PUTBook(int id, BookObject bookToBeUptated)
+        [HttpPut]
+        [Route("api/books/{id:int}")]
+        public HttpResponseMessage Update(int id, BookObject bookToBeUptated)
         {
             try
             {
@@ -83,7 +91,9 @@ namespace Library.API.Controllers
             }
         }
 
-        public HttpResponseMessage DELETEBook(int id)
+        [HttpDelete]
+        [Route("api/books/{id:int}")]
+        public HttpResponseMessage Delete(int id)
         {
             try
             {

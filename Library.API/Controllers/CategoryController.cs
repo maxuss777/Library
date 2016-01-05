@@ -19,8 +19,8 @@ namespace Library.API.Controllers
         }
         
         [HttpGet]
-        [Route("api/category")]
-        public HttpResponseMessage All()
+        [Route("api/categories")]
+        public HttpResponseMessage GetAll()
         {
             try
             {
@@ -37,7 +37,7 @@ namespace Library.API.Controllers
         }
 
         [HttpGet]
-        [Route("api/category/{id:int}")]
+        [Route("api/categories/{id:int}")]
         public HttpResponseMessage Get(int id)
         {
             try
@@ -56,14 +56,14 @@ namespace Library.API.Controllers
         }
 
         [HttpPost]
-        [Route("api/category/add")]
-        public HttpResponseMessage Add(CategoryInfo categoryToBeCreated)
+        [Route("api/categories")]
+        public HttpResponseMessage Create(CategoryInfo categoryToBeCreated)
         {
             try
             {
                 var createdCategory = _categoryServices.CreateCategory(categoryToBeCreated);
                 return createdCategory != null
-                    ? Request.CreateResponse(HttpStatusCode.OK, createdCategory)
+                    ? Request.CreateResponse(HttpStatusCode.Created, createdCategory)
                     : Request.CreateErrorResponse(HttpStatusCode.BadRequest,
                         "Sorry, some troubles with the category creation");
             }
@@ -74,7 +74,7 @@ namespace Library.API.Controllers
         }
 
         [HttpPut]
-        [Route("api/category/update/{id:int}")]
+        [Route("api/categories/{id:int}")]
         public HttpResponseMessage Update(int id, CategoryObject categoryToBeUptated)
         {
             try
@@ -93,7 +93,7 @@ namespace Library.API.Controllers
         }
 
         [HttpDelete]
-        [Route("api/category/delete/{id:int}")]
+        [Route("api/categories/{id:int}")]
         public HttpResponseMessage Delete(int id)
         {
             try
@@ -112,7 +112,7 @@ namespace Library.API.Controllers
         }
 
         [HttpPost]
-        [Route("api/category/{categoryId:int}/books/{bookId:int}")]
+        [Route("api/categories/{categoryId:int}/add/{bookId:int}")]
         public HttpResponseMessage AddBook(int categoryId, int bookId)
         {
             try
@@ -120,6 +120,23 @@ namespace Library.API.Controllers
                 var book = _categoryServices.PutBookToCategory(categoryId, bookId);
                 return book == false
                     ? Request.CreateErrorResponse(HttpStatusCode.BadRequest, "The book hasn't been put to the category")
+                    : Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception exc)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, exc.Message);
+            }
+        }
+
+        [HttpDelete]
+        [Route("api/categories/{categoryId:int}/remove/{bookId:int}")]
+        public HttpResponseMessage RemoveBook(int categoryId, int bookId)
+        {
+            try
+            {
+                var book = _categoryServices.RemoveBookFromCategory(categoryId, bookId);
+                return book == false
+                    ? Request.CreateErrorResponse(HttpStatusCode.BadRequest, "The book hasn't been removed from the category")
                     : Request.CreateResponse(HttpStatusCode.OK);
             }
             catch (Exception exc)

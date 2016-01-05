@@ -90,5 +90,10 @@ namespace Library.API.Business
         {
             return bookId > 0 && _categoryRepository.PutBookToCategory(categoryId, bookId);
         }
+
+        public bool RemoveBookFromCategory(int categoryId, int bookId)
+        {
+            return bookId > 0 && _categoryRepository.RemoveBookFromCategory(categoryId, bookId);
+        }
     }
 }
