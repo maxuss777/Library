@@ -26,5 +26,21 @@ namespace Library.UI.Infrastructure
             }
             return booksList;
         }
+        public IEnumerable<Book> GetByCategory(string category)
+        {
+            List<Book> booksList = new List<Book>();
+            WebRequest request = WebRequest.Create(UrlResolver.Books_By_Category_Name(category));
+
+            using (WebResponse response = request.GetResponse())
+            {
+                Stream dataStream = response.GetResponseStream();
+                if (dataStream == null) return booksList;
+                using (StreamReader reader = new StreamReader(dataStream))
+                {
+                    booksList = JsonConvert.DeserializeObject<List<Book>>(reader.ReadToEnd());
+                }
+            }
+            return booksList;
+        }
     }
 }

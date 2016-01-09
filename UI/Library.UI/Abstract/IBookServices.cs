@@ -7,5 +7,6 @@ namespace Library.UI.Abstract
     public interface IBookServices
     {
         IEnumerable<Book> GetAll();
+        IEnumerable<Book> GetByCategory(string category);
     }
 }

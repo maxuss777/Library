@@ -13,11 +13,6 @@ namespace Library.UI.Controllers
         {
             _categoryServices = categoryServ;
         }
-        public PartialViewResult Menu()
-        {
-            var categoryList = (List<Category>)_categoryServices.GetAll();
-
-            return categoryList.Count <= 0 ? PartialView() : PartialView(categoryList);
-        }
+        
     }
 }

@@ -21,6 +21,5 @@
     </li>
 }
 <div class="pager">
-    @Html.PageLinks(Model.PagingInfo, x => Url.Action("AllBooksList",
-    new { page = x, category = Model.CurrentCategoryId }))
+    @Html.PageLinks(Model.PagingInfo, x => Url.Action("GetAll",new { page = x}))
 </div>

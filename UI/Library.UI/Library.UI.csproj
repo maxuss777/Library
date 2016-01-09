@@ -116,7 +116,7 @@
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\NavigationMenu\Menu.cshtml" />
+    <Content Include="Views\Category\Menu.cshtml" />
     <Content Include="Views\Books\AllBooksList.cshtml" />
     <Content Include="Views\Home.cshtml" />
     <Content Include="Views\Books\EmptyBooksList.cshtml" />
@@ -129,7 +129,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Book\" />
-    <Folder Include="Views\Category\" />
+    <Folder Include="Views\NavigationMenu\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
 using Library.UI.Abstract;
 using Library.UI.Models;
@@ -17,7 +16,7 @@ namespace Library.UI.Controllers
             _booksServices = bookServ;
         }
 
-        public PartialViewResult AllBooksList(int page = 1)
+        public PartialViewResult GetAll(int page = 1)
         {
             BookViewModel bookViewModel = new BookViewModel
             {
@@ -33,28 +32,37 @@ namespace Library.UI.Controllers
                 }
             };
 
-            return !bookViewModel.Books.Any() ? PartialView("EmptyBooksList") : PartialView(bookViewModel);
+            return !bookViewModel.Books.Any() ? PartialView("EmptyBooksList") : PartialView("AllBooksList",bookViewModel);
         }
 
-        public PartialViewResult FilterBookByCatName(int categoryName , int page = 1)
+        public PartialViewResult GetFiltered(string category, int page = 1)
         {
-            BookViewModel bookViewModel = new BookViewModel
+            try
             {
-                Books = _booksServices.GetAll()
-                    .Skip((page - 1) * PageSize)
-                    .Take(PageSize),
+                BookViewModel bookViewModel = new BookViewModel();
+               
+                    bookViewModel.Books = _booksServices.GetByCategory(category)
+                        .Skip((page - 1)*PageSize)
+                        .Take(PageSize);
 
-                PagingInfo = new PagingInfo
-                {
-                    CurrentPage = page,
-                    ItemsPerPage = PageSize,
-                    TotalItems = _booksServices.GetAll().Count()
-                }
-            };
+                    bookViewModel.PagingInfo = new PagingInfo
+                    {
+                        CurrentPage = page,
+                        ItemsPerPage = PageSize
+                    };
+                bookViewModel.PagingInfo.TotalItems = category == null
+                    ? _booksServices.GetAll().Count()
+                    : bookViewModel.Books.Count();
 
-            return !bookViewModel.Books.Any() ? PartialView("EmptyBooksList") : PartialView(bookViewModel);
+                return !bookViewModel.Books.Any()
+                    ? PartialView("EmptyBooksList")
+                    : PartialView("AllBooksList", bookViewModel);
+            }
+            catch
+            {
+                return PartialView("EmptyBooksList");
+            }
+            
         }
-
-
 	}
 }

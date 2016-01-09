@@ -41,4 +41,3 @@ C:\GitProj\Library\UI\Library.UI\bin\System.Web.Helpers.xml
 C:\GitProj\Library\UI\Library.UI\bin\System.Web.Mvc.xml
 C:\GitProj\Library\UI\Library.UI\obj\Debug\Library.UI.dll
 C:\GitProj\Library\UI\Library.UI\obj\Debug\Library.UI.pdb
-C:\GitProj\Library\UI\Library.UI\obj\Debug\Library.UI.csprojResolveAssemblyReference.cache

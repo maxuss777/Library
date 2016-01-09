@@ -17,7 +17,7 @@ namespace Library.UI.Helpers
             get { return string.Format("{0}Books", ApiDomain); }
         }
 
-        public static String Books_GetAll_By_Category_Name(string categoryName)
+        public static String Books_By_Category_Name(string categoryName)
         {
             return string.Format("{0}Books/{1}", ApiDomain, categoryName);
         }

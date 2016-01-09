@@ -1,5 +1,7 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
 using Library.UI.Abstract;
+using Library.UI.Models;
 
 namespace Library.UI.Controllers
 {
@@ -11,6 +13,11 @@ namespace Library.UI.Controllers
         {
             _categoryServices = catServ;
         }
-        
+        public PartialViewResult Menu(string category = null)
+        {
+            var categoryList = (List<Category>)_categoryServices.GetAll();
+
+            return categoryList.Count <= 0 ? PartialView() : PartialView(categoryList);
+        }
     }
 }
