@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 
 namespace Library.UI.Infrastructure
 {
-    public class CategoryServices : ICategoryServices
+    public class CategoryServices : Services, ICategoryServices
     {
         public IEnumerable<Category> GetAll()
         {
@@ -30,6 +30,15 @@ namespace Library.UI.Infrastructure
                 }
             }
             return categoryList;
+        }
+
+        public bool Create(Category category)
+        {
+            var postData = JsonConvert.SerializeObject(category);
+            var response = RequestToApi<Book>("POST", UrlResolver.Categories_Url, postData);
+            Book requestOut;
+            response.TryGetValue(HttpStatusCode.Created, out requestOut);
+            return requestOut != null;
         }
     }
 }

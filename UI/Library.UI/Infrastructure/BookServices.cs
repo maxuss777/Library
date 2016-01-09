@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.IO;
+using System.Linq;
 using System.Net;
 using Library.UI.Abstract;
 using Library.UI.Helpers;
@@ -8,39 +8,49 @@ using Newtonsoft.Json;
 
 namespace Library.UI.Infrastructure
 {
-    public class BookServices : IBookServices
+    public class BookServices : Services, IBookServices
     {
         public IEnumerable<Book> GetAll()
         {
-            List<Book> booksList = new List<Book>();
-            WebRequest request = WebRequest.Create(UrlResolver.Books_GetAll);
+            var response = GetObjectsAsList<Book>("GET", UrlResolver.Books_Url);
 
-            using (WebResponse response = request.GetResponse())
-            {
-                Stream dataStream = response.GetResponseStream();
-                if (dataStream == null) return booksList;
-                using (StreamReader reader = new StreamReader(dataStream))
-                {
-                    booksList = JsonConvert.DeserializeObject<List<Book>>(reader.ReadToEnd());
-                }
-            }
-            return booksList;
+            return !response.Any() ? null : response;
         }
+
         public IEnumerable<Book> GetByCategory(string category)
         {
-            List<Book> booksList = new List<Book>();
-            WebRequest request = WebRequest.Create(UrlResolver.Books_By_Category_Name(category));
+            var response = GetObjectsAsList<Book>("GET", UrlResolver.Books_By_Category_Name_Url(category));
 
-            using (WebResponse response = request.GetResponse())
-            {
-                Stream dataStream = response.GetResponseStream();
-                if (dataStream == null) return booksList;
-                using (StreamReader reader = new StreamReader(dataStream))
-                {
-                    booksList = JsonConvert.DeserializeObject<List<Book>>(reader.ReadToEnd());
-                }
-            }
-            return booksList;
+            return !response.Any() ? null : response;
+        }
+        public Book GetById(int id)
+        {
+            var response = RequestToApi<Book>("GET", UrlResolver.Books_Id_Url(id));
+            Book requestOut;
+            response.TryGetValue(HttpStatusCode.OK, out requestOut);
+            return requestOut;
+        }
+        public bool Create(Book book)
+        {
+            var postData = JsonConvert.SerializeObject(book);
+            var response = RequestToApi<Book>("POST", UrlResolver.Books_Url, postData);
+            Book requestOut;
+            response.TryGetValue(HttpStatusCode.Created, out requestOut);
+            return requestOut != null;
+        }
+        public bool Delete(int bookId)
+        {
+            var response = RequestToApi<Book>("DELETE", UrlResolver.Books_Id_Url(bookId));
+
+            return response.ContainsKey(HttpStatusCode.OK);
+        }
+        public bool Update(Book book)
+        {
+            var postData = JsonConvert.SerializeObject(book);
+            var response = RequestToApi<Book>("PUT", UrlResolver.Books_Id_Url(book.Id), postData);
+            Book requestOut;
+            response.TryGetValue(HttpStatusCode.OK, out requestOut);
+            return requestOut != null;
         }
     }
 }

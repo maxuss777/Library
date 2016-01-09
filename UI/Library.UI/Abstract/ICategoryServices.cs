@@ -6,5 +6,6 @@ namespace Library.UI.Abstract
     public interface ICategoryServices
     {
         IEnumerable<Category> GetAll();
+        bool Create(Category category);
     }
 }

@@ -14,7 +14,7 @@ namespace Library.API.Common.Book
 
         [Required]
         [StringLength(13, ErrorMessage = "The ISBN length should be 13 symbols and consists only of integers", MinimumLength = 13)]
-        public Int64 ISBN { get; set; }
+        public String ISBN { get; set; }
 
         [Required]
         [StringLength(50, ErrorMessage = "The Aothor field should be from 6 to 100 symbols", MinimumLength = 6)]

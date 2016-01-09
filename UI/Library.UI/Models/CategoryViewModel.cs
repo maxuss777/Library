@@ -2,9 +2,9 @@
 
 namespace Library.UI.Models
 {
-    public class BookViewModel
+    public class CategoryViewModel
     {
-        public IEnumerable<Book> Books { get; set; }
+        public IEnumerable<Category> Categories { get; set; }
         public PagingInfo PagingInfo { get; set; }
     }
 }

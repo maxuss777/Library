@@ -1,0 +1,28 @@
+﻿@model Library.UI.Models.CategoryViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="cart">
+    <div class="cart-item">
+        <div>
+            
+        </div>
+    </div>
+    <ul>
+        @foreach (var item in Model.Categories)
+        {
+            <li class="cart-item">
+                <span class="cart-item-pic">
+                </span>
+                @item.Name
+                
+                <input type="button" value="Edit"
+                       class="button-edit" onclick="location.href='@Url.Action("Edit", "Category",new{id=item.Id} )'" />
+            </li>
+        }
+        <div class="pager">
+            @Html.PageLinks(Model.PagingInfo, x => Url.Action("GetAll", new { page = x }))
+        </div>
+    </ul>
+</div>
+

@@ -35,7 +35,7 @@ namespace Library.API.DAL
                     SqlParameter ISBN = new SqlParameter
                     {
                         ParameterName = "@ISBN",
-                        DbType = DbType.Int64,
+                        DbType = DbType.String,
                         Direction = ParameterDirection.Input,
                         Value = book.ISBN
                     };
@@ -58,8 +58,8 @@ namespace Library.API.DAL
                             createdBook.Id = (int)reader["BookId"];
                             createdBook.Name = (string)reader["Name"];
                             createdBook.ISBN = reader["ISBN"] == DBNull.Value
-                                ? 0
-                                : (long)reader["ISBN"];
+                                ? null
+                                : (string)reader["ISBN"];
                             createdBook.Author = reader["Author"] == DBNull.Value
                                 ? null
                                 : (string)reader["Author"];
@@ -98,8 +98,8 @@ namespace Library.API.DAL
                             bookObject.Id = (int)reader["BookId"];
                             bookObject.Name = (string) reader["Name"];
                             bookObject.ISBN = reader["ISBN"] == DBNull.Value
-                                ? 0
-                                : (long) reader["ISBN"];
+                                ? null
+                                : (string) reader["ISBN"];
                             bookObject.Author = reader["Author"] == DBNull.Value
                                 ? null
                                 : (string) reader["Author"];
@@ -170,8 +170,8 @@ namespace Library.API.DAL
                                     Id = (int) reader["BookId"],
                                     Name = (string) reader["Name"],
                                     ISBN = reader["ISBN"] == DBNull.Value
-                                        ? 0
-                                        : (long)reader["ISBN"],
+                                        ? null
+                                        : (string)reader["ISBN"],
                                     Author = reader["Author"] == DBNull.Value
                                         ? null
                                         : (string) reader["Author"]
@@ -214,8 +214,8 @@ namespace Library.API.DAL
                                 Id = (int) reader["Book_Id"],
                                 Name = (string) reader["Name"],
                                 ISBN = reader["ISBN"] == DBNull.Value
-                                    ? 0
-                                    : (long) reader["ISBN"],
+                                    ? null
+                                    : (string) reader["ISBN"],
                                 Author = reader["Author"] == DBNull.Value
                                     ? null
                                     : (string) reader["Author"],
@@ -261,7 +261,7 @@ namespace Library.API.DAL
                     SqlParameter ISBN = new SqlParameter
                     {
                         ParameterName = "@ISBN",
-                        DbType = DbType.Int64,
+                        DbType = DbType.String,
                         Direction = ParameterDirection.InputOutput,
                         Value = book.ISBN
                     };
@@ -296,8 +296,8 @@ namespace Library.API.DAL
                     updatedBook.Id = book.Id;
                     updatedBook.Name = (string) Name.Value;
                     updatedBook.ISBN = ISBN.Value == DBNull.Value
-                        ? 0
-                        :(long) ISBN.Value;
+                        ? null
+                        :(string) ISBN.Value;
                     updatedBook.Author = Author.Value == DBNull.Value
                         ? null
                         : (string) Author.Value;

@@ -82,7 +82,7 @@ namespace Library.API.Controllers
             {
                 var createdBook = _bookServices.CreateBook(bookToBeCreated);
                 return createdBook != null
-                    ? Request.CreateResponse(HttpStatusCode.OK, createdBook)
+                    ? Request.CreateResponse(HttpStatusCode.Created, createdBook)
                     : Request.CreateErrorResponse(HttpStatusCode.BadRequest,
                         "Sorry, some troubles with the book creation");
             }

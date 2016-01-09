@@ -149,8 +149,8 @@ namespace Library.API.DAL
                                 Id = (int)reader["Book_Id"],
                                 Name = (string)reader["Name"],
                                 ISBN = reader["ISBN"] == DBNull.Value
-                                    ? 0
-                                    : (long)reader["ISBN"],
+                                    ? null
+                                    : (string)reader["ISBN"],
                                 Author = reader["Author"] == DBNull.Value
                                     ? null
                                     : (string)reader["Author"]
