@@ -1,0 +1,26 @@
+﻿@model Library.UI.Models.BookViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@foreach (var item in Model.Books)
+{
+    <li class="cart-item">
+        <span class="cart-item-pic">
+        </span>
+        @item.Name
+        <span class="cart-item-desc">
+            @item.Author
+        </span>
+        <span class="cart-item-price">
+            @item.ISBN
+        </span>
+        @Html.ActionLink("Create", "Create", "Books", null, new { @class = "cart-button-create" })
+        @Html.ActionLink("Edit", "Edit", "Books", null, new { @class = "button-edit" })
+        @Html.ActionLink("Delete", "Delete", "Books", null, new { @class = "button-delete" })
+    </li>
+}
+<div class="pager">
+    @Html.PageLinks(Model.PagingInfo, x => Url.Action("AllBooksList",
+    new { page = x, category = Model.CurrentCategoryId }))
+</div>

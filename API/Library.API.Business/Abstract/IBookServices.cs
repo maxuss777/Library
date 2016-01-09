@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using Library.API.Common.Book;
-using Library.API.Common.Category;
 
 namespace Library.API.Business.Abstract
 {
     public interface IBookServices
     {
-        BookInfo CreateBook(BookInfo book);
-        BookObject GetBookById(int bookId);
-        IEnumerable<BookObject> GetAllBooks();
-        BookObject UpdateBook(BookObject book);
-        IEnumerable<CategoryInfo> GetBooksCategories(int bookId);
+        Book CreateBook(Book book);
+        Book GetBookById(int bookId);
+        IEnumerable<Book> GetAllBooks();
+        Book UpdateBook(Book book);
+        IEnumerable<Book> GetBooksByCategoryName(string categoryName);
         Boolean DeleteBook(int bookId);
     }
 }

@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Library.API.Common.Category;
 
 namespace Library.API.Common.Book
 {
-    public class BookObject
+    public class Book
     {
         [Required]
         public Int32 Id { get; set; }
@@ -21,7 +19,5 @@ namespace Library.API.Common.Book
         [Required]
         [StringLength(50, ErrorMessage = "The Aothor field should be from 6 to 100 symbols", MinimumLength = 6)]
         public String Author { get; set; }
-
-        public IEnumerable<CategoryInfo> Categories { get; set; }
     }
 }

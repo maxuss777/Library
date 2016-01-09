@@ -10,9 +10,9 @@ namespace Library.API.DAL
 {
     public class CategoryRepository : Repository, ICategoryRepository
     {
-        public CategoryInfo Create(CategoryInfo category)
+        public Category Create(Category category)
         {
-            CategoryInfo createdCategory = new CategoryInfo();
+            Category createdCategory = new Category();
 
             using (SqlConnection conn = new SqlConnection(ConnectionString))
             {
@@ -49,9 +49,9 @@ namespace Library.API.DAL
             return createdCategory;
         }
 
-        public CategoryObject Get(int categoryId)
+        public Category Get(int categoryId)
         {
-            CategoryObject categoryObject = new CategoryObject();
+            Category categoryObject = new Category();
 
             using (SqlConnection conn = new SqlConnection(ConnectionString))
             {
@@ -87,9 +87,9 @@ namespace Library.API.DAL
             return categoryObject;
         }
 
-        public IEnumerable<CategoryObject> GetAll()
+        public IEnumerable<Category> GetAll()
         {
-            List<CategoryObject> categories = new List<CategoryObject>();
+            List<Category> categories = new List<Category>();
 
             using (SqlConnection conn = new SqlConnection(ConnectionString))
             {
@@ -104,7 +104,7 @@ namespace Library.API.DAL
                         while (reader.Read())
                         {
                             categories.Add(
-                                new CategoryObject
+                                new Category
                                 {
                                     Id = (int)reader["CategoryId"],
                                     Name = (string)reader["Name"],
@@ -119,9 +119,9 @@ namespace Library.API.DAL
             return categories;
         }
 
-        public IEnumerable<BookInfo> GetCategoriesBooks(int categoryId)
+        public IEnumerable<Book> GetCategoriesBooks(int categoryId)
         {
-            List<BookInfo> books = new List<BookInfo>();
+            List<Book> books = new List<Book>();
 
             using (SqlConnection conn = new SqlConnection(ConnectionString))
             {
@@ -144,7 +144,7 @@ namespace Library.API.DAL
                     {
                         while (reader.Read())
                         {
-                            books.Add(new BookInfo
+                            books.Add(new Book
                             {
                                 Id = (int)reader["Book_Id"],
                                 Name = (string)reader["Name"],
@@ -162,9 +162,9 @@ namespace Library.API.DAL
             return books;
         }
 
-        public CategoryObject Update(CategoryObject category)
+        public Category Update(Category category)
         {
-            CategoryObject updatedCategory = new CategoryObject();
+            Category updatedCategory = new Category();
 
             using (SqlConnection conn = new SqlConnection(ConnectionString))
             {

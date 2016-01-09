@@ -8,6 +8,7 @@ using Library.API.Common.Category;
 namespace Library.API.Controllers
 {
     //[Authorize]
+    [RoutePrefix("api/categories")]
     public class CategoryController : ApiController
     {
         private readonly ICategoryServices _categoryServices;
@@ -18,7 +19,7 @@ namespace Library.API.Controllers
         }
         
         [HttpGet]
-        [Route("api/categories")]
+        [Route("")]
         public HttpResponseMessage GetAll()
         {
             try
@@ -36,8 +37,8 @@ namespace Library.API.Controllers
         }
 
         [HttpGet]
-        [Route("api/categories/{id:int}")]
-        public HttpResponseMessage Get(int id)
+        [Route("{id:int}")]
+        public HttpResponseMessage GetOne(int id)
         {
             try
             {
@@ -55,8 +56,8 @@ namespace Library.API.Controllers
         }
 
         [HttpPost]
-        [Route("api/categories")]
-        public HttpResponseMessage Create(CategoryInfo categoryToBeCreated)
+        [Route("")]
+        public HttpResponseMessage Create(Category categoryToBeCreated)
         {
             try
             {
@@ -73,8 +74,8 @@ namespace Library.API.Controllers
         }
 
         [HttpPut]
-        [Route("api/categories/{id:int}")]
-        public HttpResponseMessage Update(int id, CategoryObject categoryToBeUptated)
+        [Route("{id:int}")]
+        public HttpResponseMessage Update(int id, Category categoryToBeUptated)
         {
             try
             {
@@ -92,7 +93,7 @@ namespace Library.API.Controllers
         }
 
         [HttpDelete]
-        [Route("api/categories/{id:int}")]
+        [Route("{id:int}")]
         public HttpResponseMessage Delete(int id)
         {
             try
@@ -111,7 +112,7 @@ namespace Library.API.Controllers
         }
 
         [HttpPost]
-        [Route("api/categories/{categoryId:int}/addbook/{bookId:int}")]
+        [Route("{categoryId:int}/addbook/{bookId:int}")]
         public HttpResponseMessage AddBook(int categoryId, int bookId)
         {
             try
@@ -128,7 +129,7 @@ namespace Library.API.Controllers
         }
 
         [HttpDelete]
-        [Route("api/categories/{categoryId:int}/removebook/{bookId:int}")]
+        [Route("{categoryId:int}/removebook/{bookId:int}")]
         public HttpResponseMessage RemoveBook(int categoryId, int bookId)
         {
             try

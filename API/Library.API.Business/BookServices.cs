@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Library.API.Common.Book;
 using Library.API.Common.Category;
 using Library.API.DAL.Abstract;
@@ -14,7 +15,7 @@ namespace Library.API.Business
         {
             _bookRepository = bookRepo;
         }
-        public BookInfo CreateBook(BookInfo book)
+        public Book CreateBook(Book book)
         {
             if (book == null)
             {
@@ -23,47 +24,39 @@ namespace Library.API.Business
             var createdBook = _bookRepository.Create(book);
             return createdBook.Id == 0 ? null : createdBook;
         }
-        public BookObject GetBookById(int bookId)
+        public Book GetBookById(int bookId)
         {
             if (bookId <= 0)
             {
                 return null;
             }
             var book = _bookRepository.Get(bookId);
-            if (book.Id <= 0)
-            {
-                return null;
-            }
-            book.Categories = _bookRepository.GetBooksCategories(bookId);
-            return book;
+            return book.Id <= 0 ? null : book;
         }
-        public IEnumerable<BookObject> GetAllBooks()
+        public IEnumerable<Book> GetAllBooks()
         {
             var books = _bookRepository.GetAll();
-            if (books.Equals(default(List<BookObject>)))
-            {
-                return null;
-            }
-            foreach (BookObject b in books)
-            {
-                b.Categories = _bookRepository.GetBooksCategories(b.Id);
-            }
-            return books;
+            return books.Any() ? books : null;
         }
-        public BookObject UpdateBook(BookObject book)
+        public Book UpdateBook(Book book)
         {
             return book == null ? null : _bookRepository.Update(book);
         }
-        public IEnumerable<CategoryInfo> GetBooksCategories(int bookId)
+
+        public IEnumerable<Book> GetBooksByCategoryName(string categoryName)
         {
-            if (bookId <= 0)
-            {
-                return null;
-            }
-            var booksCategpries = _bookRepository.GetBooksCategories(bookId);
-            return booksCategpries.Equals(default(List<CategoryInfo>)) 
-                ? null 
-                : booksCategpries;
+            var clearCatName = categoryName.Trim();
+            var categoryId = _bookRepository.IfCategoryExist(clearCatName);
+            if(categoryId == 0) return null;
+            var books = _bookRepository.GetBooksByCategoryId(categoryId);
+            return !books.Any() ? null : books;
+        }
+
+        public IEnumerable<Book> GetBooksByCategory(int categoryId)
+        {
+            if (categoryId <= 0){ return null; }
+            var Books = _bookRepository.GetBooksByCategoryId(categoryId);
+            return Books.Any() ? Books : null;
         }
         public bool DeleteBook(int bookId)
         {

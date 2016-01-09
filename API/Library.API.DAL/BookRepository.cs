@@ -10,9 +10,9 @@ namespace Library.API.DAL
 {
     public class BookRepository : Repository, IBookRepository
     {
-        public BookInfo Create(BookInfo book)
+        public Book Create(Book book)
         {
-            BookInfo createdBook = new BookInfo();
+            Book createdBook = new Book();
 
             using (SqlConnection conn = new SqlConnection(ConnectionString))
             {
@@ -69,9 +69,9 @@ namespace Library.API.DAL
             }
             return createdBook;
         }
-        public BookObject Get(int bookId)
+        public Book Get(int bookId)
         {
-            BookObject bookObject = new BookObject();
+            Book bookObject = new Book();
 
             using (SqlConnection conn = new SqlConnection(ConnectionString))
             {
@@ -109,9 +109,48 @@ namespace Library.API.DAL
             }
             return bookObject;
         }
-        public IEnumerable<BookObject> GetAll()
+        public int IfCategoryExist(string categoryName)
         {
-            List<BookObject> books = new List<BookObject>();
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand("CheckIfCategoryExist", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    #region parameters
+
+                    SqlParameter Name = new SqlParameter
+                    {
+                        ParameterName = "@Name",
+                        DbType = DbType.String,
+                        Direction = ParameterDirection.Input,
+                        Value = categoryName
+                    };
+                    cmd.Parameters.Add(Name);
+
+                    SqlParameter CategoryId = new SqlParameter
+                    {
+                        ParameterName = "@CategoryId",
+                        DbType = DbType.Int32,
+                        Direction = ParameterDirection.Output
+                    };
+                    cmd.Parameters.Add(CategoryId);
+
+                    #endregion
+
+                    cmd.ExecuteNonQuery();
+
+                    return CategoryId.Value != null && (int)CategoryId.Value != 0 
+                        ? (int)CategoryId.Value 
+                        : 0;
+                }
+            }
+        }
+        public IEnumerable<Book> GetAll()
+        {
+            List<Book> books = new List<Book>();
 
             using (SqlConnection conn = new SqlConnection(ConnectionString))
             {
@@ -126,7 +165,7 @@ namespace Library.API.DAL
                         while (reader.Read())
                         {
                             books.Add(
-                                new BookObject
+                                new Book
                                 {
                                     Id = (int) reader["BookId"],
                                     Name = (string) reader["Name"],
@@ -143,36 +182,43 @@ namespace Library.API.DAL
             }
             return books;
         }
-        public IEnumerable<CategoryInfo> GetBooksCategories(int bookId)
+        public IEnumerable<Book> GetBooksByCategoryId(int categoryId)
         {
-            List<CategoryInfo> categoies = new List<CategoryInfo>();
+            List<Book> categoies = new List<Book>();
 
             using (SqlConnection conn = new SqlConnection(ConnectionString))
             {
                 conn.Open();
 
-                using (SqlCommand cmd = new SqlCommand("GetBooksCategories", conn))
+                using (SqlCommand cmd = new SqlCommand("GetCategoriesBooks", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-#region parameters
+
+                    #region parameters
                     SqlParameter Id = new SqlParameter
                     {
-                        ParameterName = "@BookId",
+                        ParameterName = "@categoryId",
                         DbType = DbType.Int32,
                         Direction = ParameterDirection.Input,
-                        Value = bookId
+                        Value = categoryId
                     };
                     cmd.Parameters.Add(Id);
-#endregion
+                    #endregion
+
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            categoies.Add(new CategoryInfo
+                            categoies.Add(new Book
                             {
-                                Id = (int) reader["Category_Id"],
+                                Id = (int) reader["Book_Id"],
                                 Name = (string) reader["Name"],
-                                CreationDate = (DateTime) reader["CreationDate"]
+                                ISBN = reader["ISBN"] == DBNull.Value
+                                    ? 0
+                                    : (long) reader["ISBN"],
+                                Author = reader["Author"] == DBNull.Value
+                                    ? null
+                                    : (string) reader["Author"],
                             });
                         }
                     }
@@ -180,9 +226,9 @@ namespace Library.API.DAL
             }
             return categoies;
         }
-        public BookObject Update(BookObject book)
+        public Book Update(Book book)
         {
-            BookObject updatedBook = new BookObject();
+            Book updatedBook = new Book();
 
             using (SqlConnection conn = new SqlConnection(ConnectionString))
             {

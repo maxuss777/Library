@@ -34,10 +34,8 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Book\BookInfo.cs" />
-    <Compile Include="Book\BookObject.cs" />
-    <Compile Include="Category\CategoryInfo.cs" />
-    <Compile Include="Category\CategoryObject.cs" />
+    <Compile Include="Book\Book.cs" />
+    <Compile Include="Category\Category.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Member\LogOnModel.cs" />
     <Compile Include="Member\RegisterModel.cs" />

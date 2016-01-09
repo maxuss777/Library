@@ -22,6 +22,7 @@ namespace Library.UI.Infrastructure
         private void AddBindings()
         {
             ninjectKarnel.Bind<ICategoryServices>().To<CategoryServices>();
+            ninjectKarnel.Bind<IBookServices>().To<BookServices>();
         }
     }
 }

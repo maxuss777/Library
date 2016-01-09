@@ -85,26 +85,41 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\ItemsStyle.css" />
+    <Content Include="Content\NavMenu.css" />
+    <Content Include="Content\Pager.css" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IBookServices.cs" />
     <Compile Include="Abstract\ICategoryServices.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BooksController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\NavigationMenuController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\PagingHelpers.cs" />
+    <Compile Include="Helpers\UrlResolver.cs" />
+    <Compile Include="Infrastructure\BookServices.cs" />
     <Compile Include="Infrastructure\CategoryServices.cs" />
     <Compile Include="Infrastructure\NinjectControllerFactory.cs" />
-    <Compile Include="Models\BookInfo.cs" />
+    <Compile Include="Models\Book.cs" />
+    <Compile Include="Models\BookViewModel.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\PagingInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
-    <Content Include="Views\Category\Index.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\NavigationMenu\Menu.cshtml" />
+    <Content Include="Views\Books\AllBooksList.cshtml" />
+    <Content Include="Views\Home.cshtml" />
+    <Content Include="Views\Books\EmptyBooksList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -112,7 +127,10 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Book\" />
+    <Folder Include="Views\Category\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

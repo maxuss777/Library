@@ -7,11 +7,11 @@ namespace Library.API.Business.Abstract
 {
     public interface ICategoryServices
     {
-        CategoryInfo CreateCategory(CategoryInfo category);
-        CategoryObject GetCategoryById(int categoryId);
-        IEnumerable<CategoryObject> GetAllCategories();
-        CategoryObject UpdateCategory(CategoryObject category);
-        IEnumerable<BookInfo> GetCategoriesBooks(int categoryId);
+        Category CreateCategory(Category category);
+        Category GetCategoryById(int categoryId);
+        IEnumerable<Category> GetAllCategories();
+        Category UpdateCategory(Category category);
+        IEnumerable<Book> GetCategoriesBooks(int categoryId);
         Boolean DeleteCategory(int categoryId);
         Boolean PutBookToCategory(int categoryId, int bookId);
         Boolean RemoveBookFromCategory(int categoryId, int bookId);

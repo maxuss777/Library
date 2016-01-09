@@ -7,7 +7,8 @@ using Library.API.Common.Book;
 
 namespace Library.API.Controllers
 {
-    [Authorize]
+    //[Authorize]
+    [RoutePrefix("api/books")]
     public class BookController : ApiController
     {
         private readonly IBookServices _bookServices;
@@ -18,7 +19,7 @@ namespace Library.API.Controllers
         }
 
         [HttpGet]
-        [Route("api/books")]
+        [Route("")]
         public HttpResponseMessage GetAll()
         {
             try
@@ -36,8 +37,8 @@ namespace Library.API.Controllers
         }
 
         [HttpGet]
-        [Route("api/books/{id:int}")]
-        public HttpResponseMessage Get(int id)
+        [Route("{id:int}")]
+        public HttpResponseMessage GetOne(int id)
         {
             try
             {
@@ -54,9 +55,28 @@ namespace Library.API.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("{categoryName}")]
+        public HttpResponseMessage GetByCategory(string categoryName)
+        {
+            try
+            {
+                var book = _bookServices.GetBooksByCategoryName(categoryName);
+                return book != null
+                    ? Request.CreateResponse(HttpStatusCode.OK, book)
+                    : Request.CreateErrorResponse(HttpStatusCode.NotFound,
+                        string.Format("The books don't belong '{0}' category", categoryName));
+            }
+            catch (Exception exc)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, exc.Message);
+
+            }
+        }
+
         [HttpPost]
-        [Route("api/books")]
-        public HttpResponseMessage Create(BookInfo bookToBeCreated)
+        [Route("")]
+        public HttpResponseMessage Create(Book bookToBeCreated)
         {
             try
             {
@@ -73,8 +93,8 @@ namespace Library.API.Controllers
         }
 
         [HttpPut]
-        [Route("api/books/{id:int}")]
-        public HttpResponseMessage Update(int id, BookObject bookToBeUptated)
+        [Route("{id:int}")]
+        public HttpResponseMessage Update(int id, Book bookToBeUptated)
         {
             try
             {
@@ -92,7 +112,7 @@ namespace Library.API.Controllers
         }
 
         [HttpDelete]
-        [Route("api/books/{id:int}")]
+        [Route("{id:int}")]
         public HttpResponseMessage Delete(int id)
         {
             try

@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System;
 
 namespace Library.UI.Models
 {
@@ -6,7 +6,6 @@ namespace Library.UI.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string CreationDate { get; set; }
-        public List<BookInfo> Books { get; set; } 
+        public DateTime CreationDate { get; set; }
     }
 }
