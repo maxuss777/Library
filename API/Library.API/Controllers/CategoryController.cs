@@ -55,6 +55,25 @@ namespace Library.API.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("{categoryName}")]
+        public HttpResponseMessage GetOne(string categoryName)
+        {
+            try
+            {
+                var category = _categoryServices.GetCategoryByName(categoryName);
+                return category != null
+                    ? Request.CreateResponse(HttpStatusCode.OK, category)
+                    : Request.CreateErrorResponse(HttpStatusCode.NotFound,
+                        string.Format("The category with Name = {0} doesn't exist", categoryName));
+            }
+            catch (Exception exc)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, exc.Message);
+
+            }
+        }
+
         [HttpPost]
         [Route("")]
         public HttpResponseMessage Create(Category categoryToBeCreated)

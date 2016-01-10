@@ -1,5 +1,6 @@
 ﻿
 using System.Collections.Generic;
+using System.Web.Mvc;
 using Library.UI.Models;
 
 namespace Library.UI.Abstract
@@ -12,5 +13,6 @@ namespace Library.UI.Abstract
         bool Create(Book book);
         bool Delete(int bookId);
         bool Update(Book book);
+        List<SelectListItem> BooksAsListItems(IEnumerable<Book> books);
     }
 }

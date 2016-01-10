@@ -7,7 +7,8 @@ namespace Library.API.DAL.Abstract
     public interface ICategoryRepository
     {
         Category Create(Category category);
-        Category Get(int categoryId);
+        Category GetById(int categoryId);
+        Category GetByName(string category);
         IEnumerable<Category> GetAll();
         IEnumerable<Book> GetCategoriesBooks(int categoryId);
         Category Update(Category category);

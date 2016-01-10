@@ -29,7 +29,16 @@ namespace Library.API.Business
             {
                 return null;
             }
-            var category = _categoryRepository.Get(categoryId);
+            var category = _categoryRepository.GetById(categoryId);
+            return category.Id <= 0 ? null : category;
+        }
+        public Category GetCategoryByName(string categoryName)
+        {
+            if (categoryName == null)
+            {
+                return null;
+            }
+            var category = _categoryRepository.GetByName(categoryName.ToLower());
             return category.Id <= 0 ? null : category;
         }
         public IEnumerable<Category> GetAllCategories()

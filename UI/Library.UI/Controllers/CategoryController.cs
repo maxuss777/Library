@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using Library.UI.Abstract;
@@ -21,7 +22,6 @@ namespace Library.UI.Controllers
 
             return categoryList.Count <= 0 ? PartialView() : PartialView(categoryList);
         }
-
         [HttpGet]
         public PartialViewResult GetAll(int page = 1)
         {
@@ -41,7 +41,7 @@ namespace Library.UI.Controllers
             };
 
             return !bookViewModel.Categories.Any()
-                ? PartialView()
+                ? PartialView("EmptyCategoriesList")
                 : PartialView("CategoriesList", bookViewModel);
         }
         [HttpGet]
@@ -49,7 +49,6 @@ namespace Library.UI.Controllers
         {
             return PartialView("CreateCategory");
         }
-
         [HttpPost]
         public ActionResult Create(Category category)
         {
@@ -57,6 +56,70 @@ namespace Library.UI.Controllers
                 return PartialView("CreateCategory");
 
             return PartialView(!_categoryServices.Create(category) ? "ErroActionView" : "SuccessActionView");
+        }
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            var book = _categoryServices.GetById(id);
+            return book == null ? PartialView("ErroActionView") : PartialView("EditCategory", book);
+        }
+        [HttpPost]
+        public ActionResult Edit(Category category)
+        {
+            if (!ModelState.IsValid || category == null)
+                return PartialView("EditCategory", category);
+
+            var result = _categoryServices.Update(category);
+            return result == false ? PartialView("ErroActionView") : PartialView("SuccessActionView");
+        }
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            return id == 0
+                ? PartialView("ErroActionView")
+                : PartialView(!_categoryServices.Delete(id)
+                    ? "ErroActionView"
+                    : "SuccessActionView");
+        }
+        [HttpPost]
+        public ActionResult AddBook(string bookId, string categoryName)
+        {
+            int _bookId;
+            if (!Int32.TryParse(bookId, out _bookId) || categoryName==null)
+                return View("ErroActionView");
+
+            var _categoryId = _categoryServices.GetByName(categoryName.Trim()).Id;
+
+            if(_categoryId==0||_bookId == 0)
+                return View("ErroActionView");
+            try
+            {
+                return View(!_categoryServices.PutBookToCategory(_categoryId, _bookId) 
+                    ? "ErroActionView" 
+                    : "SuccessActionView");
+            }
+            catch
+            {
+                return View("ErroActionView");
+            }
+        }
+        [HttpPost]
+        public ActionResult RemoveBook(int bookId, string categoryName)
+        {
+            var categoryId = _categoryServices.GetByName(categoryName.Trim()).Id;
+
+            if (categoryId == 0 || bookId == 0)
+                return View("ErroActionView");
+            try
+            {
+                return View(!_categoryServices.RemoveBookFromCategory(categoryId, bookId)
+                    ? "ErroActionView"
+                    : "SuccessActionView");
+            }
+            catch
+            {
+                return View("ErroActionView");
+            }
         }
     }
 }

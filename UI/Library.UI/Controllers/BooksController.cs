@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using Library.UI.Abstract;
@@ -9,7 +10,7 @@ namespace Library.UI.Controllers
     public class BooksController : Controller
     {
         private const int PageSize = 5;
-        
+
         private IBookServices _booksServices;
 
         public BooksController(IBookServices bookServ)
@@ -24,7 +25,7 @@ namespace Library.UI.Controllers
             {
                 Books = _booksServices.GetAll()
                     .OrderByDescending(b => b.Id)
-                    .Skip((page - 1)*PageSize)
+                    .Skip((page - 1) * PageSize)
                     .Take(PageSize),
 
                 PagingInfo = new PagingInfo
@@ -43,32 +44,38 @@ namespace Library.UI.Controllers
         [HttpGet]
         public PartialViewResult GetFiltered(string category, int page = 1)
         {
+            BookViewModel bookViewModel = new BookViewModel();
+            IEnumerable<Book> books = _booksServices.GetByCategory(category);
+            ViewBag.Books = _booksServices.BooksAsListItems(_booksServices.GetAll());
+            ViewBag.CurrentCategory = category;
+
             try
             {
-                BookViewModel bookViewModel = new BookViewModel();
-               
-                    bookViewModel.Books = _booksServices.GetByCategory(category)
-                        .Skip((page - 1)*PageSize)
-                        .Take(PageSize);
+                if (books == null || !books.Any())
+                    return PartialView("EmptyBooksList");
 
-                    bookViewModel.PagingInfo = new PagingInfo
-                    {
-                        CurrentPage = page,
-                        ItemsPerPage = PageSize
-                    };
-                bookViewModel.PagingInfo.TotalItems = category == null
-                    ? _booksServices.GetAll().Count()
-                    : bookViewModel.Books.Count();
+                bookViewModel.Books = books
+                    .Skip((page - 1) * PageSize)
+                    .Take(PageSize);
+                bookViewModel.PagingInfo = new PagingInfo
+                {
+                    CurrentPage = page,
+                    ItemsPerPage = PageSize,
+                    TotalItems = category == null
+                        ? _booksServices.GetAll().Count()
+                        : _booksServices.GetByCategory(category).Count()
+                };
+
 
                 return !bookViewModel.Books.Any()
                     ? PartialView("EmptyBooksList")
-                    : PartialView("AllBooksList", bookViewModel);
+                    : PartialView("FilteredBookslist", bookViewModel);
             }
             catch
             {
                 return PartialView("EmptyBooksList");
             }
-            
+
         }
 
         [HttpGet]
@@ -110,6 +117,11 @@ namespace Library.UI.Controllers
 
             var result = _booksServices.Update(book);
             return result == false ? PartialView("ErroActionView") : PartialView("SuccessActionView");
+        }
+
+        public IEnumerable<Book> SelectBook(string category)
+        {
+            return _booksServices.GetByCategory(category);
         }
     }
 }

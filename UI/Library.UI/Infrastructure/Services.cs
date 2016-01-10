@@ -30,8 +30,7 @@ namespace Library.UI.Infrastructure
                 request.Accept = "application/json, text/plain, */*";
                 request.Expect = "application/json";
                 request.ContentType = "application/json";
-               
-                    request.ContentLength = postData.Length;
+                request.ContentLength = postData.Length;
                 
                 using (var sw = new StreamWriter(request.GetRequestStream()))
                 {
@@ -76,7 +75,7 @@ namespace Library.UI.Infrastructure
                 {
                     var sr = new StreamReader(exceptionStream);
                     var s = sr.ReadToEnd();
-                    return JsonConvert.DeserializeObject<List<T>>(s);
+                    return null;
                 }
             }
 

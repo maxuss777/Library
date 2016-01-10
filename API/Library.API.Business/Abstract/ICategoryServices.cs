@@ -9,6 +9,7 @@ namespace Library.API.Business.Abstract
     {
         Category CreateCategory(Category category);
         Category GetCategoryById(int categoryId);
+        Category GetCategoryByName(string categoryName);
         IEnumerable<Category> GetAllCategories();
         Category UpdateCategory(Category category);
         IEnumerable<Book> GetCategoriesBooks(int categoryId);

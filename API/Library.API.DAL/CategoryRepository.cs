@@ -22,7 +22,7 @@ namespace Library.API.DAL
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-#region parameters
+                    #region parameters
                     SqlParameter Name = new SqlParameter
                     {
                         ParameterName = "@Name",
@@ -31,7 +31,7 @@ namespace Library.API.DAL
                         Value = category.Name
                     };
                     cmd.Parameters.Add(Name);
-#endregion
+                    #endregion
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
@@ -49,7 +49,7 @@ namespace Library.API.DAL
             return createdCategory;
         }
 
-        public Category Get(int categoryId)
+        public Category GetById(int categoryId)
         {
             Category categoryObject = new Category();
 
@@ -61,7 +61,7 @@ namespace Library.API.DAL
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-#region parameters
+                    #region parameters
                     SqlParameter Id = new SqlParameter
                     {
                         ParameterName = "@Id",
@@ -70,7 +70,45 @@ namespace Library.API.DAL
                         Value = categoryId
                     };
                     cmd.Parameters.Add(Id);
-#endregion
+                    #endregion
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            categoryObject.Id = (int)reader["CategoryId"];
+                            categoryObject.Name = (string)reader["Name"];
+                            categoryObject.CreationDate = reader["CreationDate"] == DBNull.Value
+                                ? default(DateTime)
+                                : (DateTime)reader["CreationDate"];
+                        }
+                    }
+                }
+            }
+            return categoryObject;
+        }
+
+        public Category GetByName(string category)
+        {
+            Category categoryObject = new Category();
+
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand("GetCategoryByName", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    #region parameters
+                    SqlParameter Name = new SqlParameter
+                    {
+                        ParameterName = "@Name",
+                        DbType = DbType.String,
+                        Direction = ParameterDirection.Input,
+                        Value = category
+                    };
+                    cmd.Parameters.Add(Name);
+                    #endregion
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
@@ -130,7 +168,7 @@ namespace Library.API.DAL
                 using (SqlCommand cmd = new SqlCommand("GetCategoriesBooks", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-#region parameters
+                    #region parameters
                     SqlParameter Id = new SqlParameter
                     {
                         ParameterName = "@CategoryId",
@@ -139,7 +177,7 @@ namespace Library.API.DAL
                         Value = categoryId
                     };
                     cmd.Parameters.Add(Id);
-#endregion
+                    #endregion
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
@@ -174,7 +212,7 @@ namespace Library.API.DAL
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-#region parameters
+                    #region parameters
 
                     SqlParameter Id = new SqlParameter
                     {
@@ -211,7 +249,7 @@ namespace Library.API.DAL
                     };
                     cmd.Parameters.Add(Result);
 
-#endregion
+                    #endregion
 
                     cmd.ExecuteNonQuery();
 
@@ -237,7 +275,7 @@ namespace Library.API.DAL
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-#region parameters
+                    #region parameters
 
                     SqlParameter Id = new SqlParameter
                     {
@@ -256,7 +294,7 @@ namespace Library.API.DAL
                     };
                     cmd.Parameters.Add(Result);
 
-#endregion
+                    #endregion
 
                     cmd.ExecuteNonQuery();
 
@@ -275,7 +313,7 @@ namespace Library.API.DAL
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-#region parameters
+                    #region parameters
 
                     SqlParameter CategoryId = new SqlParameter
                     {
@@ -303,7 +341,7 @@ namespace Library.API.DAL
                     };
                     cmd.Parameters.Add(Result);
 
-#endregion
+                    #endregion
 
                     cmd.ExecuteNonQuery();
 

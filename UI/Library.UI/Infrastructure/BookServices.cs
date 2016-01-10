@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using Library.UI.Abstract;
 using Library.UI.Helpers;
 using Library.UI.Models;
@@ -21,7 +23,7 @@ namespace Library.UI.Infrastructure
         {
             var response = GetObjectsAsList<Book>("GET", UrlResolver.Books_By_Category_Name_Url(category));
 
-            return !response.Any() ? null : response;
+            return response == null || !response.Any() ? null : response;
         }
         public Book GetById(int id)
         {
@@ -51,6 +53,21 @@ namespace Library.UI.Infrastructure
             Book requestOut;
             response.TryGetValue(HttpStatusCode.OK, out requestOut);
             return requestOut != null;
+        }
+
+        public List<SelectListItem> BooksAsListItems(IEnumerable<Book>  books)
+        {
+            if (!books.Any())
+            {
+                return null;
+            }
+            var listItemCollection = new List<SelectListItem>();
+            listItemCollection.AddRange(books.Select(book => new SelectListItem
+            {
+                Text = book.Name, Value = book.Id.ToString(), Selected = false
+            }));
+
+            return listItemCollection;
         }
     }
 }
