@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Net;
+﻿using System.Net;
 using Library.UI.Abstract;
 using Library.UI.Helpers;
 using Library.UI.Models;
@@ -8,7 +6,7 @@ using Newtonsoft.Json;
 
 namespace Library.UI.Infrastructure
 {
-    public class AuthenticationServices : Services, ILoginServices, IRegistrationServices
+    public class AuthenticationServices : Services, IAuthenticationController
     {
         public MyAuthorizationHeader LogIn(LogInModel logInModel)
         {

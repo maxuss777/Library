@@ -85,6 +85,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\log.txt" />
     <Content Include="Content\Authorization.css" />
     <Content Include="Content\CreationForm.css" />
     <Content Include="Content\Form.css" />
@@ -97,7 +98,7 @@
   <ItemGroup>
     <Compile Include="Abstract\IBookServices.cs" />
     <Compile Include="Abstract\ICategoryServices.cs" />
-    <Compile Include="Abstract\ILoginServices.cs" />
+    <Compile Include="Abstract\IAuthenticationController.cs" />
     <Compile Include="Abstract\IRegistrationServices.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -106,6 +107,7 @@
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Filters\MyAuthorizeAttribute.cs" />
     <Compile Include="Infrastructure\AuthenticationServices.cs" />
+    <Compile Include="Infrastructure\Logger.cs" />
     <Compile Include="Infrastructure\Services.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -115,16 +117,16 @@
     <Compile Include="Infrastructure\BookServices.cs" />
     <Compile Include="Infrastructure\CategoryServices.cs" />
     <Compile Include="Infrastructure\NinjectControllerFactory.cs" />
-    <Compile Include="Models\MyAuthorizationHeader.cs" />
+    <Compile Include="Models\AccountModels\MyAuthorizationHeader.cs" />
     <Compile Include="Models\BaseJsonObject.cs" />
-    <Compile Include="Models\Book.cs" />
-    <Compile Include="Models\BookAsListItem.cs" />
-    <Compile Include="Models\BookViewModel.cs" />
-    <Compile Include="Models\Category.cs" />
-    <Compile Include="Models\CategoryViewModel.cs" />
-    <Compile Include="Models\LogInModel.cs" />
+    <Compile Include="Models\BooksModels\Book.cs" />
+    <Compile Include="Models\BooksModels\BookAsListItem.cs" />
+    <Compile Include="Models\BooksModels\BookViewModel.cs" />
+    <Compile Include="Models\CategoriesModels\Category.cs" />
+    <Compile Include="Models\CategoriesModels\CategoryViewModel.cs" />
+    <Compile Include="Models\AccountModels\LogInModel.cs" />
     <Compile Include="Models\PagingInfo.cs" />
-    <Compile Include="Models\RegistrationModel.cs" />
+    <Compile Include="Models\AccountModels\RegistrationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -145,6 +147,7 @@
     <Content Include="Views\Category\EmptyCategoriesList.cshtml" />
     <Content Include="Views\Books\FilteredBookslist.cshtml" />
     <Content Include="Views\Authentication\Login.cshtml" />
+    <Content Include="Views\Authentication\Register.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

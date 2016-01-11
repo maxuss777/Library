@@ -8,9 +8,9 @@ namespace Library.UI.Controllers
 {
     public class AuthenticationController : Controller
     {
-        private ILoginServices _loginServices;
+        private readonly IAuthenticationController _loginServices;
 
-        public AuthenticationController(ILoginServices loginServ)
+        public AuthenticationController(IAuthenticationController loginServ)
         {
             _loginServices = loginServ;
         }
@@ -57,6 +57,34 @@ namespace Library.UI.Controllers
                 return RedirectToAction("Login");
             }
             return View("Login");
+        }
+
+        [HttpGet]
+        public ViewResult Register()
+        {
+            return View("Register");
+        }
+
+        [HttpPost]
+        public ActionResult Register(RegistrationModel regInModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("Register");
+            }
+            var authHeader = _loginServices.Register(regInModel);
+
+            if (authHeader == null)
+            {
+                return View("Register");
+            }
+            var cokie = new HttpCookie("_auth")
+            {
+                Value = authHeader.Ticket,
+                Expires = DateTime.Now.AddYears(1)
+            };
+            Response.Cookies.Add(cokie);
+            return RedirectToAction("GetAll", "Books");
         }
     }
 }

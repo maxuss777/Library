@@ -3,8 +3,8 @@ using Library.UI.Models;
 
 namespace Library.UI.Abstract
 {
-    public interface IRegistrationServices
+   /* public interface IRegistrationServices
     {
         MyAuthorizationHeader Register(RegistrationModel regModel);
-    }
+    }*/
 }
