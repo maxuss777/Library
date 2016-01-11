@@ -5,3 +5,10 @@ C:\GitProj\Library\API\Library.API.DAL\bin\Release\Library.API.Common.pdb
 C:\GitProj\Library\API\Library.API.DAL\obj\Release\5.Library.API.DAL.csprojResolveAssemblyReference.cache
 C:\GitProj\Library\API\Library.API.DAL\obj\Release\Library.API.DAL.dll
 C:\GitProj\Library\API\Library.API.DAL\obj\Release\Library.API.DAL.pdb
+D:\GitHub\Library\API\Library.API.DAL\bin\Release\Library.API.DAL.dll
+D:\GitHub\Library\API\Library.API.DAL\bin\Release\Library.API.DAL.pdb
+D:\GitHub\Library\API\Library.API.DAL\bin\Release\Library.API.Common.dll
+D:\GitHub\Library\API\Library.API.DAL\bin\Release\Library.API.Common.pdb
+D:\GitHub\Library\API\Library.API.DAL\obj\Release\5.Library.API.DAL.csprojResolveAssemblyReference.cache
+D:\GitHub\Library\API\Library.API.DAL\obj\Release\Library.API.DAL.dll
+D:\GitHub\Library\API\Library.API.DAL\obj\Release\Library.API.DAL.pdb
