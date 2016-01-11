@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using Library.UI.Abstract;
+using Library.UI.Filters;
 using Library.UI.Models;
 
 namespace Library.UI.Controllers
 {
+    [MyAuthorizeAttribute]
     public class BooksController : Controller
     {
         private const int PageSize = 5;
@@ -21,9 +23,15 @@ namespace Library.UI.Controllers
         [HttpGet]
         public PartialViewResult GetAll(int page = 1)
         {
+            var httpCookie = Request.Cookies["_auth"];
+            if (httpCookie == null)
+            {
+                throw new UnauthorizedAccessException();
+            }
+
             BookViewModel bookViewModel = new BookViewModel
             {
-                Books = _booksServices.GetAll()
+                Books = _booksServices.GetAll(httpCookie.Value)
                     .OrderByDescending(b => b.Id)
                     .Skip((page - 1) * PageSize)
                     .Take(PageSize),
@@ -32,7 +40,7 @@ namespace Library.UI.Controllers
                 {
                     CurrentPage = page,
                     ItemsPerPage = PageSize,
-                    TotalItems = _booksServices.GetAll().Count()
+                    TotalItems = _booksServices.GetAll(httpCookie.Value).Count()
                 }
             };
 
@@ -44,9 +52,14 @@ namespace Library.UI.Controllers
         [HttpGet]
         public PartialViewResult GetFiltered(string category, int page = 1)
         {
+            var httpCookie = Request.Cookies["_auth"];
+            if (httpCookie == null)
+            {
+                throw new UnauthorizedAccessException();
+            }
             BookViewModel bookViewModel = new BookViewModel();
-            IEnumerable<Book> books = _booksServices.GetByCategory(category);
-            ViewBag.Books = _booksServices.BooksAsListItems(_booksServices.GetAll());
+            IEnumerable<Book> books = _booksServices.GetByCategory(category,httpCookie.Value);
+            ViewBag.Books = _booksServices.BooksAsListItems(_booksServices.GetAll(httpCookie.Value));
             ViewBag.CurrentCategory = category;
 
             try
@@ -55,6 +68,7 @@ namespace Library.UI.Controllers
                     return PartialView("EmptyBooksList");
 
                 bookViewModel.Books = books
+                    .OrderByDescending(b=>b.Id)
                     .Skip((page - 1) * PageSize)
                     .Take(PageSize);
                 bookViewModel.PagingInfo = new PagingInfo
@@ -62,8 +76,8 @@ namespace Library.UI.Controllers
                     CurrentPage = page,
                     ItemsPerPage = PageSize,
                     TotalItems = category == null
-                        ? _booksServices.GetAll().Count()
-                        : _booksServices.GetByCategory(category).Count()
+                        ? _booksServices.GetAll(httpCookie.Value).Count()
+                        : _booksServices.GetByCategory(category, httpCookie.Value).Count()
                 };
 
 
@@ -87,18 +101,28 @@ namespace Library.UI.Controllers
         [HttpPost]
         public ActionResult Create(Book book)
         {
+            var httpCookie = Request.Cookies["_auth"];
+            if (httpCookie == null)
+            {
+                throw new UnauthorizedAccessException();
+            }
             if (!ModelState.IsValid || book == null)
                 return PartialView("CreateBook");
 
-            return PartialView(!_booksServices.Create(book) ? "ErroActionView" : "SuccessActionView");
+            return PartialView(!_booksServices.Create(book, httpCookie.Value) ? "ErroActionView" : "SuccessActionView");
         }
 
         [HttpPost]
         public ActionResult Delete(int id)
         {
+            var httpCookie = Request.Cookies["_auth"];
+            if (httpCookie == null)
+            {
+                throw new UnauthorizedAccessException();
+            }
             return id == 0
                 ? PartialView("ErroActionView")
-                : PartialView(!_booksServices.Delete(id)
+                : PartialView(!_booksServices.Delete(id, httpCookie.Value)
                     ? "ErroActionView"
                     : "SuccessActionView");
         }
@@ -106,22 +130,37 @@ namespace Library.UI.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            var book = _booksServices.GetById(id);
+            var httpCookie = Request.Cookies["_auth"];
+            if (httpCookie == null)
+            {
+                throw new UnauthorizedAccessException();
+            }
+            var book = _booksServices.GetById(id, httpCookie.Value);
             return book == null ? PartialView("ErroActionView") : PartialView("EditBook", book);
         }
         [HttpPost]
         public ActionResult Edit(Book book)
         {
+            var httpCookie = Request.Cookies["_auth"];
+            if (httpCookie == null)
+            {
+                throw new UnauthorizedAccessException();
+            }
             if (!ModelState.IsValid || book == null)
                 return PartialView("EditBook", book);
 
-            var result = _booksServices.Update(book);
+            var result = _booksServices.Update(book, httpCookie.Value);
             return result == false ? PartialView("ErroActionView") : PartialView("SuccessActionView");
         }
 
         public IEnumerable<Book> SelectBook(string category)
         {
-            return _booksServices.GetByCategory(category);
+            var httpCookie = Request.Cookies["_auth"];
+            if (httpCookie == null)
+            {
+                throw new UnauthorizedAccessException();
+            }
+            return _booksServices.GetByCategory(category, httpCookie.Value);
         }
     }
 }

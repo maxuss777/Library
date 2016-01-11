@@ -15,4 +15,3 @@ C:\GitProj\Library\API\Library.API.Common\bin\Debug\Library.API.Common.dll
 C:\GitProj\Library\API\Library.API.Common\bin\Debug\Library.API.Common.pdb
 C:\GitProj\Library\API\Library.API.Common\obj\Debug\Library.API.Common.dll
 C:\GitProj\Library\API\Library.API.Common\obj\Debug\Library.API.Common.pdb
-C:\GitProj\Library\API\Library.API.Common\obj\Debug\4.Library.API.Common.csprojResolveAssemblyReference.cache

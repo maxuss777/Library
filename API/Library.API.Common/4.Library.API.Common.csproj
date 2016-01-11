@@ -36,6 +36,7 @@
   <ItemGroup>
     <Compile Include="Book\Book.cs" />
     <Compile Include="Category\Category.cs" />
+    <Compile Include="Member\AuthorizationHeader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Member\LogOnModel.cs" />
     <Compile Include="Member\RegisterModel.cs" />

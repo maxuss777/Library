@@ -1,0 +1,4 @@
+C:\GitProj\Library\API\Library.API.Common\bin\Release\Library.API.Common.dll
+C:\GitProj\Library\API\Library.API.Common\bin\Release\Library.API.Common.pdb
+C:\GitProj\Library\API\Library.API.Common\obj\Release\Library.API.Common.dll
+C:\GitProj\Library\API\Library.API.Common\obj\Release\Library.API.Common.pdb

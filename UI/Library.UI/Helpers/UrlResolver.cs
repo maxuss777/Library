@@ -7,6 +7,15 @@ namespace Library.UI.Helpers
     {
         public static String ApiDomain = ConfigurationManager.AppSettings["APIUrl"];
 
+        public static String Api_Registration
+        {
+            get { return string.Format("{0}Registration", ApiDomain); }
+        }
+        public static String Api_Login
+        {
+            get { return string.Format("{0}Login", ApiDomain); }
+        }
+
         #region Book
         public static String Books_Url
         {

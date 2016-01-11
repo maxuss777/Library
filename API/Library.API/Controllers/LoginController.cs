@@ -22,8 +22,9 @@ namespace Library.API.Controllers
                 }
                 var buffer = Encoding.ASCII.GetBytes(string.Format("{0}:{1}", model.Email, model.Password));
                 var authHeader = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(buffer));
-                Request.Headers.Authorization = authHeader;
-                return Request.CreateResponse(HttpStatusCode.OK);
+                /*Request.Headers.Authorization = authHeader;*/
+                return Request.CreateResponse(HttpStatusCode.OK,
+                    new AuthorizationHeader {Ticket = authHeader.ToString()});
             }
             catch (Exception exc)
             {

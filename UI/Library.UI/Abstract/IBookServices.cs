@@ -7,12 +7,12 @@ namespace Library.UI.Abstract
 {
     public interface IBookServices
     {
-        IEnumerable<Book> GetAll();
-        IEnumerable<Book> GetByCategory(string category);
-        Book GetById(int id);
-        bool Create(Book book);
-        bool Delete(int bookId);
-        bool Update(Book book);
+        IEnumerable<Book> GetAll(string ticket);
+        IEnumerable<Book> GetByCategory(string category, string ticket);
+        Book GetById(int id, string ticket);
+        bool Create(Book book, string ticket);
+        bool Delete(int bookId, string ticket);
+        bool Update(Book book, string ticket);
         List<SelectListItem> BooksAsListItems(IEnumerable<Book> books);
     }
 }

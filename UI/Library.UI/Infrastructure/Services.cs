@@ -9,7 +9,7 @@ namespace Library.UI.Infrastructure
 {
     public class Services
     {
-        protected static Dictionary<HttpStatusCode, T> RequestToApi<T>(string requestMethod,string url,string postData = "") where T : BaseJsonObject, new()
+        protected static Dictionary<HttpStatusCode, T> RequestToApi<T>(string requestMethod,string url, string ticket, string postData = "") where T : BaseJsonObject, new()
         {
             HttpStatusCode statusCode = 0;
             var apiResponse = new Dictionary<HttpStatusCode, T>();
@@ -19,11 +19,8 @@ namespace Library.UI.Infrastructure
                 return null;
             }
             request.Method = requestMethod;
-
-            /*if (ticket != null)
-            {
-                request.Headers.Add(HttpRequestHeader.Authorization, ticket);
-            }*/
+               
+            request.Headers.Add(HttpRequestHeader.Authorization, ticket);
 
             if (requestMethod == "POST" || requestMethod == "PUT")
             {
@@ -45,7 +42,7 @@ namespace Library.UI.Infrastructure
             return apiResponse;
         }
 
-        protected static List<T> GetObjectsAsList<T>(string requestMethod, string url) where T : BaseJsonObject, new()
+        protected static List<T> GetObjectsAsList<T>(string requestMethod, string url, string ticket) where T : BaseJsonObject, new()
         {
             var request = WebRequest.Create(url) as HttpWebRequest;
 
@@ -59,7 +56,7 @@ namespace Library.UI.Infrastructure
             request.Accept = "application/json, text/plain, */*";
             request.Expect = "application/json";
 
-            /*request.Headers.Add(HttpRequestHeader.Authorization, ticket);*/
+            request.Headers.Add(HttpRequestHeader.Authorization, ticket);
 
             HttpWebResponse response = null;
 

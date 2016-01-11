@@ -1,25 +1,5 @@
-c:\users\maximandeugenia\documents\visual studio 2013\Projects\Library.UI\Library.UI\bin\Library.UI.dll.config
-c:\users\maximandeugenia\documents\visual studio 2013\Projects\Library.UI\Library.UI\bin\Library.UI.dll
-c:\users\maximandeugenia\documents\visual studio 2013\Projects\Library.UI\Library.UI\bin\Library.UI.pdb
-c:\users\maximandeugenia\documents\visual studio 2013\Projects\Library.UI\Library.UI\bin\System.Web.Helpers.dll
-c:\users\maximandeugenia\documents\visual studio 2013\Projects\Library.UI\Library.UI\bin\System.Web.Mvc.dll
-c:\users\maximandeugenia\documents\visual studio 2013\Projects\Library.UI\Library.UI\bin\System.Web.Razor.dll
-c:\users\maximandeugenia\documents\visual studio 2013\Projects\Library.UI\Library.UI\bin\System.Web.Webpages.Deployment.dll
-c:\users\maximandeugenia\documents\visual studio 2013\Projects\Library.UI\Library.UI\bin\System.Web.Webpages.dll
-c:\users\maximandeugenia\documents\visual studio 2013\Projects\Library.UI\Library.UI\bin\System.Web.Webpages.Razor.dll
-c:\users\maximandeugenia\documents\visual studio 2013\Projects\Library.UI\Library.UI\bin\System.Web.Razor.xml
-c:\users\maximandeugenia\documents\visual studio 2013\Projects\Library.UI\Library.UI\bin\System.Web.Webpages.xml
-c:\users\maximandeugenia\documents\visual studio 2013\Projects\Library.UI\Library.UI\bin\System.Web.Webpages.Deployment.xml
-c:\users\maximandeugenia\documents\visual studio 2013\Projects\Library.UI\Library.UI\bin\System.Web.Webpages.Razor.xml
-c:\users\maximandeugenia\documents\visual studio 2013\Projects\Library.UI\Library.UI\bin\System.Web.Helpers.xml
-c:\users\maximandeugenia\documents\visual studio 2013\Projects\Library.UI\Library.UI\bin\System.Web.Mvc.xml
-c:\users\maximandeugenia\documents\visual studio 2013\Projects\Library.UI\Library.UI\obj\Debug\Library.UI.dll
-c:\users\maximandeugenia\documents\visual studio 2013\Projects\Library.UI\Library.UI\obj\Debug\Library.UI.pdb
-c:\users\maximandeugenia\documents\visual studio 2013\Projects\Library.UI\Library.UI\bin\Ninject.dll
-c:\users\maximandeugenia\documents\visual studio 2013\Projects\Library.UI\Library.UI\bin\Ninject.xml
-c:\users\maximandeugenia\documents\visual studio 2013\Projects\Library.UI\Library.UI\bin\Newtonsoft.Json.dll
-c:\users\maximandeugenia\documents\visual studio 2013\Projects\Library.UI\Library.UI\bin\Newtonsoft.Json.xml
-c:\users\maximandeugenia\documents\visual studio 2013\Projects\Library.UI\Library.UI\obj\Debug\Library.UI.csprojResolveAssemblyReference.cache
+C:\GitProj\Library\UI\Library.UI\obj\Debug\Library.UI.dll
+C:\GitProj\Library\UI\Library.UI\obj\Debug\Library.UI.pdb
 C:\GitProj\Library\UI\Library.UI\bin\Library.UI.dll.config
 C:\GitProj\Library\UI\Library.UI\bin\Library.UI.dll
 C:\GitProj\Library\UI\Library.UI\bin\Library.UI.pdb
@@ -39,5 +19,4 @@ C:\GitProj\Library\UI\Library.UI\bin\System.Web.Webpages.Deployment.xml
 C:\GitProj\Library\UI\Library.UI\bin\System.Web.Webpages.Razor.xml
 C:\GitProj\Library\UI\Library.UI\bin\System.Web.Helpers.xml
 C:\GitProj\Library\UI\Library.UI\bin\System.Web.Mvc.xml
-C:\GitProj\Library\UI\Library.UI\obj\Debug\Library.UI.dll
-C:\GitProj\Library\UI\Library.UI\obj\Debug\Library.UI.pdb
+C:\GitProj\Library\UI\Library.UI\obj\Debug\Library.UI.csprojResolveAssemblyReference.cache
