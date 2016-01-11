@@ -11,6 +11,7 @@ namespace Library.UI
         protected void Application_Start()
         {
             FilterConfig.RegisterGlobalFilters(new GlobalFilterCollection());
+           
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory());

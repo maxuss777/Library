@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Library.API.Common.Category
+namespace Library.API.Common.CategoriesObjects
 {
     public class Category
     {

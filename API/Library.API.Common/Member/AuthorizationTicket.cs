@@ -2,7 +2,7 @@
 
 namespace Library.API.Common.Member
 {
-    public class AuthorizationHeader
+    public class AuthorizationTicket
     {
         public String Ticket { get; set; }
     }

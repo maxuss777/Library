@@ -3,11 +3,11 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Library.API.Business.Abstract;
-using Library.API.Common.Book;
+using Library.API.Common.BooksObjects;
 
 namespace Library.API.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [RoutePrefix("api/books")]
     public class BookController : ApiController
     {

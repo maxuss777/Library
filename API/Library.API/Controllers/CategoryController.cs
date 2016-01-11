@@ -3,11 +3,11 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Library.API.Business.Abstract;
-using Library.API.Common.Category;
+using Library.API.Common.CategoriesObjects;
 
 namespace Library.API.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [RoutePrefix("api/categories")]
     public class CategoryController : ApiController
     {

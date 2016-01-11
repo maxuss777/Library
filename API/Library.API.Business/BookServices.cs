@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Library.API.Common.Book;
-using Library.API.Common.Category;
+using Library.API.Common.BooksObjects;
 using Library.API.DAL.Abstract;
 using Library.API.Business.Abstract;
 
@@ -15,6 +14,7 @@ namespace Library.API.Business
         {
             _bookRepository = bookRepo;
         }
+
         public Book CreateBook(Book book)
         {
             if (book == null)
@@ -42,7 +42,6 @@ namespace Library.API.Business
         {
             return book == null ? null : _bookRepository.Update(book);
         }
-
         public IEnumerable<Book> GetBooksByCategoryName(string categoryName)
         {
             var clearCatName = categoryName.Trim();
@@ -50,13 +49,6 @@ namespace Library.API.Business
             if(categoryId == 0) return null;
             var books = _bookRepository.GetBooksByCategoryId(categoryId);
             return !books.Any() ? null : books;
-        }
-
-        public IEnumerable<Book> GetBooksByCategory(int categoryId)
-        {
-            if (categoryId <= 0){ return null; }
-            var Books = _bookRepository.GetBooksByCategoryId(categoryId);
-            return Books.Any() ? Books : null;
         }
         public bool DeleteBook(int bookId)
         {

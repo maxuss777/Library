@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Library.API.Business.Abstract;
-using Library.API.Common.Book;
-using Library.API.Common.Category;
+using Library.API.Common.BooksObjects;
+using Library.API.Common.CategoriesObjects;
 using Library.API.DAL.Abstract;
 
 namespace Library.API.Business
@@ -54,17 +54,6 @@ namespace Library.API.Business
             }
             var updatedCategory = _categoryRepository.Update(category);
             return updatedCategory.Id <= 0 ? null : category;
-        }
-        public IEnumerable<Book> GetCategoriesBooks(int categoryId)
-        {
-            if (categoryId <= 0)
-            {
-                return null;
-            }
-            var categpriesBooks = _categoryRepository.GetCategoriesBooks(categoryId);
-            return categpriesBooks.Equals(default(List<Book>))
-                ? null
-                : categpriesBooks;
         }
         public bool DeleteCategory(int categoryId)
         {

@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using Library.API.Common.Book;
-using Library.API.Common.Category;
+using Library.API.Common.BooksObjects;
 using Library.API.DAL.Abstract;
 
 namespace Library.API.DAL
@@ -109,45 +108,6 @@ namespace Library.API.DAL
             }
             return bookObject;
         }
-        public int IfCategoryExist(string categoryName)
-        {
-            using (SqlConnection conn = new SqlConnection(ConnectionString))
-            {
-                conn.Open();
-
-                using (SqlCommand cmd = new SqlCommand("CheckIfCategoryExist", conn))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    #region parameters
-
-                    SqlParameter Name = new SqlParameter
-                    {
-                        ParameterName = "@Name",
-                        DbType = DbType.String,
-                        Direction = ParameterDirection.Input,
-                        Value = categoryName
-                    };
-                    cmd.Parameters.Add(Name);
-
-                    SqlParameter CategoryId = new SqlParameter
-                    {
-                        ParameterName = "@CategoryId",
-                        DbType = DbType.Int32,
-                        Direction = ParameterDirection.Output
-                    };
-                    cmd.Parameters.Add(CategoryId);
-
-                    #endregion
-
-                    cmd.ExecuteNonQuery();
-
-                    return CategoryId.Value != null && (int)CategoryId.Value != 0 
-                        ? (int)CategoryId.Value 
-                        : 0;
-                }
-            }
-        }
         public IEnumerable<Book> GetAll()
         {
             List<Book> books = new List<Book>();
@@ -194,7 +154,7 @@ namespace Library.API.DAL
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    #region parameters
+#region parameters
                     SqlParameter Id = new SqlParameter
                     {
                         ParameterName = "@categoryId",
@@ -203,7 +163,7 @@ namespace Library.API.DAL
                         Value = categoryId
                     };
                     cmd.Parameters.Add(Id);
-                    #endregion
+#endregion
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
@@ -339,6 +299,45 @@ namespace Library.API.DAL
                     cmd.ExecuteNonQuery();
 
                     return Result.Value != null && (int) Result.Value != 2 && (int) Result.Value != 0;
+                }
+            }
+        }
+        public int IfCategoryExist(string categoryName)
+        {
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand("CheckIfCategoryExist", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    #region parameters
+
+                    SqlParameter Name = new SqlParameter
+                    {
+                        ParameterName = "@Name",
+                        DbType = DbType.String,
+                        Direction = ParameterDirection.Input,
+                        Value = categoryName
+                    };
+                    cmd.Parameters.Add(Name);
+
+                    SqlParameter CategoryId = new SqlParameter
+                    {
+                        ParameterName = "@CategoryId",
+                        DbType = DbType.Int32,
+                        Direction = ParameterDirection.Output
+                    };
+                    cmd.Parameters.Add(CategoryId);
+
+                    #endregion
+
+                    cmd.ExecuteNonQuery();
+
+                    return CategoryId.Value != null && (int)CategoryId.Value != 0
+                        ? (int)CategoryId.Value
+                        : 0;
                 }
             }
         }

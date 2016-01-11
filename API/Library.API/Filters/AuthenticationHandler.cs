@@ -9,7 +9,7 @@ using System.Web.Security;
 
 namespace Library.API.Filters
 {
-    public class BasicAuthenticationMessageHandler : DelegatingHandler
+    public class AuthenticationHandler : DelegatingHandler
     {
         protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {

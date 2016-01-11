@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using Library.UI.Abstract;
 using Library.UI.Helpers;
@@ -12,69 +14,122 @@ namespace Library.UI.Infrastructure
     {
         public IEnumerable<Category> GetAll(string ticket)
         {
-            List<Category> categoryList = new List<Category>();
-
-            WebRequest request = WebRequest.Create(UrlResolver.Categories_GetAll);
-
-            request.Credentials = CredentialCache.DefaultCredentials;
-
-            using (WebResponse response = request.GetResponse())
+            try
             {
-                Stream dataStream = response.GetResponseStream();
+                var response = GetObjectsAsList<Category>("GET", UrlResolver.Categories_Url, ticket: ticket);
 
-                if (dataStream == null) return categoryList;
-
-                using (StreamReader reader = new StreamReader(dataStream))
-                {
-                    categoryList = JsonConvert.DeserializeObject<List<Category>>(reader.ReadToEnd());
-                }
+                return response == null || !response.Any() ? null : response;
             }
-            return categoryList;
+            catch(Exception exc)
+            {
+                Logger.Write(exc.Message);
+            }
+            return null;
         }
+
         public bool Create(Category category, string ticket)
         {
-            var postData = JsonConvert.SerializeObject(category);
-            var response = RequestToApi<Book>("POST", UrlResolver.Categories_Url,postData: postData,ticket:ticket);
-            Book requestOut;
-            response.TryGetValue(HttpStatusCode.Created, out requestOut);
-            return requestOut != null;
+            try
+            {
+                var postData = JsonConvert.SerializeObject(category);
+                var response = RequestToApi<Book>("POST", UrlResolver.Categories_Url, postData: postData, ticket: ticket);
+                Book requestOut;
+                response.TryGetValue(HttpStatusCode.Created, out requestOut);
+                return requestOut != null;
+            }
+            catch (Exception exc)
+            {
+               Logger.Write(exc.Message);
+            }
+            return false;
         }
         public bool Update(Category category, string ticket)
         {
-            var postData = JsonConvert.SerializeObject(category);
-            var response = RequestToApi<Book>("PUT", UrlResolver.Categories_Id_Url(category.Id), postData: postData, ticket: ticket);
-            Book requestOut;
-            response.TryGetValue(HttpStatusCode.OK, out requestOut);
-            return requestOut != null;
+            try
+            {
+                var postData = JsonConvert.SerializeObject(category);
+                var response = RequestToApi<Book>("PUT", UrlResolver.Categories_Id_Url(category.Id), postData: postData, ticket: ticket);
+                Book requestOut;
+                response.TryGetValue(HttpStatusCode.OK, out requestOut);
+                return requestOut != null;
+            }
+            catch (Exception exc)
+            {
+                Logger.Write(exc.Message);
+            }
+            return false;
+            
         }
         public Category GetById(int id, string ticket)
         {
-            var response = RequestToApi<Category>("GET", UrlResolver.Categories_Id_Url(id), ticket: ticket);
-            Category requestOut;
-            response.TryGetValue(HttpStatusCode.OK, out requestOut);
-            return requestOut;
+            try
+            {
+                var response = RequestToApi<Category>("GET", UrlResolver.Categories_Id_Url(id), ticket: ticket);
+                Category requestOut;
+                response.TryGetValue(HttpStatusCode.OK, out requestOut);
+                return requestOut;
+            }
+            catch (Exception exc)
+            {
+                Logger.Write(exc.Message);
+            }
+            return null;
+            
         }
         public Category GetByName(string categoryName, string ticket)
         {
-            var response = RequestToApi<Category>("GET", UrlResolver.Categories_Name_Url(categoryName), ticket: ticket);
-            Category requestOut;
-            response.TryGetValue(HttpStatusCode.OK, out requestOut);
-            return requestOut;
+            try
+            {
+                var response = RequestToApi<Category>("GET", UrlResolver.Categories_Name_Url(categoryName), ticket: ticket);
+                Category requestOut;
+                response.TryGetValue(HttpStatusCode.OK, out requestOut);
+                return requestOut;
+            }
+            catch (Exception exc)
+            {
+                Logger.Write(exc.Message);
+            }
+            return null;
+            
         }
         public bool Delete(int categoryId, string ticket)
         {
-            var response = RequestToApi<Book>("DELETE", UrlResolver.Categories_Id_Url(categoryId), ticket: ticket);
-            return response.ContainsKey(HttpStatusCode.OK);
+            try
+            {
+                var response = RequestToApi<Book>("DELETE", UrlResolver.Categories_Id_Url(categoryId), ticket: ticket);
+                return response.ContainsKey(HttpStatusCode.OK);
+            }
+            catch (Exception exc)
+            {
+                Logger.Write(exc.Message);
+            }
+            return false;
         }
         public bool PutBookToCategory(int categoryId, int bookId, string ticket)
         {
-            var response = RequestToApi<Book>("POST", UrlResolver.Categories_AddBook(categoryId, bookId), ticket: ticket);
-            return response.ContainsKey(HttpStatusCode.OK);
+            try
+            {
+                var response = RequestToApi<Book>("POST", UrlResolver.Categories_AddBook(categoryId, bookId), ticket: ticket);
+                return response.ContainsKey(HttpStatusCode.OK);
+            }
+            catch (Exception exc)
+            {
+                Logger.Write(exc.Message);
+            }
+            return false;
         }
         public bool RemoveBookFromCategory(int categoryId, int bookId, string ticket)
         {
-            var response = RequestToApi<Book>("DELETE", UrlResolver.Categories_RemoveBook(categoryId, bookId), ticket: ticket);
-            return response.ContainsKey(HttpStatusCode.OK);
+            try
+            {
+                var response = RequestToApi<Book>("DELETE", UrlResolver.Categories_RemoveBook(categoryId, bookId), ticket: ticket);
+                return response.ContainsKey(HttpStatusCode.OK);
+            }
+            catch (Exception exc)
+            {
+                Logger.Write(exc.Message);
+            }
+            return false;
         }
     }
 }

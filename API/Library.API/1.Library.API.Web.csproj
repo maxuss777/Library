@@ -51,7 +51,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
-    <Compile Include="Filters\BasicAuthenticationMessageHandler.cs" />
+    <Compile Include="Filters\AuthenticationHandler.cs" />
     <Compile Include="Filters\ValidateModelAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

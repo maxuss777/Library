@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Library.API.Common.Book;
+using Library.API.Common.BooksObjects;
 
 namespace Library.API.DAL.Abstract
 {

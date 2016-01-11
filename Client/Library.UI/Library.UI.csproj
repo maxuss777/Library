@@ -135,7 +135,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Category\Menu.cshtml" />
     <Content Include="Views\Books\AllBooksList.cshtml" />
-    <Content Include="Views\Home.cshtml" />
     <Content Include="Views\Books\EmptyBooksList.cshtml" />
     <Content Include="Views\Shared\ErroActionView.cshtml" />
     <Content Include="Views\Books\CreateBook.cshtml" />

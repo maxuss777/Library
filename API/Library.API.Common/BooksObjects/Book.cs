@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Library.API.Common.Book
+namespace Library.API.Common.BooksObjects
 {
     public class Book
     {
