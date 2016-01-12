@@ -1,0 +1,7 @@
+C:\Library\API\Library.API.DAL\bin\Release\Library.API.DataAccess.dll
+C:\Library\API\Library.API.DAL\bin\Release\Library.API.DataAccess.pdb
+C:\Library\API\Library.API.DAL\bin\Release\Library.API.Model.dll
+C:\Library\API\Library.API.DAL\bin\Release\Library.API.Model.pdb
+C:\Library\API\Library.API.DAL\obj\Release\4.Library.API.DataAccess.csprojResolveAssemblyReference.cache
+C:\Library\API\Library.API.DAL\obj\Release\Library.API.DataAccess.dll
+C:\Library\API\Library.API.DAL\obj\Release\Library.API.DataAccess.pdb

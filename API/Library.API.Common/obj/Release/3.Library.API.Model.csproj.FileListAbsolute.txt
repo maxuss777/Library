@@ -1,0 +1,4 @@
+C:\Library\API\Library.API.Common\bin\Release\Library.API.Model.dll
+C:\Library\API\Library.API.Common\bin\Release\Library.API.Model.pdb
+C:\Library\API\Library.API.Common\obj\Release\Library.API.Model.dll
+C:\Library\API\Library.API.Common\obj\Release\Library.API.Model.pdb

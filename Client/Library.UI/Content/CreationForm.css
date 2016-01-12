@@ -1,0 +1,13 @@
+﻿.form-horizontal {
+
+    margin: 5px;
+}
+
+.form-group {
+    margin: 10px;
+    margin-bottom: 10px;
+}
+
+.edit-form-button {
+    display: inline-flex;
+}

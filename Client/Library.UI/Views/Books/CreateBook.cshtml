@@ -1,0 +1,42 @@
+﻿@model Library.UI.Models.Books.Book
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="cart">
+        @using (Html.BeginForm())
+        {
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true)
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Name)
+                    <div style="color: red;">
+                        @Html.EditorFor(model => model.Name)
+                        @Html.ValidationMessageFor(model => model.Name)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ISBN)
+                    <div style="color: red;">
+                        @Html.EditorFor(model => model.ISBN)
+                        @Html.ValidationMessageFor(model => model.ISBN)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Author)
+                    <div style="color: red;">
+                        @Html.EditorFor(model => model.Author)
+                        @Html.ValidationMessageFor(model => model.Author)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div>
+                        <input type="submit" value="Create" class="cart-button-create" />
+                    </div>
+                </div>
+            </div>
+        }
+</div>

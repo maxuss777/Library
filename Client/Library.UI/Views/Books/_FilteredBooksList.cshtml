@@ -1,0 +1,19 @@
+﻿@model Library.UI.Models.Books.BookViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="cart">
+    <div class="cart-item">
+        <div>
+            @if (ViewBag.Books != null)
+            {
+                using (Html.BeginForm("AddBook", "Category", new { categoryName = ViewBag.CurrentCategory }, FormMethod.Post))
+                {
+                    @Html.DropDownList("bookId", (IEnumerable<SelectListItem>)ViewBag.Books, "-- Select book --")
+                    <input type="submit" value="Add" class="top-button-create-book" />
+                }
+            }
+        </div>
+    </div>
+    @RenderBody()
+</div>

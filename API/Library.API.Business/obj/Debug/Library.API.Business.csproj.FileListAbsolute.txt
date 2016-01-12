@@ -1,0 +1,9 @@
+C:\Users\MaximAndEugenia\Documents\Visual Studio 2013\Projects\LibraryAPI\Library.API.Business\bin\Debug\Library.API.Business.dll
+C:\Users\MaximAndEugenia\Documents\Visual Studio 2013\Projects\LibraryAPI\Library.API.Business\bin\Debug\Library.API.Business.pdb
+C:\Users\MaximAndEugenia\Documents\Visual Studio 2013\Projects\LibraryAPI\Library.API.Business\obj\Debug\Library.API.Business.dll
+C:\Users\MaximAndEugenia\Documents\Visual Studio 2013\Projects\LibraryAPI\Library.API.Business\obj\Debug\Library.API.Business.pdb
+C:\Users\MaximAndEugenia\Documents\Visual Studio 2013\Projects\LibraryAPI\Library.API.Business\bin\Debug\Library.Common.dll
+C:\Users\MaximAndEugenia\Documents\Visual Studio 2013\Projects\LibraryAPI\Library.API.Business\bin\Debug\Library.DAL.dll
+C:\Users\MaximAndEugenia\Documents\Visual Studio 2013\Projects\LibraryAPI\Library.API.Business\bin\Debug\Library.Common.pdb
+C:\Users\MaximAndEugenia\Documents\Visual Studio 2013\Projects\LibraryAPI\Library.API.Business\bin\Debug\Library.DAL.pdb
+C:\Users\MaximAndEugenia\Documents\Visual Studio 2013\Projects\LibraryAPI\Library.API.Business\obj\Debug\Library.API.Business.csprojResolveAssemblyReference.cache

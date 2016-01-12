@@ -1,0 +1,49 @@
+﻿@model Library.UI.Models.Account.RegistrationModel
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Registration</title>
+    <link rel="stylesheet" href="~/Content/Authorization.css">
+</head>
+<body>
+    <div class="login">
+        @using (Html.BeginForm())
+        {
+            <p>
+                <label for="login">Name:</label>
+                <div id="login">
+                    @Html.EditorFor(model => model.MemberName)
+                </div>
+            </p>
+            <p>
+                <label for="login">Email:</label>
+                <div id="login">
+                    @Html.EditorFor(model => model.Email)
+                </div>
+            </p>
+            <p>
+                <label for="password">Password:</label>
+                <div id="password">
+                    @Html.PasswordFor(model => model.Password)
+                </div>
+            </p>
+            <div style="color: red; margin-left: 100px">
+                @if (TempData["fail_message"] != null)
+                {
+                    <div>@TempData["fail_message"]</div>
+                }
+                <p>@Html.ValidationMessageFor(model => model.MemberName)
+                <p>@Html.ValidationMessageFor(model => model.Email)</p>
+                <p>@Html.ValidationMessageFor(model => model.Password)</p>
+            </div>
+            <p class="reg-submit">
+                <button type="submit" class="login-button">Register</button>
+            </p>
+        }
+        <p>
+            @Html.ActionLink("Back to Login", "Login", "Authentication", new { style = "float:right" })
+        </p>
+    </div>
+</body>
+</html>

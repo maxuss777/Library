@@ -1,0 +1,25 @@
+﻿.Succ_Message, .Fail_Message {
+    background: gray;
+    color: green;
+    text-align: center;
+    font-weight: bold;
+}
+.Fail_Message {
+    color: rgb(156, 24, 24);
+}
+
+table.report {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th.report, td.report {
+    text-align: left;
+    padding: 8px;
+}
+tr.report-header {
+    background-color: #3C383E;
+    color: crimson;
+}
+
+tr:nth-child(even){background-color: #2f4f4f}
