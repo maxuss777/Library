@@ -15,6 +15,10 @@ namespace Library.UI.Helpers
         {
             get { return string.Format("{0}Login", ApiDomain); }
         }
+        public static String Api_Report
+        {
+            get { return "http://localhost:1690/report"; }
+        }
 
         #region Book
         public static String Books_Url

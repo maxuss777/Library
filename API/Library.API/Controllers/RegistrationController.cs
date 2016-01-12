@@ -5,7 +5,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Web.Http;
 using System.Web.Security;
-using Library.API.Common.Member;
+using Library.API.Common.MemberObjects;
 
 namespace Library.API.Controllers
 {

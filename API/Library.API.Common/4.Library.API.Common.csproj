@@ -36,11 +36,11 @@
   <ItemGroup>
     <Compile Include="BooksObjects\Book.cs" />
     <Compile Include="CategoriesObjects\Category.cs" />
-    <Compile Include="Member\AuthorizationTicket.cs" />
+    <Compile Include="MemberObjects\AuthorizationTicket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Member\LogOnModel.cs" />
-    <Compile Include="Member\RegisterModel.cs" />
-    <Compile Include="Member\MemberObject.cs" />
+    <Compile Include="MemberObjects\LogOnModel.cs" />
+    <Compile Include="MemberObjects\RegisterModel.cs" />
+    <Compile Include="MemberObjects\Member.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

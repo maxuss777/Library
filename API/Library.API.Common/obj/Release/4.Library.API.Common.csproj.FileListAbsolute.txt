@@ -1,9 +1,9 @@
-C:\GitProj\Library\API\Library.API.Common\bin\Release\Library.API.Common.dll
-C:\GitProj\Library\API\Library.API.Common\bin\Release\Library.API.Common.pdb
-C:\GitProj\Library\API\Library.API.Common\obj\Release\Library.API.Common.dll
-C:\GitProj\Library\API\Library.API.Common\obj\Release\Library.API.Common.pdb
 D:\GitHub\Library\API\Library.API.Common\bin\Release\Library.API.Common.dll
 D:\GitHub\Library\API\Library.API.Common\bin\Release\Library.API.Common.pdb
 D:\GitHub\Library\API\Library.API.Common\obj\Release\4.Library.API.Common.csprojResolveAssemblyReference.cache
 D:\GitHub\Library\API\Library.API.Common\obj\Release\Library.API.Common.dll
 D:\GitHub\Library\API\Library.API.Common\obj\Release\Library.API.Common.pdb
+C:\GitProj\Library\API\Library.API.Common\bin\Release\Library.API.Common.dll
+C:\GitProj\Library\API\Library.API.Common\bin\Release\Library.API.Common.pdb
+C:\GitProj\Library\API\Library.API.Common\obj\Release\Library.API.Common.dll
+C:\GitProj\Library\API\Library.API.Common\obj\Release\Library.API.Common.pdb

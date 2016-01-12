@@ -16,8 +16,10 @@
     <div class="cart-top">
         @using(@Html.BeginForm("Logout","Authentication",FormMethod.Post))
         {
-            <input type="submit" value="Logout" class="button-delete" style="float: right"/>
+            <input type="submit" value="Logout" class="button-logout"/>
         }
+        <input type="button" value="Get Report"
+               class="button-report" onclick="location.href='@Url.Action("Get", "Report")'" />
     </div>
     @if (TempData["succ_message"] != null)
     {

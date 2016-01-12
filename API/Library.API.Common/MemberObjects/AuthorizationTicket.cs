@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Library.API.Common.Member
+namespace Library.API.Common.MemberObjects
 {
     public class AuthorizationTicket
     {

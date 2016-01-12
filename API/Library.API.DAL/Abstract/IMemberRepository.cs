@@ -1,10 +1,11 @@
-﻿using Library.API.Common.Member;
+﻿using Library.API.Common.MemberObjects;
+using Library.API.Common.MemberObjects;
 
 namespace Library.API.DAL.Abstract
 {
     public interface IMemberRepository
     {
-        MemberObject Get(string email);
-        MemberObject Create(MemberObject user);
+        Member Get(string email);
+        Member Create(Member user);
     }
 }

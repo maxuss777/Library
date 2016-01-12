@@ -24,7 +24,7 @@ namespace Library.UI.Infrastructure
             ninjectKarnel.Bind<ICategoryServices>().To<CategoryServices>();
             ninjectKarnel.Bind<IBookServices>().To<BookServices>();
             ninjectKarnel.Bind<IAuthenticationController>().To<AuthenticationServices>();
-            //ninjectKarnel.Bind<IRegistrationServices>().To<AuthenticationServices>();
+            ninjectKarnel.Bind<IReportServices>().To<ReportServices>();
         }
     }
 }

@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using Library.API.Common.Member;
+using Library.API.Common.MemberObjects;
+using Library.API.Common.MemberObjects;
 using Library.API.DAL.Abstract;
 
 namespace Library.API.DAL
 {
     public class MemberRepository : Repository, IMemberRepository
     {
-        public MemberObject Get(string email)
+        public Member Get(string email)
         {
-            MemberObject member = new MemberObject();
+            Member member = new Member();
 
             using (SqlConnection conn = new SqlConnection(ConnectionString))
             {
@@ -49,7 +50,7 @@ namespace Library.API.DAL
             }
             return member.Id == 0 ? null : member;
         }
-        public MemberObject Create(MemberObject member)
+        public Member Create(Member member)
         {
             using (SqlConnection conn = new SqlConnection(ConnectionString))
             {

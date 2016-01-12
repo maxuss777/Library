@@ -21,6 +21,7 @@ namespace Library.API.Infrastructure
             Bind<ICategoryServices>().To<CategoryServices>();
             Bind<ICategoryRepository>().To<CategoryRepository>();
             Bind<IMemberRepository>().To<MemberRepository>();
+            Bind<IReportServices>().To<ReportServices>();
         }
     }
 
@@ -45,8 +46,6 @@ namespace Library.API.Infrastructure
 
         internal NinjectDependencyScope(IResolutionRoot resolver)
         {
-            Contract.Assert(resolver != null);
-
             _resolver = resolver;
         }
 

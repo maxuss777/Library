@@ -1,12 +1,3 @@
-C:\GitProj\Library\API\Library.API.Business\bin\Release\Library.API.Business.dll
-C:\GitProj\Library\API\Library.API.Business\bin\Release\Library.API.Business.pdb
-C:\GitProj\Library\API\Library.API.Business\bin\Release\Library.API.Common.dll
-C:\GitProj\Library\API\Library.API.Business\bin\Release\Library.API.DAL.dll
-C:\GitProj\Library\API\Library.API.Business\bin\Release\Library.API.Common.pdb
-C:\GitProj\Library\API\Library.API.Business\bin\Release\Library.API.DAL.pdb
-C:\GitProj\Library\API\Library.API.Business\obj\Release\2.Library.API.Business.csprojResolveAssemblyReference.cache
-C:\GitProj\Library\API\Library.API.Business\obj\Release\Library.API.Business.dll
-C:\GitProj\Library\API\Library.API.Business\obj\Release\Library.API.Business.pdb
 D:\GitHub\Library\API\Library.API.Business\bin\Release\Library.API.Business.dll
 D:\GitHub\Library\API\Library.API.Business\bin\Release\Library.API.Business.pdb
 D:\GitHub\Library\API\Library.API.Business\bin\Release\Library.API.Common.dll
@@ -16,3 +7,12 @@ D:\GitHub\Library\API\Library.API.Business\bin\Release\Library.API.DAL.pdb
 D:\GitHub\Library\API\Library.API.Business\obj\Release\2.Library.API.Business.csprojResolveAssemblyReference.cache
 D:\GitHub\Library\API\Library.API.Business\obj\Release\Library.API.Business.dll
 D:\GitHub\Library\API\Library.API.Business\obj\Release\Library.API.Business.pdb
+C:\GitProj\Library\API\Library.API.Business\bin\Release\Library.API.Business.dll
+C:\GitProj\Library\API\Library.API.Business\bin\Release\Library.API.Business.pdb
+C:\GitProj\Library\API\Library.API.Business\bin\Release\Library.API.Common.dll
+C:\GitProj\Library\API\Library.API.Business\bin\Release\Library.API.DAL.dll
+C:\GitProj\Library\API\Library.API.Business\bin\Release\Library.API.Common.pdb
+C:\GitProj\Library\API\Library.API.Business\bin\Release\Library.API.DAL.pdb
+C:\GitProj\Library\API\Library.API.Business\obj\Release\2.Library.API.Business.csprojResolveAssemblyReference.cache
+C:\GitProj\Library\API\Library.API.Business\obj\Release\Library.API.Business.dll
+C:\GitProj\Library\API\Library.API.Business\obj\Release\Library.API.Business.pdb

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Library.API.Common.BooksObjects;
 using Library.API.Common.CategoriesObjects;
 
 namespace Library.API.DAL.Abstract
@@ -10,7 +9,9 @@ namespace Library.API.DAL.Abstract
         Category GetById(int categoryId);
         Category GetByName(string category);
         IEnumerable<Category> GetAll();
+
         //IEnumerable<Book> GetCategoriesBooks(int categoryId);
+
         Category Update(Category category);
         bool Delete(int categoryId);
         bool PutBookToCategory(int categoryId, int bookId);

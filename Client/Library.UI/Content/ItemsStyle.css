@@ -158,7 +158,7 @@ table {
         float: right;
     }
 
-.cart-button-create, .button-edit, .button-delete, .top-button-create-book, .top-button-create-category {
+.cart-button-create, .button-edit, .button-delete, .top-button-create-book, .top-button-create-category, .button-logout, .button-report {
     line-height: 29px;
     padding: 0 25px;
     color: white;
@@ -194,4 +194,12 @@ table {
     } 
     .top-button-create-category {
         background: #483d8b padding-box;
+    }
+    .button-logout, .button-report{
+        background: #565656 padding-box;
+        margin: -3px;
+        float: right;
+    }
+    .button-report {
+        margin-right: 10px;
     }

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Library.API.Common.Member
+namespace Library.API.Common.MemberObjects
 {
     public class RegisterModel
     {

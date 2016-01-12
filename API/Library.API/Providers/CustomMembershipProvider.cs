@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web.Helpers;
 using System.Web.Security;
-using Library.API.Common.Member;
+using Library.API.Common.MemberObjects;
 using Library.API.DAL;
 using Library.API.DAL.Abstract;
 
@@ -66,7 +66,7 @@ namespace Library.API.Providers
             {
                 try
                 {
-                    MemberObject member = new MemberObject
+                    Member member = new Member
                     {
                         MemberName = username,
                         Email = email,

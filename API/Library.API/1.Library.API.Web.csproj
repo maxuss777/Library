@@ -51,6 +51,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Filters\AuthenticationHandler.cs" />
     <Compile Include="Filters\ValidateModelAttribute.cs" />
     <Compile Include="Global.asax.cs">

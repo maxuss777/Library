@@ -76,8 +76,10 @@ namespace Library.UI.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            var book = _categoryServices.GetById(id, Request.Cookies["_auth"].Value);
-            return book == null ? PartialView("ErroActionView") : PartialView("EditCategory", book);
+            var category = _categoryServices.GetById(id, Request.Cookies["_auth"].Value);
+            if (category != null) return PartialView("EditCategory", category);
+            TempData["fail_message"] = "The Category has not been found!";
+            return RedirectToAction("GetAll", "Category");
         }
 
         [HttpPost]

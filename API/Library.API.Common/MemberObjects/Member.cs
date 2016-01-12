@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Library.API.Common.Member
+namespace Library.API.Common.MemberObjects
 {
-    public class MemberObject
+    public class Member
     {
         public int Id { get; set; }
         public string Email { get; set; }
