@@ -88,10 +88,10 @@
     <Content Include="App_Data\log.txt" />
     <Content Include="Content\Authorization.css" />
     <Content Include="Content\CreationForm.css" />
-    <Content Include="Content\Form.css" />
     <Content Include="Content\ItemsStyle.css" />
     <Content Include="Content\NavMenu.css" />
     <Content Include="Content\Pager.css" />
+    <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -134,19 +134,20 @@
     <Content Include="packages.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Category\Menu.cshtml" />
-    <Content Include="Views\Books\AllBooksList.cshtml" />
-    <Content Include="Views\Books\EmptyBooksList.cshtml" />
-    <Content Include="Views\Shared\ErroActionView.cshtml" />
+    <Content Include="Views\Books\_AllBooksList.cshtml" />
     <Content Include="Views\Books\CreateBook.cshtml" />
-    <Content Include="Views\Shared\SuccessActionView.cshtml" />
     <Content Include="Views\Books\EditBook.cshtml" />
     <Content Include="Views\Category\CreateCategory.cshtml" />
     <Content Include="Views\Category\CategoriesList.cshtml" />
     <Content Include="Views\Category\EditCategory.cshtml" />
     <Content Include="Views\Category\EmptyCategoriesList.cshtml" />
-    <Content Include="Views\Books\FilteredBookslist.cshtml" />
+    <Content Include="Views\Books\_FilteredBooksList.cshtml" />
     <Content Include="Views\Authentication\Login.cshtml" />
     <Content Include="Views\Authentication\Register.cshtml" />
+    <Content Include="Views\Books\EmptyFilteredBookList.cshtml" />
+    <Content Include="Views\Books\FilledFilteredBooksList.cshtml" />
+    <Content Include="Views\Books\FilledAllBooksList.cshtml" />
+    <Content Include="Views\Books\EmptyAllBooksList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

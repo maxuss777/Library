@@ -102,7 +102,7 @@ namespace Library.UI.Infrastructure
         }
         public List<SelectListItem> BooksAsListItems(IEnumerable<Book> books)
         {
-            if (!books.Any())
+            if (books == null || !books.Any())
             {
                 return null;
             }

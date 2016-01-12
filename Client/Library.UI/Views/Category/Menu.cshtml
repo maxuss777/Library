@@ -1,17 +1,18 @@
 ﻿@model IEnumerable<Library.UI.Models.Category>
-@{
-    Layout = null;
-}
+
 @Html.ActionLink("Home", "GetAll", "Books", null, new { @class = "side-nav-button" })
-@foreach (var link in Model)
+@if (Model != null)
 {
-    @Html.RouteLink(link.Name,
-        new
-        {
-            controller = "Books",
-            action = "GetFiltered",
-            category = link.Name,
-            page = 1
-        },
-        new {@class = "side-nav-button"});
+    foreach (var link in Model)
+    {
+        @Html.RouteLink(link.Name,
+         new
+         {
+             controller = "Books",
+             action = "GetFiltered",
+             category = link.Name,
+             page = 1
+         },
+         new { @class = "side-nav-button" })
+    }
 }

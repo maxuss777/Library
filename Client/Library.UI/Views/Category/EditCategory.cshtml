@@ -13,7 +13,7 @@
 
             <div class="form-group">
                 @Html.LabelFor(model => model.Name)
-                <div>
+                <div style="color: red;">
                     @Html.EditorFor(model => model.Name)
                     @Html.ValidationMessageFor(model => model.Name)
                 </div>

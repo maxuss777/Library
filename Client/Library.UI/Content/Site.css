@@ -1,0 +1,9 @@
+﻿.Succ_Message, .Fail_Message {
+    background: gray;
+    color: green;
+    text-align: center;
+    font-weight: bold;
+}
+.Fail_Message {
+    color: rgb(156, 24, 24);
+}

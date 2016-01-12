@@ -16,7 +16,7 @@ namespace Library.UI.Controllers
         }
 
         [HttpGet]
-        public ViewResult Login()
+        public ActionResult Login()
         {
             return View("Login");
         }
@@ -60,7 +60,7 @@ namespace Library.UI.Controllers
         }
 
         [HttpGet]
-        public ViewResult Register()
+        public ActionResult Register()
         {
             return View("Register");
         }
@@ -84,6 +84,7 @@ namespace Library.UI.Controllers
                 Expires = DateTime.Now.AddYears(1)
             };
             Response.Cookies.Add(cokie);
+            TempData["succ_message"] = "You have been registered successfully!";
             return RedirectToAction("GetAll", "Books");
         }
     }

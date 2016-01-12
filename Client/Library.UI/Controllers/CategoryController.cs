@@ -16,150 +16,143 @@ namespace Library.UI.Controllers
         {
             _categoryServices = catServ;
         }
-        public PartialViewResult Menu()
-        {
-            var httpCookie = Request.Cookies["_auth"];
-            if (httpCookie == null)
-            {
-                throw new UnauthorizedAccessException();
-            }
-            var categoryList = (List<Category>)_categoryServices.GetAll(httpCookie.Value);
 
-            return categoryList.Count <= 0 ? PartialView() : PartialView(categoryList);
-        }
-        [HttpGet]
-        public PartialViewResult GetAll(int page = 1)
+        public ActionResult Menu()
         {
-            var httpCookie = Request.Cookies["_auth"];
-            if (httpCookie == null)
+            var categoryList = (List<Category>) _categoryServices.GetAll(Request.Cookies["_auth"].Value);
+            return categoryList==null || !categoryList.Any() ? PartialView() : PartialView(categoryList);
+        }
+
+        [HttpGet]
+        public ActionResult GetAll(int page = 1)
+        {
+            
+            var categories = _categoryServices.GetAll(Request.Cookies["_auth"].Value);
+            if (categories == null || !categories.Any())
+                return View("EmptyCategoriesList");
+
+            CategoryViewModel categoryViewModel = new CategoryViewModel
             {
-                throw new UnauthorizedAccessException();
-            }
-            CategoryViewModel bookViewModel = new CategoryViewModel
-            {
-                Categories = _categoryServices.GetAll(httpCookie.Value)
+                Categories = categories
                     .OrderByDescending(b => b.Name)
-                    .Skip((page - 1) * PageSize)
+                    .Skip((page - 1)*PageSize)
                     .Take(PageSize),
 
                 PagingInfo = new PagingInfo
                 {
                     CurrentPage = page,
                     ItemsPerPage = PageSize,
-                    TotalItems = _categoryServices.GetAll(httpCookie.Value).Count()
+                    TotalItems = _categoryServices.GetAll(Request.Cookies["_auth"].Value).Count()
                 }
             };
 
-            return !bookViewModel.Categories.Any()
-                ? PartialView("EmptyCategoriesList")
-                : PartialView("CategoriesList", bookViewModel);
+            return View("CategoriesList", categoryViewModel);
         }
+
         [HttpGet]
-        public PartialViewResult Create()
+        public ActionResult Create()
         {
             return PartialView("CreateCategory");
         }
+
         [HttpPost]
         public ActionResult Create(Category category)
         {
-            var httpCookie = Request.Cookies["_auth"];
-            if (httpCookie == null)
-            {
-                throw new UnauthorizedAccessException();
-            }
             if (!ModelState.IsValid || category == null)
+            {
                 return PartialView("CreateCategory");
-
-            return PartialView(!_categoryServices.Create(category, httpCookie.Value) ? "ErroActionView" : "SuccessActionView");
+            }
+            if (!_categoryServices.Create(category, Request.Cookies["_auth"].Value))
+            {
+                TempData["fail_message"] = "The Category has been created unsuccessfully!";
+            }
+            else
+            {
+                TempData["succ_message"] = "The Category has been created successfully!";
+            }
+            return RedirectToAction("GetAll", "Category");
         }
+
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            var httpCookie = Request.Cookies["_auth"];
-            if (httpCookie == null)
-            {
-                throw new UnauthorizedAccessException();
-            }
-            var book = _categoryServices.GetById(id, httpCookie.Value);
+            var book = _categoryServices.GetById(id, Request.Cookies["_auth"].Value);
             return book == null ? PartialView("ErroActionView") : PartialView("EditCategory", book);
         }
+
         [HttpPost]
         public ActionResult Edit(Category category)
         {
-            var httpCookie = Request.Cookies["_auth"];
-            if (httpCookie == null)
-            {
-                throw new UnauthorizedAccessException();
-            }
             if (!ModelState.IsValid || category == null)
                 return PartialView("EditCategory", category);
 
-            var result = _categoryServices.Update(category, httpCookie.Value);
-            return result == false ? PartialView("ErroActionView") : PartialView("SuccessActionView");
+            if (!_categoryServices.Update(category, Request.Cookies["_auth"].Value))
+            {
+                TempData["fail_message"] = "The Category has been edited unsuccessfully!";
+            }
+            else
+            {
+                TempData["succ_message"] = "The Category has been edited successfully!";
+            }
+            return RedirectToAction("GetAll", "Category");
         }
         [HttpPost]
         public ActionResult Delete(int id)
         {
-            var httpCookie = Request.Cookies["_auth"];
-            if (httpCookie == null)
+            if (id == 0 || !_categoryServices.Delete(id, Request.Cookies["_auth"].Value))
             {
-                throw new UnauthorizedAccessException();
+                TempData["fail_message"] = "The Category has been deleted unsuccessfully!";
             }
-            return id == 0
-                ? PartialView("ErroActionView")
-                : PartialView(!_categoryServices.Delete(id, httpCookie.Value)
-                    ? "ErroActionView"
-                    : "SuccessActionView");
+            else
+            {
+                TempData["succ_message"] = "The Category has been deleted successfully!";
+            }
+            return RedirectToAction("GetAll", "Category");
         }
+
         [HttpPost]
         public ActionResult AddBook(string bookId, string categoryName)
         {
-            var httpCookie = Request.Cookies["_auth"];
-            if (httpCookie == null)
-            {
-                throw new UnauthorizedAccessException();
-            }
             int _bookId;
-            if (!Int32.TryParse(bookId, out _bookId) || categoryName==null)
-                return View("ErroActionView");
-
-            var _categoryId = _categoryServices.GetByName(categoryName.Trim(), httpCookie.Value).Id;
-
-            if(_categoryId==0||_bookId == 0)
-                return View("ErroActionView");
-            try
+            if (!Int32.TryParse(bookId, out _bookId) || categoryName == null)
             {
-                return View(!_categoryServices.PutBookToCategory(_categoryId, _bookId, httpCookie.Value) 
-                    ? "ErroActionView" 
-                    : "SuccessActionView");
+                TempData["fail_message"] = "The book has added to this category unsuccessfully";
+                return RedirectToAction("GetFiltered", "Books", new { category = categoryName });
             }
-            catch
+
+            var _categoryId = _categoryServices.GetByName(categoryName.Trim(), Request.Cookies["_auth"].Value).Id;
+
+            if (_categoryId == 0 || _bookId == 0)
             {
-                return View("ErroActionView");
+                TempData["fail_message"] = "The book has added to this category unsuccessfully";
+                return RedirectToAction("GetFiltered", "Books", new { category = categoryName });
             }
+
+            if (!_categoryServices.PutBookToCategory(_categoryId, _bookId, Request.Cookies["_auth"].Value))
+            {
+                TempData["fail_message"] = "The book has added to this category unsuccessfully";
+                return RedirectToAction("GetFiltered", "Books", new {category = categoryName});
+            }
+            TempData["succ_message"] = "The book has added to this category successfully";
+            return RedirectToAction("GetFiltered", "Books", new { category = categoryName });
         }
+
         [HttpPost]
         public ActionResult RemoveBook(int bookId, string categoryName)
         {
-            var httpCookie = Request.Cookies["_auth"];
-            if (httpCookie == null)
-            {
-                throw new UnauthorizedAccessException();
-            }
-            var categoryId = _categoryServices.GetByName(categoryName.Trim(), httpCookie.Value).Id;
-
+            var categoryId = _categoryServices.GetByName(categoryName.Trim(), Request.Cookies["_auth"].Value).Id;
             if (categoryId == 0 || bookId == 0)
-                return View("ErroActionView");
-            try
             {
-                return View(!_categoryServices.RemoveBookFromCategory(categoryId, bookId, httpCookie.Value)
-                    ? "ErroActionView"
-                    : "SuccessActionView");
+                TempData["fail_message"] = "The book has removed from this category unsuccessfully";
+                return RedirectToAction("GetFiltered", "Books", new { category = categoryName });
             }
-            catch
+            if (!_categoryServices.RemoveBookFromCategory(categoryId, bookId, Request.Cookies["_auth"].Value))
             {
-                return View("ErroActionView");
+                TempData["fail_message"] = "The book has removed from this category unsuccessfully";
+                return RedirectToAction("GetFiltered", "Books", new {category = categoryName});
             }
+            TempData["succ_message"] = "The book has removed from this category successfully";
+            return RedirectToAction("GetFiltered", "Books", new { category = categoryName });
         }
     }
 }
