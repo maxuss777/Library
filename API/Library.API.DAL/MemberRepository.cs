@@ -20,18 +20,14 @@
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    #region parameters
-
-                    SqlParameter Email = new SqlParameter
+                    SqlParameter emailParameter = new SqlParameter
                     {
                         ParameterName = "@Email",
                         DbType = DbType.String,
                         Direction = ParameterDirection.Input,
                         Value = email
                     };
-                    cmd.Parameters.Add(Email);
-
-                    #endregion
+                    cmd.Parameters.Add(emailParameter);
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
@@ -60,36 +56,32 @@
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    #region parameters
-
-                    SqlParameter Email = new SqlParameter
+                    SqlParameter emailParameter = new SqlParameter
                     {
                         ParameterName = "@Email",
                         DbType = DbType.String,
                         Direction = ParameterDirection.Input,
                         Value = member.Email
                     };
-                    cmd.Parameters.Add(Email);
+                    cmd.Parameters.Add(emailParameter);
 
-                    SqlParameter MemberName = new SqlParameter
+                    SqlParameter memberNameParameter = new SqlParameter
                     {
                         ParameterName = "@MemberName",
                         DbType = DbType.String,
                         Direction = ParameterDirection.Input,
                         Value = member.MemberName
                     };
-                    cmd.Parameters.Add(MemberName);
+                    cmd.Parameters.Add(memberNameParameter);
 
-                    SqlParameter Password = new SqlParameter
+                    SqlParameter passwordParameter = new SqlParameter
                     {
                         ParameterName = "@Password",
                         DbType = DbType.String,
                         Direction = ParameterDirection.Input,
                         Value = member.Password
                     };
-                    cmd.Parameters.Add(Password);
-
-                    #endregion
+                    cmd.Parameters.Add(passwordParameter);
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {

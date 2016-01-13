@@ -1,9 +1,10 @@
-﻿namespace Library.UI.Controllers
+﻿using Library.UI.Interfaces;
+
+namespace Library.UI.Controllers
 {
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
-    using Library.UI.Abstract;
     using Library.UI.Filters;
     using Library.UI.Models;
     using Library.UI.Models.Books;
@@ -22,9 +23,7 @@
         [HttpGet]
         public ActionResult GetAll(int page = 1)
         {
-            string ticket = Request.Cookies["_auth"].Value;
-
-            List<Book> books = _booksService.GetAll(ticket);
+            List<Book> books = _booksService.GetAll();
 
             if (books.Count == 0)
             {
@@ -42,7 +41,7 @@
                 {
                     CurrentPage = page,
                     ItemsPerPage = PageSize,
-                    TotalItems = _booksService.GetAll(ticket).Count()
+                    TotalItems = _booksService.GetAll().Count()
                 }
             };
 
@@ -53,10 +52,9 @@
         public ActionResult GetFiltered(string category, int page = 1)
         {
             BookViewModel bookViewModel = new BookViewModel();
-            string ticket = Request.Cookies["_auth"].Value;
             
-            List<Book> books = _booksService.GetByCategory(category, ticket);
-            List<Book> allBooks = _booksService.GetAll(ticket);
+            List<Book> books = _booksService.GetByCategory(category);
+            List<Book> allBooks = _booksService.GetAll();
             
             ViewBag.Books = _booksService.BooksAsListItems(allBooks);
             ViewBag.CurrentCategory = category;
@@ -80,7 +78,7 @@
                     ItemsPerPage = PageSize,
                     TotalItems = category == null
                         ? allBooks.Count()
-                        : _booksService.GetByCategory(category, ticket).Count()
+                        : _booksService.GetByCategory(category).Count()
                 };
 
 
@@ -108,9 +106,7 @@
                 return PartialView("CreateBook");
             }
 
-            string ticket = Request.Cookies["_auth"].Value; 
-            
-            bool isCreated = _booksService.Create(book, ticket);
+            bool isCreated = _booksService.Create(book);
             if (isCreated)
             {
                 TempData["succ_message"] = "The Book has been created successfully!";
@@ -126,9 +122,7 @@
         [HttpPost]
         public ActionResult Delete(int id)
         {
-            string ticket = Request.Cookies["_auth"].Value;
-
-            bool isDeleted = _booksService.Delete(id, ticket);
+            bool isDeleted = _booksService.Delete(id);
             
             if (id == 0 || !isDeleted)
             {
@@ -145,9 +139,7 @@
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            string ticket = Request.Cookies["_auth"].Value;
-            
-            Book book = _booksService.GetById(id, ticket);
+            Book book = _booksService.GetById(id);
             if (book != null)
             {
                 return PartialView("EditBook", book);
@@ -166,9 +158,7 @@
                 return PartialView("EditBook", book);
             }
 
-            string ticket = Request.Cookies["_auth"].Value;
-
-            bool isUpdated = _booksService.Update(book, ticket);
+            bool isUpdated = _booksService.Update(book);
             if (isUpdated)
             {
                 TempData["succ_message"] = "The Book has been edited successfully!";
@@ -183,9 +173,7 @@
 
         public IEnumerable<Book> FilterByCategory(string category)
         {
-            string ticket = Request.Cookies["_auth"].Value;
-            
-            return _booksService.GetByCategory(category, ticket);
+            return _booksService.GetByCategory(category);
         }
     }
 }

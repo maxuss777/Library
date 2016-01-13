@@ -21,14 +21,14 @@
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    SqlParameter name = new SqlParameter
+                    SqlParameter nameParameter = new SqlParameter
                     {
                         ParameterName = "@Name",
                         DbType = DbType.String,
                         Direction = ParameterDirection.Input,
                         Value = category.Name
                     };
-                    cmd.Parameters.Add(name);
+                    cmd.Parameters.Add(nameParameter);
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
@@ -59,14 +59,14 @@
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    SqlParameter id = new SqlParameter
+                    SqlParameter idParameter = new SqlParameter
                     {
                         ParameterName = "@Id",
                         DbType = DbType.Int32,
                         Direction = ParameterDirection.Input,
                         Value = categoryId
                     };
-                    cmd.Parameters.Add(id);
+                    cmd.Parameters.Add(idParameter);
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
@@ -97,14 +97,14 @@
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    SqlParameter name = new SqlParameter
+                    SqlParameter nameParameter = new SqlParameter
                     {
                         ParameterName = "@Name",
                         DbType = DbType.String,
                         Direction = ParameterDirection.Input,
                         Value = category
                     };
-                    cmd.Parameters.Add(name);
+                    cmd.Parameters.Add(nameParameter);
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
@@ -165,14 +165,23 @@
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    SqlParameter Id = new SqlParameter
+                    SqlParameter idParameter = new SqlParameter
                     {
                         ParameterName = "@Id",
                         DbType = DbType.Int32,
                         Direction = ParameterDirection.Input,
                         Value = category.Id
                     };
-                    cmd.Parameters.Add(Id);
+                    cmd.Parameters.Add(idParameter);
+
+                    SqlParameter nameParameter = new SqlParameter
+                    {
+                        ParameterName = "@Name",
+                        DbType = DbType.String,
+                        Direction = ParameterDirection.Input,
+                        Value = category.Name
+                    };
+                    cmd.Parameters.Add(nameParameter);
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
@@ -197,14 +206,14 @@
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    SqlParameter Id = new SqlParameter
+                    SqlParameter idParameter = new SqlParameter
                     {
                         ParameterName = "@Id",
                         DbType = DbType.Int32,
                         Direction = ParameterDirection.Input,
                         Value = categoryId
                     };
-                    cmd.Parameters.Add(Id);
+                    cmd.Parameters.Add(idParameter);
 
                     int result = cmd.ExecuteNonQuery();
 
@@ -223,23 +232,23 @@
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    SqlParameter CategoryId = new SqlParameter
+                    SqlParameter categoryIdParameter = new SqlParameter
                     {
                         ParameterName = "@CategoryId",
                         DbType = DbType.Int32,
                         Direction = ParameterDirection.Input,
                         Value = categoryId
                     };
-                    cmd.Parameters.Add(CategoryId);
+                    cmd.Parameters.Add(categoryIdParameter);
 
-                    SqlParameter BookId = new SqlParameter
+                    SqlParameter bookIdParameter = new SqlParameter
                     {
                         ParameterName = "@BookId",
                         DbType = DbType.Int32,
                         Direction = ParameterDirection.Input,
                         Value = bookId
                     };
-                    cmd.Parameters.Add(BookId);
+                    cmd.Parameters.Add(bookIdParameter);
 
                     SqlParameter Result = new SqlParameter
                     {
@@ -266,35 +275,27 @@
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    SqlParameter CategoryId = new SqlParameter
+                    SqlParameter categoryIdParameter = new SqlParameter
                     {
                         ParameterName = "@CategoryId",
                         DbType = DbType.Int32,
                         Direction = ParameterDirection.Input,
                         Value = categoryId
                     };
-                    cmd.Parameters.Add(CategoryId);
+                    cmd.Parameters.Add(categoryIdParameter);
 
-                    SqlParameter BookId = new SqlParameter
+                    SqlParameter bookIdParameter = new SqlParameter
                     {
                         ParameterName = "@BookId",
                         DbType = DbType.Int32,
                         Direction = ParameterDirection.Input,
                         Value = bookId
                     };
-                    cmd.Parameters.Add(BookId);
+                    cmd.Parameters.Add(bookIdParameter);
 
-                    SqlParameter Result = new SqlParameter
-                    {
-                        ParameterName = "@Result",
-                        DbType = DbType.Int32,
-                        Direction = ParameterDirection.Output
-                    };
-                    cmd.Parameters.Add(Result);
+                    int result = cmd.ExecuteNonQuery();
 
-                    cmd.ExecuteNonQuery();
-
-                    return Result.Value != null && (int) Result.Value != 2 && (int) Result.Value != 0;
+                    return result != 0;
                 }
             }
         }

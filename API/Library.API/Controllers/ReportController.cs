@@ -7,6 +7,7 @@
     using System.Web.Http;
     using Library.API.Business.Interfaces;
 
+    [Authorize]
     public class ReportController : ApiController
     {
         private readonly IReportService _reportService;

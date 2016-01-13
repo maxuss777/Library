@@ -1,18 +1,17 @@
-﻿using Library.UI.Infrastructure;
+﻿using System.Web;
+using Library.UI.Infrastructure;
 
 namespace Library.UI.Services
 {
     using System.Collections.Generic;
     using System.IO;
-    using System.Linq;
     using System.Net;
-    using System.Web;
     using Library.UI.Models;
     using Newtonsoft.Json;
 
     public class Service
     {
-        protected static Dictionary<HttpStatusCode, T> RequestToApi<T>(string requestMethod, string url, string ticket, string postData = "")
+        protected static Dictionary<HttpStatusCode, T> RequestToApi<T>(string requestMethod, string url, string postData = "")
             where T : BaseJsonObject, new()
         {
             HttpStatusCode statusCode = 0;
@@ -25,6 +24,7 @@ namespace Library.UI.Services
                 return new Dictionary<HttpStatusCode, T>();
             }
 
+            string ticket = GetAuthorizationCookies();
             request.Method = requestMethod;
             request.Headers.Add(HttpRequestHeader.Authorization, ticket);
 
@@ -48,7 +48,7 @@ namespace Library.UI.Services
             return apiResponse;
         }
 
-        protected static List<T> GetObjectsAsList<T>(string requestMethod, string url, string ticket) where T : BaseJsonObject, new()
+        protected static List<T> GetObjectsAsList<T>(string requestMethod, string url) where T : BaseJsonObject, new()
         {
             HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
 
@@ -57,6 +57,7 @@ namespace Library.UI.Services
                 return new List<T>();
             }
 
+            string ticket = GetAuthorizationCookies();
             request.Method = requestMethod;
             request.ContentType = "application/json";
             request.Accept = "application/json, text/plain, #1#*";
@@ -111,7 +112,7 @@ namespace Library.UI.Services
             }
         }
 
-        protected static List<KeyValuePair<string, int>> GetObjectsAsListKeyValuePairs(string requestMethod, string url, string ticket)
+        protected static List<KeyValuePair<string, int>> GetObjectsAsListKeyValuePairs(string requestMethod, string url)
         {
             HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
 
@@ -120,6 +121,7 @@ namespace Library.UI.Services
                 return new List<KeyValuePair<string, int>>();
             }
 
+            string ticket = GetAuthorizationCookies();
             request.Method = requestMethod;
             request.ContentType = "application/json";
             request.Accept = "application/json, text/plain, #1#*";
@@ -220,6 +222,13 @@ namespace Library.UI.Services
             }
 
             return apiRespose;
+        }
+
+        private static string GetAuthorizationCookies()
+        {
+            HttpCookie cookie = HttpContext.Current.Request.Cookies["_auth"];
+
+            return cookie != null ? cookie.Value : null;
         }
     }
 }

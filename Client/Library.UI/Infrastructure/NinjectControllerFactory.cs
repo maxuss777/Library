@@ -1,9 +1,10 @@
-﻿namespace Library.UI.Infrastructure
+﻿using Library.UI.Interfaces;
+
+namespace Library.UI.Infrastructure
 {
     using System;
     using System.Web.Mvc;
     using System.Web.Routing;
-    using Library.UI.Abstract;
     using Library.UI.Services;
     using Ninject;
 

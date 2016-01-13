@@ -1,8 +1,9 @@
-﻿namespace Library.UI.Controllers
+﻿using Library.UI.Interfaces;
+
+namespace Library.UI.Controllers
 {
     using System.Collections.Generic;
     using System.Web.Mvc;
-    using Library.UI.Abstract;
 
     public class ReportController : Controller
     {
@@ -18,9 +19,7 @@
         {
             try
             {
-                string ticket = Request.Cookies["_auth"].Value;
-
-                List<KeyValuePair<string, int>> report = _reportService.GetReport(ticket);
+                List<KeyValuePair<string, int>> report = _reportService.GetReport();
 
                 if (report.Count == 0)
                 {

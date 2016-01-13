@@ -9,6 +9,6 @@ C:\GitProj\Library\API\Library.API.Common\obj\Release\Library.API.Model.dll
 C:\GitProj\Library\API\Library.API.Common\obj\Release\Library.API.Model.pdb
 D:\GitHub\Library\API\Library.API.Common\bin\Release\Library.API.Model.dll
 D:\GitHub\Library\API\Library.API.Common\bin\Release\Library.API.Model.pdb
-D:\GitHub\Library\API\Library.API.Common\obj\Release\3.Library.API.Model.csprojResolveAssemblyReference.cache
 D:\GitHub\Library\API\Library.API.Common\obj\Release\Library.API.Model.dll
 D:\GitHub\Library\API\Library.API.Common\obj\Release\Library.API.Model.pdb
+D:\GitHub\Library\API\Library.API.Common\obj\Release\3.Library.API.Model.csprojResolveAssemblyReference.cache

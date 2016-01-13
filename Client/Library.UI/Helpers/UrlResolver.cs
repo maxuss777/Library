@@ -7,72 +7,60 @@
     {
         private static readonly String ApiDomain = ConfigurationManager.AppSettings["APIUrl"];
 
-        public static String Api_Registration
+        public static String GetApiRegistrationUrl
         {
-            get { return string.Format("{0}Registration", ApiDomain); }
+            get { return string.Format("{0}api/Registration", ApiDomain); }
         }
 
-        public static String Api_Login
+        public static String GetApiLoginUrl
         {
-            get { return string.Format("{0}Login", ApiDomain); }
+            get { return string.Format("{0}api/Login", ApiDomain); }
         }
 
-        public static String Api_Report
+        public static String GetApiReportUrl
         {
-            get { return "http://localhost:1690/report"; }
+            get { return string.Format("{0}/Report", ApiDomain); }
         }
 
-        #region Book
-
-        public static String Books_Url
+        public static String GetApiBooksUrl
         {
-            get { return string.Format("{0}Books", ApiDomain); }
+            get { return string.Format("{0}api/Books", ApiDomain); }
         }
 
-        public static String Books_By_Category_Name_Url(string categoryName)
+        public static String GetApiBooksByCategoryNameUrl(string categoryName)
         {
-            return string.Format("{0}Books/{1}", ApiDomain, categoryName);
+            return string.Format("{0}api/Books/{1}", ApiDomain, categoryName);
         }
 
-        public static String Books_Id_Url(int bookId)
+        public static String GetApiBooksByIdUrl(int bookId)
         {
-            return string.Format("{0}Books/{1}", ApiDomain, bookId);
+            return string.Format("{0}api/Books/{1}", ApiDomain, bookId);
         }
 
-        #endregion
-
-        #region Category
-
-        public static String Categories_GetAll
+        public static String GetApiCategoriesUrl
         {
-            get { return string.Format("{0}Categories", ApiDomain); }
+            get { return string.Format("{0}api/Categories", ApiDomain); }
         }
 
-        public static String Categories_Url
+        public static String GetCategoriesByIdUrl(int categoryId)
         {
-            get { return string.Format("{0}Categories", ApiDomain); }
+            return string.Format("{0}api/Categories/{1}", ApiDomain, categoryId);
         }
 
-        public static String Categories_Id_Url(int categoryId)
+        public static String GetCategoriesByNameUrl(string categoryName)
         {
-            return string.Format("{0}Categories/{1}", ApiDomain, categoryId);
+            return string.Format("{0}api/Categories/{1}", ApiDomain, categoryName);
         }
 
-        public static String Categories_Name_Url(string categoryName)
+        public static String GetCategoriesAddBookUrl(int categoryId, int bookId)
         {
-            return string.Format("{0}Categories/{1}", ApiDomain, categoryName);
+            return string.Format("{0}api/Categories/{1}/addbook/{2}", ApiDomain, categoryId, bookId);
         }
 
-        public static String Categories_AddBook(int categoryId, int bookId)
+        public static String GetCategoriesRemoveBookUrl(int categoryId, int bookId)
         {
-            return string.Format("{0}Categories/{1}/addbook/{2}", ApiDomain, categoryId, bookId);
+            return string.Format("{0}api/Categories/{1}/removebook/{2}", ApiDomain, categoryId, bookId);
         }
 
-        public static String Categories_RemoveBook(int categoryId, int bookId)
-        {
-            return string.Format("{0}Categories/{1}/removebook/{2}", ApiDomain, categoryId, bookId);
-        }
-
-        #endregion
     }
 }

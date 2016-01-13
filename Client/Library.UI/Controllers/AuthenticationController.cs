@@ -1,11 +1,12 @@
-﻿namespace Library.UI.Controllers
+﻿using Library.UI.Interfaces;
+
+namespace Library.UI.Controllers
 {
     using System;
     using System.Collections.Generic;
     using System.Net;
     using System.Web;
     using System.Web.Mvc;
-    using Library.UI.Abstract;
     using Library.UI.Models.Account;
 
     public class AuthenticationController : Controller
@@ -34,6 +35,7 @@
 
             if (authHeader == null)
             {
+                TempData["fail_message"] = "Such user is not registered!";
                 return View("Login");
             }
 

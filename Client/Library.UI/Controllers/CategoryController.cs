@@ -1,10 +1,11 @@
-﻿namespace Library.UI.Controllers
+﻿using Library.UI.Interfaces;
+
+namespace Library.UI.Controllers
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
-    using Library.UI.Abstract;
     using Library.UI.Models;
     using Library.UI.Models.Categories;
 
@@ -20,9 +21,7 @@
 
         public ActionResult Menu()
         {
-            string ticket = Request.Cookies["_auth"].Value;
-
-            List<Category> categories = _categoryService.GetAll(ticket);
+            List<Category> categories = _categoryService.GetAll();
 
             return categories.Count == 0 ? PartialView() : PartialView(categories);
         }
@@ -30,9 +29,7 @@
         [HttpGet]
         public ActionResult GetAll(int page = 1)
         {
-            string ticket = Request.Cookies["_auth"].Value;
-
-            List<Category> categories = _categoryService.GetAll(ticket);
+            List<Category> categories = _categoryService.GetAll();
 
             if (categories.Count == 0)
             {
@@ -49,7 +46,7 @@
                 {
                     CurrentPage = page,
                     ItemsPerPage = PageSize,
-                    TotalItems = _categoryService.GetAll(ticket).Count()
+                    TotalItems = _categoryService.GetAll().Count()
                 }
             };
 
@@ -70,9 +67,7 @@
                 return PartialView("CreateCategory");
             }
 
-            string ticket = Request.Cookies["_auth"].Value;
-
-            bool isCreated = _categoryService.Create(category, ticket);
+            bool isCreated = _categoryService.Create(category);
             if (isCreated)
             {
                 TempData["succ_message"] = "The Category has been created successfully!";
@@ -88,9 +83,7 @@
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            string ticket = Request.Cookies["_auth"].Value;
-
-            Category category = _categoryService.GetById(id, ticket);
+            Category category = _categoryService.GetById(id);
             if (category != null)
             {
                 return PartialView("EditCategory", category);
@@ -109,9 +102,7 @@
                 return PartialView("EditCategory", category);
             }
 
-            string ticket = Request.Cookies["_auth"].Value;
-
-            bool isUpdated = _categoryService.Update(category, ticket);
+            bool isUpdated = _categoryService.Update(category);
             if (isUpdated)
             {
                 TempData["succ_message"] = "The Category has been edited successfully!";
@@ -127,9 +118,7 @@
         [HttpPost]
         public ActionResult Delete(int id)
         {
-            string ticket = Request.Cookies["_auth"].Value;
-
-            bool isDeleted = _categoryService.Delete(id, ticket);
+            bool isDeleted = _categoryService.Delete(id);
             if (id == 0 || !isDeleted)
             {
                 TempData["fail_message"] = "The Category has been deleted unsuccessfully!";
@@ -154,9 +143,7 @@
                 return RedirectToAction("GetFiltered", "Books", new {category = categoryName});
             }
 
-            string ticket = Request.Cookies["_auth"].Value;
-
-            Category category = _categoryService.GetByName(categoryName.Trim(), ticket);
+            Category category = _categoryService.GetByName(categoryName.Trim());
             if (category == null || category.Id == 0 || numericBookId == 0)
             {
                 TempData["fail_message"] = "The book has added to this category unsuccessfully";
@@ -164,7 +151,7 @@
                 return RedirectToAction("GetFiltered", "Books", new {category = categoryName});
             }
 
-            bool categoryIsAssigned = _categoryService.PutBookToCategory(category.Id, numericBookId, ticket);
+            bool categoryIsAssigned = _categoryService.PutBookToCategory(category.Id, numericBookId);
             if (!categoryIsAssigned)
             {
                 TempData["fail_message"] = "The book has added to this category unsuccessfully";
@@ -180,9 +167,7 @@
         [HttpPost]
         public ActionResult RemoveBook(int bookId, string categoryName)
         {
-            string ticket = Request.Cookies["_auth"].Value;
-
-            Category category = _categoryService.GetByName(categoryName.Trim(), ticket);
+            Category category = _categoryService.GetByName(categoryName.Trim());
             if (category == null || category.Id == 0 || bookId == 0)
             {
                 TempData["fail_message"] = "The book has removed from this category unsuccessfully";
@@ -190,7 +175,7 @@
                 return RedirectToAction("GetFiltered", "Books", new {category = categoryName});
             }
 
-            bool isRemoved = _categoryService.RemoveBookFromCategory(category.Id, bookId, ticket);
+            bool isRemoved = _categoryService.RemoveBookFromCategory(category.Id, bookId);
             if (!isRemoved)
             {
                 TempData["fail_message"] = "The book has removed from this category unsuccessfully";

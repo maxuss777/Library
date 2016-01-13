@@ -19,32 +19,32 @@
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    SqlParameter name = new SqlParameter
+                    SqlParameter nameParameter = new SqlParameter
                     {
                         ParameterName = "@Name",
                         DbType = DbType.String,
                         Direction = ParameterDirection.Input,
                         Value = book.Name
                     };
-                    cmd.Parameters.Add(name);
+                    cmd.Parameters.Add(nameParameter);
 
-                    SqlParameter isbn = new SqlParameter
+                    SqlParameter isbnParameter = new SqlParameter
                     {
                         ParameterName = "@ISBN",
                         DbType = DbType.String,
                         Direction = ParameterDirection.Input,
                         Value = book.ISBN
                     };
-                    cmd.Parameters.Add(isbn);
+                    cmd.Parameters.Add(isbnParameter);
 
-                    SqlParameter author = new SqlParameter
+                    SqlParameter authorParameter = new SqlParameter
                     {
                         ParameterName = "@Author",
                         DbType = DbType.String,
                         Direction = ParameterDirection.Input,
                         Value = book.Author
                     };
-                    cmd.Parameters.Add(author);
+                    cmd.Parameters.Add(authorParameter);
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
@@ -148,14 +148,14 @@
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    SqlParameter id = new SqlParameter
+                    SqlParameter idParameter = new SqlParameter
                     {
                         ParameterName = "@categoryId",
                         DbType = DbType.Int32,
                         Direction = ParameterDirection.Input,
                         Value = categoryId
                     };
-                    cmd.Parameters.Add(id);
+                    cmd.Parameters.Add(idParameter);
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
@@ -189,41 +189,41 @@
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    SqlParameter Id = new SqlParameter
+                    SqlParameter idParameter = new SqlParameter
                     {
                         ParameterName = "@Id",
                         DbType = DbType.Int32,
                         Direction = ParameterDirection.Input,
                         Value = book.Id
                     };
-                    cmd.Parameters.Add(Id);
+                    cmd.Parameters.Add(idParameter);
 
-                    SqlParameter Name = new SqlParameter
+                    SqlParameter nameParameter = new SqlParameter
                     {
                         ParameterName = "@Name",
                         DbType = DbType.String,
                         Direction = ParameterDirection.InputOutput,
                         Value = book.Name
                     };
-                    cmd.Parameters.Add(Name);
+                    cmd.Parameters.Add(nameParameter);
 
-                    SqlParameter ISBN = new SqlParameter
+                    SqlParameter isbnParameter = new SqlParameter
                     {
                         ParameterName = "@ISBN",
                         DbType = DbType.String,
                         Direction = ParameterDirection.InputOutput,
                         Value = book.ISBN
                     };
-                    cmd.Parameters.Add(ISBN);
+                    cmd.Parameters.Add(isbnParameter);
 
-                    SqlParameter Author = new SqlParameter
+                    SqlParameter authorParameter = new SqlParameter
                     {
                         ParameterName = "@Author",
                         DbType = DbType.String,
                         Direction = ParameterDirection.InputOutput,
                         Value = book.Author
                     };
-                    cmd.Parameters.Add(Author);
+                    cmd.Parameters.Add(authorParameter);
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
@@ -248,14 +248,14 @@
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    SqlParameter Id = new SqlParameter
+                    SqlParameter idParameter = new SqlParameter
                     {
                         ParameterName = "@Id",
                         DbType = DbType.Int32,
                         Direction = ParameterDirection.Input,
                         Value = bookId
                     };
-                    cmd.Parameters.Add(Id);
+                    cmd.Parameters.Add(idParameter);
 
                     int result = cmd.ExecuteNonQuery();
 
@@ -276,14 +276,14 @@
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    SqlParameter Name = new SqlParameter
+                    SqlParameter nameParameter = new SqlParameter
                     {
                         ParameterName = "@Name",
                         DbType = DbType.String,
                         Direction = ParameterDirection.Input,
                         Value = categoryName
                     };
-                    cmd.Parameters.Add(Name);
+                    cmd.Parameters.Add(nameParameter);
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {

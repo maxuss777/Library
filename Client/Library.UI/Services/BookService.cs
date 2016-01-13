@@ -1,4 +1,6 @@
-﻿namespace Library.UI.Services
+﻿using Library.UI.Interfaces;
+
+namespace Library.UI.Services
 {
     using System;
     using System.Collections.Generic;
@@ -6,7 +8,6 @@
     using System.Linq;
     using System.Net;
     using System.Web.Mvc;
-    using Library.UI.Abstract;
     using Library.UI.Helpers;
     using Library.UI.Infrastructure;
     using Library.UI.Models.Books;
@@ -14,11 +15,11 @@
 
     public class BookService : Service, IBookService
     {
-        public List<Book> GetAll(string ticket)
+        public List<Book> GetAll()
         {
             try
             {
-                return GetObjectsAsList<Book>("GET", UrlResolver.Books_Url, ticket);
+                return GetObjectsAsList<Book>("GET", UrlResolver.GetApiBooksUrl);
             }
             catch (Exception exc)
             {
@@ -28,11 +29,11 @@
             return new List<Book>();
         }
 
-        public List<Book> GetByCategory(string category, string ticket)
+        public List<Book> GetByCategory(string category)
         {
             try
             {
-                return GetObjectsAsList<Book>("GET", UrlResolver.Books_By_Category_Name_Url(category), ticket);
+                return GetObjectsAsList<Book>("GET", UrlResolver.GetApiBooksByCategoryNameUrl(category));
             }
             catch (Exception exc)
             {
@@ -42,11 +43,11 @@
             return new List<Book>();
         }
 
-        public Book GetById(int id, string ticket)
+        public Book GetById(int id)
         {
             try
             {
-                Dictionary<HttpStatusCode, Book> response = RequestToApi<Book>("GET", UrlResolver.Books_Id_Url(id), ticket);
+                Dictionary<HttpStatusCode, Book> response = RequestToApi<Book>("GET", UrlResolver.GetApiBooksByIdUrl(id));
 
                 Book book;
                 response.TryGetValue(HttpStatusCode.OK, out book);
@@ -61,13 +62,13 @@
             return null;
         }
 
-        public bool Create(Book book, string ticket)
+        public bool Create(Book book)
         {
             try
             {
                 string postData = JsonConvert.SerializeObject(book);
 
-                Dictionary<HttpStatusCode, Book> response = RequestToApi<Book>("POST", UrlResolver.Books_Url, postData: postData, ticket: ticket);
+                Dictionary<HttpStatusCode, Book> response = RequestToApi<Book>("POST", UrlResolver.GetApiBooksUrl, postData);
 
                 Book tempBook;
                 response.TryGetValue(HttpStatusCode.Created, out tempBook);
@@ -82,11 +83,11 @@
             return false;
         }
 
-        public bool Delete(int bookId, string ticket)
+        public bool Delete(int bookId)
         {
             try
             {
-                Dictionary<HttpStatusCode, Book> response = RequestToApi<Book>("DELETE", UrlResolver.Books_Id_Url(bookId), ticket);
+                Dictionary<HttpStatusCode, Book> response = RequestToApi<Book>("DELETE", UrlResolver.GetApiBooksByIdUrl(bookId));
 
                 return response.ContainsKey(HttpStatusCode.OK);
             }
@@ -98,12 +99,12 @@
             return false;
         }
 
-        public bool Update(Book book, string ticket)
+        public bool Update(Book book)
         {
             try
             {
                 string postData = JsonConvert.SerializeObject(book);
-                Dictionary<HttpStatusCode, Book> response = RequestToApi<Book>("PUT", UrlResolver.Books_Id_Url(book.Id), postData: postData, ticket: ticket);
+                Dictionary<HttpStatusCode, Book> response = RequestToApi<Book>("PUT", UrlResolver.GetApiBooksByIdUrl(book.Id), postData);
 
                 Book requestOut;
                 response.TryGetValue(HttpStatusCode.OK, out requestOut);

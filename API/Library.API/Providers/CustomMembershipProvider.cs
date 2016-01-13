@@ -19,7 +19,7 @@
             {
                 Member user = _memberRepository.Get(email);
 
-                if (user != null)
+                if (user != null && Crypto.VerifyHashedPassword(user.Password, password))
                 {
                     isValid = true;
                 }

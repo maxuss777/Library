@@ -1,9 +1,10 @@
-﻿namespace Library.UI.Services
+﻿using Library.UI.Interfaces;
+
+namespace Library.UI.Services
 {
     using System;
     using System.Collections.Generic;
     using System.Net;
-    using Library.UI.Abstract;
     using Library.UI.Helpers;
     using Library.UI.Infrastructure;
     using Library.UI.Models.Account;
@@ -22,7 +23,7 @@
             {
                 string postData = JsonConvert.SerializeObject(loginModel);
 
-                Dictionary<HttpStatusCode, MyAuthorizationHeader> response = RequestToApi<MyAuthorizationHeader>("POST", UrlResolver.Api_Login, null, postData);
+                Dictionary<HttpStatusCode, MyAuthorizationHeader> response = RequestToApi<MyAuthorizationHeader>("POST", UrlResolver.GetApiLoginUrl, postData);
 
                 MyAuthorizationHeader requestOut;
                 response.TryGetValue(HttpStatusCode.OK, out requestOut);
@@ -50,7 +51,7 @@
             {
                 string postData = JsonConvert.SerializeObject(regModel);
 
-                return RequestToApi<MyAuthorizationHeader>("POST", UrlResolver.Api_Registration, null, postData);
+                return RequestToApi<MyAuthorizationHeader>("POST", UrlResolver.GetApiRegistrationUrl, postData);
             }
             catch (Exception exc)
             {

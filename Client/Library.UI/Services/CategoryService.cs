@@ -1,9 +1,10 @@
-﻿namespace Library.UI.Services
+﻿using Library.UI.Interfaces;
+
+namespace Library.UI.Services
 {
     using System;
     using System.Collections.Generic;
     using System.Net;
-    using Library.UI.Abstract;
     using Library.UI.Helpers;
     using Library.UI.Infrastructure;
     using Library.UI.Models.Books;
@@ -12,11 +13,11 @@
 
     public class CategoryService : Service, ICategoryService
     {
-        public List<Category> GetAll(string ticket)
+        public List<Category> GetAll()
         {
             try
             {
-                return GetObjectsAsList<Category>("GET", UrlResolver.Categories_Url, ticket);
+                return GetObjectsAsList<Category>("GET", UrlResolver.GetApiCategoriesUrl);
             }
             catch (Exception exc)
             {
@@ -26,12 +27,12 @@
             return new List<Category>();
         }
 
-        public bool Create(Category category, string ticket)
+        public bool Create(Category category)
         {
             try
             {
                 string postData = JsonConvert.SerializeObject(category);
-                Dictionary<HttpStatusCode, Book> response = RequestToApi<Book>("POST", UrlResolver.Categories_Url, postData: postData, ticket: ticket);
+                Dictionary<HttpStatusCode, Book> response = RequestToApi<Book>("POST", UrlResolver.GetApiCategoriesUrl, postData);
 
                 Book book;
                 response.TryGetValue(HttpStatusCode.Created, out book);
@@ -46,13 +47,13 @@
             return false;
         }
 
-        public bool Update(Category category, string ticket)
+        public bool Update(Category category)
         {
             try
             {
                 string postData = JsonConvert.SerializeObject(category);
 
-                Dictionary<HttpStatusCode, Book> response = RequestToApi<Book>("PUT", UrlResolver.Categories_Id_Url(category.Id), postData: postData, ticket: ticket);
+                Dictionary<HttpStatusCode, Book> response = RequestToApi<Book>("PUT", UrlResolver.GetCategoriesByIdUrl(category.Id), postData);
 
                 Book book;
                 response.TryGetValue(HttpStatusCode.OK, out book);
@@ -67,11 +68,11 @@
             return false;
         }
 
-        public Category GetById(int id, string ticket)
+        public Category GetById(int id)
         {
             try
             {
-                Dictionary<HttpStatusCode, Category> response = RequestToApi<Category>("GET", UrlResolver.Categories_Id_Url(id), ticket: ticket);
+                Dictionary<HttpStatusCode, Category> response = RequestToApi<Category>("GET", UrlResolver.GetCategoriesByIdUrl(id));
 
                 Category category;
                 response.TryGetValue(HttpStatusCode.OK, out category);
@@ -86,11 +87,11 @@
             return null;
         }
 
-        public Category GetByName(string categoryName, string ticket)
+        public Category GetByName(string categoryName)
         {
             try
             {
-                Dictionary<HttpStatusCode, Category> response = RequestToApi<Category>("GET", UrlResolver.Categories_Name_Url(categoryName), ticket: ticket);
+                Dictionary<HttpStatusCode, Category> response = RequestToApi<Category>("GET", UrlResolver.GetCategoriesByNameUrl(categoryName));
 
                 Category category;
                 response.TryGetValue(HttpStatusCode.OK, out category);
@@ -105,11 +106,11 @@
             return null;
         }
 
-        public bool Delete(int categoryId, string ticket)
+        public bool Delete(int categoryId)
         {
             try
             {
-                Dictionary<HttpStatusCode, Book> response = RequestToApi<Book>("DELETE", UrlResolver.Categories_Id_Url(categoryId), ticket);
+                Dictionary<HttpStatusCode, Book> response = RequestToApi<Book>("DELETE", UrlResolver.GetCategoriesByIdUrl(categoryId));
 
                 return response.ContainsKey(HttpStatusCode.OK);
             }
@@ -121,11 +122,11 @@
             return false;
         }
 
-        public bool PutBookToCategory(int categoryId, int bookId, string ticket)
+        public bool PutBookToCategory(int categoryId, int bookId)
         {
             try
             {
-                Dictionary<HttpStatusCode, Book> response = RequestToApi<Book>("POST", UrlResolver.Categories_AddBook(categoryId, bookId), ticket);
+                Dictionary<HttpStatusCode, Book> response = RequestToApi<Book>("POST", UrlResolver.GetCategoriesAddBookUrl(categoryId, bookId));
 
                 return response.ContainsKey(HttpStatusCode.OK);
             }
@@ -137,11 +138,11 @@
             return false;
         }
 
-        public bool RemoveBookFromCategory(int categoryId, int bookId, string ticket)
+        public bool RemoveBookFromCategory(int categoryId, int bookId)
         {
             try
             {
-                Dictionary<HttpStatusCode, Book> response = RequestToApi<Book>("DELETE", UrlResolver.Categories_RemoveBook(categoryId, bookId), ticket);
+                Dictionary<HttpStatusCode, Book> response = RequestToApi<Book>("DELETE", UrlResolver.GetCategoriesRemoveBookUrl(categoryId, bookId));
 
                 return response.ContainsKey(HttpStatusCode.OK);
             }

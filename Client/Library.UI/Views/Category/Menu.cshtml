@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Library.UI.Models.Categories.Category>
+﻿@using System.Web.Mvc.Html
+@model System.Collections.Generic.IEnumerable<Library.UI.Models.Categories.Category>
 
 @Html.ActionLink("Home", "GetAll", "Books", null, new { @class = "side-nav-button" })
 @if (Model != null)
