@@ -2,16 +2,12 @@ D:\GitHub\Library\API\Library.API\bin\Library.API.dll.config
 D:\GitHub\Library\API\Library.API\bin\Library.API.dll
 D:\GitHub\Library\API\Library.API\bin\Library.API.pdb
 D:\GitHub\Library\API\Library.API\bin\Library.API.Business.dll
-D:\GitHub\Library\API\Library.API\bin\Library.API.Common.dll
-D:\GitHub\Library\API\Library.API\bin\Library.API.DAL.dll
 D:\GitHub\Library\API\Library.API\bin\Newtonsoft.Json.dll
 D:\GitHub\Library\API\Library.API\bin\Ninject.dll
 D:\GitHub\Library\API\Library.API\bin\System.Net.Http.Formatting.dll
 D:\GitHub\Library\API\Library.API\bin\System.Web.Http.dll
 D:\GitHub\Library\API\Library.API\bin\System.Web.Http.WebHost.dll
 D:\GitHub\Library\API\Library.API\bin\Library.API.Business.pdb
-D:\GitHub\Library\API\Library.API\bin\Library.API.Common.pdb
-D:\GitHub\Library\API\Library.API\bin\Library.API.DAL.pdb
 D:\GitHub\Library\API\Library.API\bin\Newtonsoft.Json.xml
 D:\GitHub\Library\API\Library.API\bin\Ninject.xml
 D:\GitHub\Library\API\Library.API\bin\System.Net.Http.Formatting.xml
@@ -64,3 +60,7 @@ C:\GitProj\Library\API\Library.API\bin\Library.API.DataAccess.dll
 C:\GitProj\Library\API\Library.API\bin\Library.API.Model.dll
 C:\GitProj\Library\API\Library.API\bin\Library.API.Model.pdb
 C:\GitProj\Library\API\Library.API\bin\Library.API.DataAccess.pdb
+D:\GitHub\Library\API\Library.API\bin\Library.API.DataAccess.dll
+D:\GitHub\Library\API\Library.API\bin\Library.API.Model.dll
+D:\GitHub\Library\API\Library.API\bin\Library.API.Model.pdb
+D:\GitHub\Library\API\Library.API\bin\Library.API.DataAccess.pdb

@@ -12,3 +12,10 @@ C:\GitProj\Library\API\Library.API.DAL\bin\Release\Library.API.Model.pdb
 C:\GitProj\Library\API\Library.API.DAL\obj\Release\4.Library.API.DataAccess.csprojResolveAssemblyReference.cache
 C:\GitProj\Library\API\Library.API.DAL\obj\Release\Library.API.DataAccess.dll
 C:\GitProj\Library\API\Library.API.DAL\obj\Release\Library.API.DataAccess.pdb
+D:\GitHub\Library\API\Library.API.DAL\bin\Release\Library.API.DataAccess.dll
+D:\GitHub\Library\API\Library.API.DAL\bin\Release\Library.API.DataAccess.pdb
+D:\GitHub\Library\API\Library.API.DAL\bin\Release\Library.API.Model.dll
+D:\GitHub\Library\API\Library.API.DAL\bin\Release\Library.API.Model.pdb
+D:\GitHub\Library\API\Library.API.DAL\obj\Release\4.Library.API.DataAccess.csprojResolveAssemblyReference.cache
+D:\GitHub\Library\API\Library.API.DAL\obj\Release\Library.API.DataAccess.dll
+D:\GitHub\Library\API\Library.API.DAL\obj\Release\Library.API.DataAccess.pdb

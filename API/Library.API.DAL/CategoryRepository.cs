@@ -21,8 +21,6 @@
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    #region parameters
-
                     SqlParameter name = new SqlParameter
                     {
                         ParameterName = "@Name",
@@ -31,8 +29,6 @@
                         Value = category.Name
                     };
                     cmd.Parameters.Add(name);
-
-                    #endregion
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
@@ -63,8 +59,6 @@
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    #region parameters
-
                     SqlParameter id = new SqlParameter
                     {
                         ParameterName = "@Id",
@@ -73,8 +67,6 @@
                         Value = categoryId
                     };
                     cmd.Parameters.Add(id);
-
-                    #endregion
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
@@ -105,8 +97,6 @@
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    #region parameters
-
                     SqlParameter name = new SqlParameter
                     {
                         ParameterName = "@Name",
@@ -115,8 +105,6 @@
                         Value = category
                     };
                     cmd.Parameters.Add(name);
-
-                    #endregion
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
@@ -169,8 +157,6 @@
 
         public Category Update(Category category)
         {
-            Category updatedCategory = new Category();
-
             using (SqlConnection conn = new SqlConnection(ConnectionString))
             {
                 conn.Open();
@@ -178,8 +164,6 @@
                 using (SqlCommand cmd = new SqlCommand("UpdateCategory", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-
-                    #region parameters
 
                     SqlParameter Id = new SqlParameter
                     {
@@ -190,48 +174,17 @@
                     };
                     cmd.Parameters.Add(Id);
 
-                    SqlParameter Name = new SqlParameter
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        ParameterName = "@Name",
-                        DbType = DbType.String,
-                        Direction = ParameterDirection.InputOutput,
-                        Value = category.Name
-                    };
-                    cmd.Parameters.Add(Name);
-
-                    SqlParameter CreationDate = new SqlParameter
-                    {
-                        ParameterName = "@CreationDate",
-                        DbType = DbType.DateTime,
-                        Direction = ParameterDirection.Output,
-                    };
-                    cmd.Parameters.Add(CreationDate);
-
-                    SqlParameter Result = new SqlParameter
-                    {
-                        ParameterName = "@Result",
-                        DbType = DbType.Int32,
-                        Direction = ParameterDirection.Output,
-                        Value = 0
-                    };
-                    cmd.Parameters.Add(Result);
-
-                    #endregion
-
-                    cmd.ExecuteNonQuery();
-
-                    if ((int) Result.Value == 2 || Result.Value == null)
-                    {
-                        return null;
+                        while (reader.Read())
+                        {
+                            category.Id = (int)reader["CategoryId"];
+                        }
                     }
-
-                    updatedCategory.Id = category.Id;
-                    updatedCategory.CreationDate = (DateTime) CreationDate.Value;
-                    updatedCategory.Name = (string) Name.Value;
                 }
             }
 
-            return updatedCategory;
+            return category.Id == 0 ? null : category;
         }
 
         public bool Delete(int categoryId)
@@ -244,8 +197,6 @@
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    #region parameters
-
                     SqlParameter Id = new SqlParameter
                     {
                         ParameterName = "@Id",
@@ -255,19 +206,9 @@
                     };
                     cmd.Parameters.Add(Id);
 
-                    SqlParameter Result = new SqlParameter
-                    {
-                        ParameterName = "@Result",
-                        DbType = DbType.Int32,
-                        Direction = ParameterDirection.Output
-                    };
-                    cmd.Parameters.Add(Result);
+                    int result = cmd.ExecuteNonQuery();
 
-                    #endregion
-
-                    cmd.ExecuteNonQuery();
-
-                    return Result.Value != null && (int) Result.Value != 2 && (int) Result.Value != 0;
+                    return result != 0;
                 }
             }
         }
@@ -281,8 +222,6 @@
                 using (SqlCommand cmd = new SqlCommand("PutBookToCategory", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-
-                    #region parameters
 
                     SqlParameter CategoryId = new SqlParameter
                     {
@@ -309,8 +248,6 @@
                         Direction = ParameterDirection.Output
                     };
                     cmd.Parameters.Add(Result);
-
-                    #endregion
 
                     cmd.ExecuteNonQuery();
 
@@ -329,8 +266,6 @@
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    #region parameters
-
                     SqlParameter CategoryId = new SqlParameter
                     {
                         ParameterName = "@CategoryId",
@@ -356,8 +291,6 @@
                         Direction = ParameterDirection.Output
                     };
                     cmd.Parameters.Add(Result);
-
-                    #endregion
 
                     cmd.ExecuteNonQuery();
 

@@ -1,9 +1,5 @@
 D:\GitHub\Library\API\Library.API.Business\bin\Release\Library.API.Business.dll
 D:\GitHub\Library\API\Library.API.Business\bin\Release\Library.API.Business.pdb
-D:\GitHub\Library\API\Library.API.Business\bin\Release\Library.API.Common.dll
-D:\GitHub\Library\API\Library.API.Business\bin\Release\Library.API.DAL.dll
-D:\GitHub\Library\API\Library.API.Business\bin\Release\Library.API.Common.pdb
-D:\GitHub\Library\API\Library.API.Business\bin\Release\Library.API.DAL.pdb
 D:\GitHub\Library\API\Library.API.Business\obj\Release\2.Library.API.Business.csprojResolveAssemblyReference.cache
 D:\GitHub\Library\API\Library.API.Business\obj\Release\Library.API.Business.dll
 D:\GitHub\Library\API\Library.API.Business\obj\Release\Library.API.Business.pdb
@@ -25,3 +21,7 @@ C:\GitProj\Library\API\Library.API.Business\bin\Release\Library.API.DataAccess.d
 C:\GitProj\Library\API\Library.API.Business\bin\Release\Library.API.Model.dll
 C:\GitProj\Library\API\Library.API.Business\bin\Release\Library.API.Model.pdb
 C:\GitProj\Library\API\Library.API.Business\bin\Release\Library.API.DataAccess.pdb
+D:\GitHub\Library\API\Library.API.Business\bin\Release\Library.API.DataAccess.dll
+D:\GitHub\Library\API\Library.API.Business\bin\Release\Library.API.Model.dll
+D:\GitHub\Library\API\Library.API.Business\bin\Release\Library.API.Model.pdb
+D:\GitHub\Library\API\Library.API.Business\bin\Release\Library.API.DataAccess.pdb
